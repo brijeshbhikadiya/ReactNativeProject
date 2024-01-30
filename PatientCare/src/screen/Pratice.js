@@ -21,11 +21,12 @@ export default class Login extends Component {
                 <View style={styles.container3}>
                     <Text style={styles.t1}>Welcome back!</Text>
                     <View style={styles.card}>
-                        <TextInput style={styles.t2}
+                        <View><TextInput style={styles.t2}
                         placeholder='Email'
-                        placeholderTextColor={'#504956'}
-                        keyboardType='email-address'></TextInput>
-                        <Image source={require('../assets/images/login_mail.png')} style={styles.loginmail}/>
+                        placeholderTextColor={'#504956'}></TextInput></View>
+                        <View><Image source={require('../assets/images/login_mail.png')} style={styles.loginmail}/></View>
+                        
+                        
                     </View>
                     <View style={styles.card2}>
                         <TextInput style={styles.t2}
@@ -109,7 +110,6 @@ const styles=StyleSheet.create({
         position:'relative'
     },
     t2:{
-        width:'87%',
         fontSize:18,
         color:'#504956',
         paddingLeft:19,
@@ -120,8 +120,8 @@ const styles=StyleSheet.create({
     },
     loginmail:{
         position:'absolute',
-        marginTop:17,
-        marginLeft:275,
+        marginTop:22,
+        marginLeft:210,
     },
     loginlock:{
         position:'absolute',

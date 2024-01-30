@@ -1,9 +1,34 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native'
 import React, { Component } from 'react'
 
 export default class CreateAccount extends Component {
-  
+
+    constructor(){
+        super();
+        this.state={
+            checkBox:false,
+            password:'',
+            showPassword:false
+        }
+    }
+
+    changeCheck=()=>{
+        this.setState({
+            checkBox:!this.state.checkBox
+        });
+    };
+
+    toggalePassword=()=>{
+        this.setState({
+            showPassword:!this.state.showPassword
+        });
+    };
+
+    
   render() {
+    
+    const { password, showPassword } = this.state;
+
     return (
       <View style={styles.container}>
 
@@ -18,33 +43,59 @@ export default class CreateAccount extends Component {
             <Text style={styles.t1}>Please Register</Text>
 
             <View style={styles.card}>
-                <Text style={styles.t2}>Email</Text>
-                    <Image source={require('../assets/images/login_mail.png')} style={styles.loginmail}/>
+                <TextInput style={styles.t2}
+                placeholder='Email'
+                keyboardType='email-address'
+                ></TextInput>
+                <Image source={require('../assets/images/login_mail.png')} style={styles.loginmail}/>
             </View>
+                    
 
             <View style={styles.card}>
-                <Text style={styles.t2}>Phone Number</Text>
+                <TextInput style={styles.t2}
+                placeholder='Phone Number'
+                placeholderTextColor={'#504956'}
+                keyboardType='number-pad'
+                ></TextInput>
                     <Image source={require('../assets/images/sign_up_call.png')} style={styles.signupcall}/>
             </View>
 
             <View style={styles.card}>
-                <Text style={styles.t2}>Create Password</Text>
+                <TextInput style={styles.t2}
+                  placeholder='Create Password'
+                  placeholderTextColor={'#504956'}></TextInput>
                     <Image source={require('../assets/images/sign_up_pw.png')} style={styles.signuppassword}/>
             </View>
 
-            
+        
+
             <View style={styles.card}>
-                <Text style={styles.t2}>Confirm Password</Text>
-                    <Image source={require('../assets/images/sign_up_show_pw.png')} style={styles.signupshowpassword}/>
+                <TextInput style={styles.t2}
+                placeholder='Confirm Password'
+                placeholderTextColor={'#504956'}
+                secureTextEntry={!showPassword}
+                value={password}
+                onChangeText={(text) =>this.setState({password:text})}></TextInput>
+
+                <TouchableOpacity onPress={this.toggalePassword}>
+                    <Image source={showPassword?require('../assets/images/sign_up_show_pw.png'):require('../assets/images/sign_up_hide_pw.png')}
+                     style={styles.signupshowpassword}></Image>
+                </TouchableOpacity>
             </View>
 
             <View style={styles.card}>
-                <Text style={styles.t3}>Referral code (optional)</Text>
+                <TextInput style={styles.t3}
+                 placeholder='Referral code (optional)'
+                 placeholderTextColor={'#504956'}></TextInput>
             </View>
 
             <View style={{flexDirection:'row'}}>
             
-            <Image source={require('../assets/images/sign_up_sel_chk.png')} style={styles.checkbox}/>
+            <TouchableOpacity onPress={this.changeCheck}>
+                <Image source={this.state.checkBox==false?require('../assets/images/Rectangle_16190.png'):require('../assets/images/sign_up_sel_chk.png')}
+                style={styles.checkbox}/>
+            </TouchableOpacity>
+
              <Text style={styles.t4}>By signing-up you accept our <Text style={{textDecorationLine:'underline'}}>Terms</Text>                            ofServices and Privacy Policy.</Text>
             </View>
 
@@ -103,20 +154,21 @@ const styles=StyleSheet.create({
         flexDirection:'row'
     },
     t2:{
+        width:'88%',
         fontSize:18,
         color:'#504956',
-        marginLeft:19,
-        marginTop:16,
-        marginBottom:17,
+        paddingLeft:19,
+        paddingTop:16,
+        paddingBottom:17,
         fontWeight:'400',
         fontFamily:'Helvetica'
     },
     t3:{
         fontSize:18,
         color:'#504956',
-        marginLeft:19,
-        marginTop:14,
-        marginBottom:17,
+        paddingLeft:19,
+        paddingTop:14,
+        paddingBottom:17,
         fontWeight:'400',
         fontFamily:'Helvetica'
     },
@@ -137,26 +189,31 @@ const styles=StyleSheet.create({
         fontFamily:'Helvetica'
     },
     loginmail:{
+        position:'absolute',
         marginTop:20,
-        marginLeft:248,
+        marginLeft:310,
     },
     signupcall:{
+        position:'absolute',
         marginTop:20,
-        marginLeft:170,
+        marginLeft:310,
     },
     signuppassword:{
+        position:'absolute',
         marginTop:20,
-        marginLeft:155,
+        marginLeft:310,
     },
     signupshowpassword:{
+        position:'absolute',
         marginTop:20,
-        marginLeft:140,
+        //marginLeft:5,
     },
+   
     checkbox:{
         marginTop:20,
         marginLeft:20,
-        height:16,
-        width:16
+        // height:16,
+        // width:16
     },
     touachableopacity:{
         backgroundColor:'#FF3D52',
