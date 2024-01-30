@@ -8,8 +8,9 @@ export default class CreateAccount extends Component {
         this.state={
             checkBox:false,
             password:'',
-            showPassword:false
-        }
+            showPassword:false,
+            phonenumber:'',
+        };
     }
 
     changeCheck=()=>{
@@ -24,10 +25,17 @@ export default class CreateAccount extends Component {
         });
     };
 
+    handlephonenumber=(text)=>{
+       const numericValue = text.replace(/[^0-9]/g, '');
+       this.setState({
+        phonenumber: numericValue
+       })
+    };
+
     
   render() {
     
-    const { password, showPassword } = this.state;
+    const { password, showPassword ,phonenumber } = this.state;
 
     return (
       <View style={styles.container}>
@@ -42,6 +50,7 @@ export default class CreateAccount extends Component {
         <View style={styles.container2}>
             <Text style={styles.t1}>Please Register</Text>
 
+            
             <View style={styles.card}>
                 <TextInput style={styles.t2}
                 placeholder='Email'
@@ -54,8 +63,10 @@ export default class CreateAccount extends Component {
             <View style={styles.card}>
                 <TextInput style={styles.t2}
                 placeholder='Phone Number'
+                onChangeText={this.handlephonenumber}
                 placeholderTextColor={'#504956'}
-                keyboardType='number-pad'
+                value={phonenumber}
+                keyboardType='numeric'
                 ></TextInput>
                     <Image source={require('../assets/images/sign_up_call.png')} style={styles.signupcall}/>
             </View>
