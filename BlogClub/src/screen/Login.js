@@ -1,9 +1,33 @@
-import { Text, View,StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native'
+import { Text, View,StyleSheet, Image, TextInput, TouchableOpacity, ScrollView } from 'react-native'
 import React, { Component } from 'react'
 
 export default class Login extends Component {
+  constructor(){
+    super();
+    this.state={
+      password:'',
+      showPassword:false,
+      email:''
+    }
+  }
+
+  togglePassword=()=>{
+    this.setState({
+      showPassword:!this.state.showPassword
+    });
+  }
+
   render() {
+
+    const { password, showPassword} = this.state;
+
+    const isEmailValid=(text)=>{
+      const emailPattern=/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+      return emailPattern.test(text);
+  };
+
     return (
+      <ScrollView style={styles.container}>
       <View style={styles.container}>
 
         <Image source={require('../assets/images/LOGO_SMALL.png')}
@@ -26,28 +50,67 @@ export default class Login extends Component {
                 <TextInput style={styles.t2}
                   keyboardType='email-address'
                   placeholderTextColor={'rgba(13, 37, 60, 1)'}
-                ></TextInput>
+                  onChangeText={(text)=>{
+                    this.setState({email:text})
+                }}></TextInput>
 
                 <View style={styles.card}></View>
 
-                <Text style={styles.passwordtext}>Password</Text>
+                <Text style={style=styles.emailvalidatetext}>
+                  {this.state.email==""?null:isEmailValid(this.state.email)?
+                  <Text style={{color:'green'}}>Valid email!!!!</Text>:
+                  <Text style={{color:'red'}}>invalid email!!!!</Text>}
+                </Text>
 
-             
-                <TextInput style={styles.t2}
+              <Text style={styles.passwordtext}>Password</Text>
+
+              <View style={{flexDirection:'row'}}>
+
+              <TextInput style={styles.passwordcontainer}
                   keyboardType='name-phone-pad'
-                  placeholderTextColor={'rgba(13, 37, 60, 1)'}>
+                  placeholderTextColor={'rgba(13, 37, 60, 1)'}
+                  secureTextEntry={!showPassword}
+                  value={password}
+                  onChangeText={(text)=>this.setState({
+                        password:text
+                  })}>
                 </TextInput>
+
+                <TouchableOpacity style={styles.showpasswordtiachable}
+                  onPress={this.togglePassword}>
+                   <Text style={styles.showtext}>{showPassword ? 'Hide' : 'Show'}</Text>
+                </TouchableOpacity>
+
+              </View>
+              
                 
-                <View style={styles.card}></View>
+             
+                <View style={styles.card}>
+                  
+                </View>
 
                 <TouchableOpacity style={styles.touchableOpacity}>
                   <Text style={styles.logintext2}>LOGIN</Text>
                   </TouchableOpacity>
 
-                
+              
+
+                <View style={styles.forgetresetcontainer}> 
+                  <Text style={styles.forgotpasswordtext}>Forgot your password?</Text>
+                  <Text style={styles.resetpasswordtext}>Reset here</Text>
+                </View>
+
+                <View style={{justifyContent:'center',flexDirection:'row'}}> 
+                  <Text style={styles.orsignwithtext}>Or sign in with</Text>
+                </View>
+
+                <View style={{flexDirection:'row',justifyContent:'center',marginTop:16}}>
+                  <Image source={require('../assets/images/SOCIAL_MEDIA.png')}></Image>
+                </View>
             </View>
         </View>
       </View>
+      </ScrollView>
     )
   }
 }
@@ -139,14 +202,14 @@ const styles = StyleSheet.create({
     marginTop:20
   },
   t2:{
-       width:'79%',
+       width:'82%',
        marginHorizontal:40,
        fontSize:16,
        fontStyle:'normal',
        fontWeight:'800',
        fontFamily:'Avenir',
        color:'#0D253C',
-       marginTop:12
+       marginTop:5,
     },
     card:{
       height:1,
@@ -171,7 +234,67 @@ const styles = StyleSheet.create({
       fontSize:16,
       textTransform:'uppercase',
       fontFamily:'Avenir'
+    },
+    forgetresetcontainer:{
+      flexDirection:'row',
+      justifyContent:'center',
+      marginTop:20
+    },
+    forgotpasswordtext:{
+      color:'#2D4379',
+      //fontWeight:'350',
+      fontSize:14,
+      fontFamily:'Avenir'
+    },
+    resetpasswordtext:{
+      marginLeft:8,
+      color:'#376AED',
+      fontWeight:'500',
+      fontSize:14,
+      fontFamily:'Avenir'
+    },
+    orsignwithtext:{
+      marginTop:32,
+      color:'#2D4379',
+      fontSize:12,
+      fontFamily:'Avenir',
+      lineHeight:18,
+      textTransform:'uppercase',
+      letterSpacing:1.75
+    },
+    passwordcontainer:{
+       width:'70%',
+       //marginHorizontal:40,
+       fontSize:16,
+       fontStyle:'normal',
+       fontWeight:'800',
+       fontFamily:'Avenir',
+       color:'#0D253C',
+       marginLeft:40,
+       marginTop:5,
+    },
+    showpasswordtiachable:{
+      marginTop:17
+    },
+    showtext:{
+      color:'#376AED',
+      fontSize:14,
+      fontStyle:'normal',
+      fontWeight:'500',
+      fontFamily:'Avenir',
+    },
+    hideText:{
+      color:'#376AED',
+      fontSize:14,
+      fontStyle:'normal',
+      fontWeight:'500',
+      fontFamily:'Avenir',
+    },
+    emailvalidatetext:{
+      fontSize:14,
+      color:'#000000',
+      marginLeft:40,
+      marginTop:5
     }
-
 
 })
