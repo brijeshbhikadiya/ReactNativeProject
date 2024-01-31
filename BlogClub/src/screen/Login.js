@@ -85,9 +85,7 @@ export default class Login extends Component {
               
                 
              
-                <View style={styles.card}>
-                  
-                </View>
+                <View style={styles.card}></View>
 
                 <TouchableOpacity style={styles.touchableOpacity}>
                   <Text style={styles.logintext2}>LOGIN</Text>

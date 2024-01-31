@@ -17,6 +17,7 @@ export default class CreateAccount extends Component {
         this.setState({
             checkBox:!this.state.checkBox
         });
+        
     };
 
     toggalePassword=()=>{
