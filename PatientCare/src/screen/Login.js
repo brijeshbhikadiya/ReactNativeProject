@@ -43,12 +43,8 @@ export default class Login extends Component {
 
                     <Text style={styles.t5}>By signing-in you accept our Terms ofService and Privacy Policy</Text>
                  
-                </View>
-                
+                </View> 
             </View>
-               
-        
-       
     </View>
     
     )

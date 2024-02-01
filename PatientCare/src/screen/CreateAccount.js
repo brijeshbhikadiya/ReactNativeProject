@@ -16,8 +16,7 @@ export default class CreateAccount extends Component {
     changeCheck=()=>{
         this.setState({
             checkBox:!this.state.checkBox
-        });
-        
+        });    
     };
 
     toggalePassword=()=>{
