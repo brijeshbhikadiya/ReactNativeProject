@@ -71,6 +71,7 @@ export default class CreateAccount extends Component {
                     <Image source={require('../assets/images/sign_up_call.png')} style={styles.signupcall}/>
             </View>
 
+
             <View style={styles.card}>
                 <TextInput style={styles.t2}
                   placeholder='Create Password'
