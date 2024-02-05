@@ -1,11 +1,14 @@
-import { Text, View ,StyleSheet,ScrollView,Image} from 'react-native'
+import { Text, View ,StyleSheet,ScrollView,Image, ImageBackground} from 'react-native'
 import React, { Component } from 'react'
+
+
 
 export default class ProductRefundRecepit extends Component {
   render() {
     return (
-    <ScrollView>
-        <View style={styles.linearView} >
+   
+      <ImageBackground source={require('../assets/images/background.png')} style={styles.container} >
+        <ScrollView>
           <View style={styles.outercontainer}>
               <Image source={require('../assets/images/backbutton.png')} style={styles.backimage}></Image> 
               <Text style={styles.text1}>Receipt</Text>
@@ -14,7 +17,8 @@ export default class ProductRefundRecepit extends Component {
               <Text style={styles.text2}>ORDER  ID: ABCD2562</Text>
           </View>
 
-          <View style={styles.innercontainer}>
+     
+      <ImageBackground source={require('../assets/images/background_design.png')}style={styles.innercontainer}>
               <View style={styles.view1}>
                 <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                   <Text style={styles.text3}>Order Date:</Text>
@@ -123,19 +127,23 @@ export default class ProductRefundRecepit extends Component {
                   <Image source={require('../assets/images/share.png')}></Image>
                 </View>
              </View>
-                
-            </View>
-        </View>
-    </ScrollView>
+             </ImageBackground>
+            
+            </ScrollView>
+        </ImageBackground>
+    
 
     )
   }
 }
 
 const styles = StyleSheet.create({
-    linearView:{
-      flex:1,
-      backgroundColor:'red',
+    container:{
+        flex:1,
+        backgroundColor:'yellow',
+    },
+    linearview:{
+      flex:1
     },
       outercontainer:{
         flexDirection:'row',
@@ -174,7 +182,7 @@ const styles = StyleSheet.create({
       },
       view6:{
         marginHorizontal:25,
-        marginTop:14
+        marginTop:14,
       },
       view7:{
         marginHorizontal:25,
@@ -199,14 +207,15 @@ const styles = StyleSheet.create({
         color:'#8B433C'
       },
       innercontainer:{
-        flex:1,
-        backgroundColor:'#FFFFFF',
+        //flex:1,
+        //backgroundColor:'#FFFFFF',
         marginTop:24,
         marginHorizontal:14,
-        borderTopLeftRadius:20,
-        borderTopRightRadius:20,
-        borderBottomWidth:1,
-        borderColor:'rgba(0, 0, 0, 0.04)'
+        ////borderTopLeftRadius:20,
+        //borderTopRightRadius:20,
+        //borderBottomWidth:1,
+       // borderColor:'rgba(0, 0, 0, 0.04)',
+        height:1000
       },
       text3:{
         fontSize:15,
@@ -288,12 +297,14 @@ const styles = StyleSheet.create({
         fontWeight:'400',
         fontSize:15,
         color:'rgba(79, 79, 79, 1)',
-        marginLeft:190
+        marginLeft:190,
+        marginTop:3
       },
       text17:{
         fontWeight:'400',
         fontSize:15,
         color:'rgba(206, 28, 79, 1)',
+        marginTop:3
       },
       text18:{
         fontWeight:'300',

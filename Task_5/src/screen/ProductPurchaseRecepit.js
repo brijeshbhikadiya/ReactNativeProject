@@ -1,5 +1,6 @@
-import { Image, StyleSheet, Text, View,ScrollView } from 'react-native'
+import { Image, StyleSheet, Text, View,ScrollView, ImageBackground } from 'react-native'
 import React, { Component } from 'react'
+
 
 
 
@@ -10,11 +11,9 @@ export default class ProductPurchaseRecepit extends Component {
   render() {
     return (
   
-      
-
-     
+      <ImageBackground source={require('../assets/images/background.png')} style={styles.linearView} >
       <ScrollView>
-          <View style={styles.linearView} >
+          
             <View style={styles.outercontainer}>
                 <Image source={require('../assets/images/backbutton.png')} style={styles.backimage}></Image> 
                 <Text style={styles.text1}>Receipt</Text>
@@ -23,7 +22,7 @@ export default class ProductPurchaseRecepit extends Component {
                 <Text style={styles.text2}>ORDER  ID: ABCD2562</Text>
             </View>
 
-            <View style={styles.innercontainer}>
+            <ImageBackground source={require('../assets/images/background_design.png')} style={styles.innercontainer}>
                 <View style={styles.view1}>
                   <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                     <Text style={styles.text3}>Order Date:</Text>
@@ -99,9 +98,10 @@ export default class ProductPurchaseRecepit extends Component {
                     <Image source={require('../assets/images/share.png')}></Image>
                   </View>
                 </View>
-           </View>
-      </View>
+           </ImageBackground>
+     
       </ScrollView>
+      </ImageBackground>
   
      
       
@@ -112,7 +112,7 @@ export default class ProductPurchaseRecepit extends Component {
 
 const styles = StyleSheet.create({
   linearView:{
-    flex:1,
+   flex:1,
     backgroundColor:'red',
   },
     outercontainer:{
@@ -171,13 +171,14 @@ const styles = StyleSheet.create({
     },
     innercontainer:{
       flex:1,
-      backgroundColor:'#FFFFFF',
+      //backgroundColor:'#FFFFFF',
       marginTop:24,
       marginHorizontal:14,
-      borderTopLeftRadius:20,
-      borderTopRightRadius:20,
-      borderBottomWidth:1,
-      borderColor:'rgba(0, 0, 0, 0.04)'
+      //borderTopLeftRadius:20,
+      //borderTopRightRadius:20,
+      //borderBottomWidth:1,
+      //borderColor:'rgba(0, 0, 0, 0.04)'
+      height:750
     },
     text3:{
       fontSize:15,
