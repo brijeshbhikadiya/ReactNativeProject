@@ -18,7 +18,7 @@ export default class ProductRefundRecepit extends Component {
           </View>
 
      
-      <ImageBackground source={require('../assets/images/background_design.png')}style={styles.innercontainer}>
+      <ImageBackground source={require('../assets/images/background_design.png')} style={styles.innercontainer}>
               <View style={styles.view1}>
                 <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                   <Text style={styles.text3}>Order Date:</Text>
@@ -140,10 +140,7 @@ export default class ProductRefundRecepit extends Component {
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor:'yellow',
-    },
-    linearview:{
-      flex:1
+        //backgroundColor:'yellow',
     },
       outercontainer:{
         flexDirection:'row',
@@ -207,7 +204,7 @@ const styles = StyleSheet.create({
         color:'#8B433C'
       },
       innercontainer:{
-        //flex:1,
+        flex:1,
         //backgroundColor:'#FFFFFF',
         marginTop:24,
         marginHorizontal:14,

@@ -11,9 +11,8 @@ export default class ProductPurchaseRecepit extends Component {
   render() {
     return (
   
-      <ImageBackground source={require('../assets/images/background.png')} style={styles.linearView} >
+      <ImageBackground source={require('../assets/images/background.png')} style={styles.container} >
       <ScrollView>
-          
             <View style={styles.outercontainer}>
                 <Image source={require('../assets/images/backbutton.png')} style={styles.backimage}></Image> 
                 <Text style={styles.text1}>Receipt</Text>
@@ -111,9 +110,9 @@ export default class ProductPurchaseRecepit extends Component {
 }
 
 const styles = StyleSheet.create({
-  linearView:{
+  container:{
    flex:1,
-    backgroundColor:'red',
+   // backgroundColor:'red',
   },
     outercontainer:{
       flexDirection:'row',
