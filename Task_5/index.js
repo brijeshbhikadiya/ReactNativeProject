@@ -9,4 +9,4 @@ import {name as appName} from './app.json';
 import ProductPurchaseRecepit from './src/screen/ProductPurchaseRecepit';
 import ProductRefundRecepit from './src/screen/ProductRefundRecepit';
 
-AppRegistry.registerComponent(appName, () => ProductPurchaseRecepit);
+AppRegistry.registerComponent(appName, () => ProductRefundRecepit);

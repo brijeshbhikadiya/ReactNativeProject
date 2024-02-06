@@ -17,7 +17,7 @@ export default class serviceBookingInfo extends Component {
         <View style={styles.viewFirst}>
         <Image source={require('../assets/images/arrow.png')}></Image>
         <Text style={styles.requestInfoText}>Request Info</Text>
-        <Image source={require('../assets/images/dot.png')} style={{marginTop:10,position:'absolute',right:11}}></Image>
+        <Image source={require('../assets/images/dot.png')} style={{position:'absolute',right:11}}></Image>
         </View>
         
           
@@ -117,8 +117,8 @@ export default class serviceBookingInfo extends Component {
             <Text style={styles.ageText}>Age : 21 - 30</Text>
           </View>
           <View style={{flexDirection:'row',marginLeft:140,marginTop:10,flex:1,justifyContent:'flex-end',marginRight:15,marginTop:22,}}>
-          <Image source={require('../assets/images/img1.png')}></Image>
-          <Image source={require('../assets/images/img2.png')} style={{marginLeft:8}}></Image>
+          <Image source={require('../assets/images/image1_1.png')}></Image>
+          <Image source={require('../assets/images/image1_2.png')} style={{marginLeft:8}}></Image>
           <Image source={require('../assets/images/img3.png')} style={{marginLeft:8}}></Image>
           </View>
           </View>
@@ -130,9 +130,9 @@ export default class serviceBookingInfo extends Component {
             <Text style={styles.ageText}>Age : 21 - 30</Text>
           </View>
           <View style={{flexDirection:'row',marginLeft:115,marginTop:16,flex:1,justifyContent:'flex-end',marginRight:15}}>
-          <Image source={require('../assets/images/r2img1.png')}></Image>
-          <Image source={require('../assets/images/r2img2.png')} style={{marginLeft:8}}></Image>
-          <Image source={require('../assets/images/r2img3.png')} style={{marginLeft:8}}></Image>
+          <Image source={require('../assets/images/imgae2_1.png')}></Image>
+          <Image source={require('../assets/images/image2_2.png')} style={{marginLeft:8}}></Image>
+          <Image source={require('../assets/images/img3.png')} style={{marginLeft:8}}></Image>
           </View>
           </View>
 
@@ -142,8 +142,8 @@ export default class serviceBookingInfo extends Component {
             <Text style={styles.ageText}>Age : 100 - 200</Text>
           </View>
           <View style={{flexDirection:'row',marginTop:11,flex:1,justifyContent:'flex-end',marginRight:15}}>
-          <Image source={require('../assets/images/r3img1.png')}></Image>
-          <Image source={require('../assets/images/r3img3.png')} style={{marginLeft:8}}></Image>
+          <Image source={require('../assets/images/r4img2.png')}></Image>
+          <Image source={require('../assets/images/image3_2.png')} style={{marginLeft:8}}></Image>
          
           </View>
           </View>
@@ -154,8 +154,8 @@ export default class serviceBookingInfo extends Component {
             <Text style={styles.ageText}>Age : 41 - 50</Text>
           </View>
           <View style={{flexDirection:'row',marginTop:1,flex:1,justifyContent:'flex-end',marginRight:15}}>
-          <Image source={require('../assets/images/r4img1.png')}></Image>
-          <Image source={require('../assets/images/r4img2.png')} style={{marginLeft:8}}></Image>
+          <Image source={require('../assets/images/v2img2.png')}></Image>
+          <Image source={require('../assets/images/r3img1.png')} style={{marginLeft:8}}></Image>
          
           </View>
           </View>
@@ -169,9 +169,9 @@ export default class serviceBookingInfo extends Component {
           
          
           <View style={{flexDirection:'row',flex:1,justifyContent:'flex-end',marginRight:15,marginTop:-10}}>
-          <Image source={require('../assets/images/v2img1.png')}></Image>
-          <Image source={require('../assets/images/v2img2.png')} style={{marginLeft:8}}></Image>
-          <Image source={require('../assets/images/v2img3.png')} style={{marginLeft:8}}></Image>
+          <Image source={require('../assets/images/image3_1.png')}></Image>
+          <Image source={require('../assets/images/image3_2_2.png')} style={{marginLeft:8}}></Image>
+          <Image source={require('../assets/images/image3_3.png')} style={{marginLeft:8}}></Image>
           </View>
           </View>
 
@@ -181,9 +181,9 @@ export default class serviceBookingInfo extends Component {
           
          
           <View style={{flexDirection:'row',flex:1,justifyContent:'flex-end',marginRight:15,marginTop:-10}}>
-          <Image source={require('../assets/images/v2img4.png')}></Image>
-          <Image source={require('../assets/images/v2img5.png')} style={{marginLeft:8}}></Image>
-          <Image source={require('../assets/images/v2img6.png')} style={{marginLeft:8}}></Image>
+          <Image source={require('../assets/images/image4_1.png')}></Image>
+          <Image source={require('../assets/images/image4_2.png')} style={{marginLeft:8}}></Image>
+          <Image source={require('../assets/images/image4_3.png')} style={{marginLeft:8}}></Image>
           </View>
           </View>
 
@@ -193,8 +193,8 @@ export default class serviceBookingInfo extends Component {
        
       
        <View style={{flexDirection:'row',flex:1,justifyContent:'flex-end',marginRight:15,marginTop:-10}}>
-       <Image source={require('../assets/images/v2img7.png')}></Image>
-       <Image source={require('../assets/images/v2img8.png')} style={{marginLeft:8}}></Image>
+       <Image source={require('../assets/images/image5_1.png')}></Image>
+       <Image source={require('../assets/images/image5_2.png')} style={{marginLeft:8}}></Image>
 
        </View>
        </View>
@@ -205,8 +205,8 @@ export default class serviceBookingInfo extends Component {
        
       
        <View style={{flexDirection:'row',flex:1,justifyContent:'flex-end',marginRight:15,marginTop:-10}}>
-       <Image source={require('../assets/images/r4img1.png')}></Image>
-       <Image source={require('../assets/images/r4img2.png')} style={{marginLeft:8}}></Image>
+       <Image source={require('../assets/images/v2img2.png')}></Image>
+       <Image source={require('../assets/images/v2img8.png')} style={{marginLeft:8}}></Image>
 
        </View>
        </View>
@@ -425,9 +425,9 @@ const styles=StyleSheet.create({
       letterSpacing:2,
       fontWeight:'700',
       color:'#080204',
-    position:'absolute',
+      position:'absolute',
       left:138,
-      top:10,
+      
       
     },
     bookingIdText:{
@@ -474,7 +474,7 @@ const styles=StyleSheet.create({
     lineHeight:21
   },
   totalText:{
-    color:'rgba(79, 79, 79, 1',
+    color:'rgba(79, 79, 79, 1)',
     fontSize:16,
     textAlign:'right',
     fontWeight:'400',

@@ -7,6 +7,7 @@ export default class ProductRefundRecepit extends Component {
   render() {
     return (
    
+      
       <ImageBackground source={require('../assets/images/background.png')} style={styles.container} >
         <ScrollView>
           <View style={styles.outercontainer}>
@@ -17,7 +18,7 @@ export default class ProductRefundRecepit extends Component {
               <Text style={styles.text2}>ORDER  ID: ABCD2562</Text>
           </View>
 
-     
+        
       <ImageBackground source={require('../assets/images/background_design.png')} style={styles.innercontainer}>
               <View style={styles.view1}>
                 <View style={{flexDirection:'row',justifyContent:'space-between'}}>
@@ -129,8 +130,10 @@ export default class ProductRefundRecepit extends Component {
              </View>
              </ImageBackground>
             
+            
             </ScrollView>
         </ImageBackground>
+        
     
 
     )
@@ -139,7 +142,7 @@ export default class ProductRefundRecepit extends Component {
 
 const styles = StyleSheet.create({
     container:{
-        flex:1,
+        //flex:1,
         //backgroundColor:'yellow',
     },
       outercontainer:{
@@ -205,6 +208,7 @@ const styles = StyleSheet.create({
       },
       innercontainer:{
         flex:1,
+        //position:'absolute',
         //backgroundColor:'#FFFFFF',
         marginTop:24,
         marginHorizontal:14,
