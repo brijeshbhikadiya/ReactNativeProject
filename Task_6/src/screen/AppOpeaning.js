@@ -1,12 +1,14 @@
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View,Dimensions } from 'react-native'
 import React, { Component } from 'react'
 
 export default class AppOpeaning extends Component {
     constructor(){
         super();
+        this.scrollViewRef = React.createRef();
         this.state={
             isDetailViewVisible: false,
             selectedCoutry: 'EN',
+            activePageIndex: 0,
         };
     }
 
@@ -17,12 +19,26 @@ export default class AppOpeaning extends Component {
     }));
    };
 
-    handleCoutryPress=(countryName)=>{
-        this.setState({
-            selectedCoutry:countryName,
-            isDetailViewVisible:false
-        });
-    };
+   handleGetStarted = () => {
+    const windowWidth = Dimensions.get('window').width;
+    let activePageIndex;
+
+  if (this.state.activePageIndex === 1) {
+    activePageIndex = 2; // If currently on the second page, go to the third page
+  } else if (this.state.activePageIndex === 2) {
+    activePageIndex = 0; // If currently on the third page, go back to the first page
+  } else {
+    activePageIndex = 1; // Otherwise, go to the second page
+  }
+
+  const scrollPosition = activePageIndex * windowWidth;
+
+  if (this.scrollViewRef.current) {
+    this.scrollViewRef.current.scrollTo({ x: scrollPosition, animated: true });
+  }
+
+  this.setState({ activePageIndex }); // Update the activePageIndex in the state
+};
 
   render() {
     const {isDetailViewVisible,selectedCoutry}=this.state;
@@ -59,7 +75,8 @@ export default class AppOpeaning extends Component {
         </View>
         
         <View>
-            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} pagingEnabled={true} >
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} pagingEnabled={true} ref={this.scrollViewRef} 
+            contentOffset={{ x: Dimensions.get('window').width * this.state.activePageIndex }}>
             <View style={{marginLeft:40,marginRight:40}}>
                 <View style={styles.view2}>
                     <Image source={require('../assets/images/center_image.png')}></Image>
@@ -127,7 +144,7 @@ export default class AppOpeaning extends Component {
 
         
         <View style={styles.view6}>
-            <TouchableOpacity style={styles.getstarted}>
+            <TouchableOpacity style={styles.getstarted} onPress={this.handleGetStarted}>
                 <Text style={styles.text5}>Get Started</Text>
             </TouchableOpacity>
         </View>
