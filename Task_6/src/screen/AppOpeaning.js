@@ -8,7 +8,6 @@ export default class AppOpeaning extends Component {
             isDetailViewVisible: false,
             selectedCoutry: 'EN',
         };
-        
     }
 
   
