@@ -19,29 +19,47 @@ export default class AppOpeaning extends Component {
     }));
    };
 
-   handleGetStarted = () => {
-    const windowWidth = Dimensions.get('window').width;
-    let activePageIndex;
-
-  if (this.state.activePageIndex === 1) {
-    activePageIndex = 2; // If currently on the second page, go to the third page
-  } else if (this.state.activePageIndex === 2) {
-    activePageIndex = 0; // If currently on the third page, go back to the first page
-  } else {
-    activePageIndex = 1; // Otherwise, go to the second page
-  }
-
-  const scrollPosition = activePageIndex * windowWidth;
-
-  if (this.scrollViewRef.current) {
-    this.scrollViewRef.current.scrollTo({ x: scrollPosition, animated: true });
-  }
-
-  this.setState({ activePageIndex }); // Update the activePageIndex in the state
+   handleCoutryPress=(countryName)=>{
+    this.setState({
+        selectedCoutry:countryName,
+        isDetailViewVisible:false
+    });
 };
 
+   handleGetStarted = () => {
+    // Check if handleGetStarted is already executing, return if true
+    if (this.isHandlingGetStarted) {
+      return;
+    }
+  
+    // Set the flag to true to indicate that handleGetStarted is now executing
+    this.isHandlingGetStarted = true;
+  
+    const windowWidth = Dimensions.get('window').width;
+    let activePageIndex;
+  
+    if (this.state.activePageIndex === 1) {
+      activePageIndex = 2; // If currently on the second page, go to the third page
+    } else if (this.state.activePageIndex === 2) {
+      activePageIndex = 0; // If currently on the third page, go back to the first page
+    } else {
+      activePageIndex = 1; // Otherwise, go to the second page
+    }
+  
+    const scrollPosition = activePageIndex * windowWidth;
+  
+    if (this.scrollViewRef.current) {
+      this.scrollViewRef.current.scrollTo({ x: scrollPosition, animated: true });
+    }
+  
+    this.setState({ activePageIndex }, () => {
+      // Update the flag to indicate that handleGetStarted has finished executing
+      this.isHandlingGetStarted = false;
+    });
+  };
+
   render() {
-    const {isDetailViewVisible,selectedCoutry}=this.state;
+    
     
 
 
@@ -52,9 +70,9 @@ export default class AppOpeaning extends Component {
            
         <TouchableOpacity onPress={this.toggleDetailsView} style={styles.touchableopacitycontainer}>
                 <Image source={require('../assets/images/main_logo.png')} style={{marginTop:3,marginLeft:4}}></Image>
-                <Text style={styles.text1}>{selectedCoutry}</Text>
+                <Text style={styles.text1}>{this.state.selectedCoutry}</Text>
 
-                {isDetailViewVisible ? (
+                {this.state.isDetailViewVisible ? (
                     <View style={styles.detailView}>
                         <TouchableOpacity onPress={() => this.handleCoutryPress('EN')} style={styles.countryContainer}>
                             <Image source={require('../assets/images/logo_1.png')} style={styles.countryImage} />

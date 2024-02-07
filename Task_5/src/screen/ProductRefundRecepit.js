@@ -12,7 +12,7 @@ export default class ProductRefundRecepit extends Component {
         <ScrollView>
           <View style={styles.outercontainer}>
               <Image source={require('../assets/images/backbutton.png')} style={styles.backimage}></Image> 
-              <Text style={styles.text1}>Receipt</Text>
+              <Text style={styles.text1}>Refund Receipt</Text>
           </View>
           <View style={styles.container3}>
               <Text style={styles.text2}>ORDER  ID: ABCD2562</Text>
@@ -28,6 +28,10 @@ export default class ProductRefundRecepit extends Component {
                 <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:8}}>
                   <Text style={styles.text3}>Arrival Date:</Text>
                   <Text style={styles.text3}>Mon, 14 June, 2022</Text>
+                </View>
+                <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:8}}>
+                  <Text style={styles.text3}>Refunded Date:</Text>
+                  <Text style={styles.text3}>Mon, 20 June, 2022</Text>
                 </View>
               </View>
 
