@@ -8,7 +8,6 @@ export default class AppOpeaning extends Component {
         this.state={
             isDetailViewVisible: false,
             selectedCoutry: 'EN',
-            activePageIndex: 0,
         };
     }
 
@@ -26,37 +25,20 @@ export default class AppOpeaning extends Component {
     });
 };
 
-   handleGetStarted = () => {
-    // Check if handleGetStarted is already executing, return if true
-    if (this.isHandlingGetStarted) {
-      return;
+
+    handleScrolling=()=>{
+        this.scrollViewRef.current.scrollTo({x:380,y:380,animated:true});
+
+    };
+
+    handleScrolling1=()=>{
+        this.scrollViewRef.current.scrollTo({x:775,y:775,animated:true});
+    }
+
+    handleScrolling2=()=>{
+        this.scrollViewRef.current.scrollTo({x:0,y:0,animated:true});
     }
   
-    // Set the flag to true to indicate that handleGetStarted is now executing
-    this.isHandlingGetStarted = true;
-  
-    const windowWidth = Dimensions.get('window').width;
-    let activePageIndex;
-  
-    if (this.state.activePageIndex === 1) {
-      activePageIndex = 2; // If currently on the second page, go to the third page
-    } else if (this.state.activePageIndex === 2) {
-      activePageIndex = 0; // If currently on the third page, go back to the first page
-    } else {
-      activePageIndex = 1; // Otherwise, go to the second page
-    }
-  
-    const scrollPosition = activePageIndex * windowWidth;
-  
-    if (this.scrollViewRef.current) {
-      this.scrollViewRef.current.scrollTo({ x: scrollPosition, animated: true });
-    }
-  
-    this.setState({ activePageIndex }, () => {
-      // Update the flag to indicate that handleGetStarted has finished executing
-      this.isHandlingGetStarted = false;
-    });
-  };
 
   render() {
     
@@ -93,8 +75,7 @@ export default class AppOpeaning extends Component {
         </View>
         
         <View>
-            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} pagingEnabled={true} ref={this.scrollViewRef} 
-            contentOffset={{ x: Dimensions.get('window').width * this.state.activePageIndex }}>
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} pagingEnabled={true} ref={this.scrollViewRef}>
             <View style={{marginLeft:40,marginRight:40}}>
                 <View style={styles.view2}>
                     <Image source={require('../assets/images/center_image.png')}></Image>
@@ -113,6 +94,13 @@ export default class AppOpeaning extends Component {
             <Image source={require('../assets/images/round.png')} style={{marginLeft:9}}></Image>
             <Image source={require('../assets/images/round.png')} style={{marginLeft:9}}></Image>
         </View>
+
+        <View style={styles.view6}>
+            <TouchableOpacity style={styles.getstarted} onPress={this.handleScrolling}>
+                <Text style={styles.text5}>Get Started</Text>
+            </TouchableOpacity>
+        </View>
+
             </View>
 
         <View style={{marginLeft:40,marginRight:40}}>
@@ -133,6 +121,13 @@ export default class AppOpeaning extends Component {
             <Image source={require('../assets/images/line.png')} style={{marginLeft:9}}></Image>
             <Image source={require('../assets/images/round.png')} style={{marginLeft:9}}></Image>
         </View>
+
+        <View style={styles.view6}>
+            <TouchableOpacity style={styles.getstarted} onPress={this.handleScrolling1}>
+                <Text style={styles.text5}>Get Started</Text>
+            </TouchableOpacity>
+        </View>
+
         </View>
 
 
@@ -155,17 +150,17 @@ export default class AppOpeaning extends Component {
             <Image source={require('../assets/images/line.png')} style={{marginLeft:9}}></Image>
         </View>
 
+        <View style={styles.view6}>
+            <TouchableOpacity style={styles.getstarted} onPress={this.handleScrolling2}>
+                <Text style={styles.text5}>Get Started</Text>
+            </TouchableOpacity>
+        </View>
+
+
         </View>
             </ScrollView>
         </View>
         
-
-        
-        <View style={styles.view6}>
-            <TouchableOpacity style={styles.getstarted} onPress={this.handleGetStarted}>
-                <Text style={styles.text5}>Get Started</Text>
-            </TouchableOpacity>
-        </View>
 
         <View style={styles.view7}>
             <Text style={{color:'rgba(29, 58, 112, 1)',fontSize:13,fontWeight:'400'}}>Just want to take a look?</Text ><Text style={{color:'rgba(22, 182, 231, 1)',fontSize:13,fontWeight:'400'}}> Check our rates</Text>
