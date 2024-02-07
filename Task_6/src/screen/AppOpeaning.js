@@ -13,11 +13,11 @@ export default class AppOpeaning extends Component {
     }
 
   
-  toggleDetailsView = () => {
-    this.setState((prevState) => ({
-      isDetailViewVisible: !prevState.isDetailViewVisible,
-    }));
-   };
+  toggleDetailsView=()=>{
+        this.setState({
+            isDetailViewVisible:!this.state.isDetailViewVisible
+        });
+    };
 
    handleCoutryPress=(countryName)=>{
     this.setState({

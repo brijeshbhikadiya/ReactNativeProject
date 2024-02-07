@@ -289,3 +289,55 @@ const styles = StyleSheet.create({
 
 
   })
+
+  //jo bane screen aek ma j karvanu kto niche mujab na code thi thay.
+//   import React, { Component } from 'react';
+// import { Text, View, StyleSheet, ScrollView, Image, ImageBackground } from 'react-native';
+
+// export default class ReceiptScreen extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       status: 'accepted' // default status
+//     };
+//   }
+
+//   renderReceipt() {
+//     if (this.state.status === 'accepted') {
+//       return <ProductPurchaseRecepit />;
+//     } else if (this.state.status === 'rejected') {
+//       return <ProductRefundRecepit />;
+//     }
+//   }
+
+//   render() {
+//     return (
+//       <View style={styles.container}>
+//         {this.renderReceipt()}
+//       </View>
+//     );
+//   }
+// }
+
+// class ProductPurchaseRecepit extends Component {
+//   render() {
+//     return (
+//       // Code for ProductPurchaseRecepit component
+//     );
+//   }
+// }
+
+// class ProductRefundRecepit extends Component {
+//   render() {
+//     return (
+//       // Code for ProductRefundRecepit component
+//     );
+//   }
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     // Other styles as needed
+//   },
+// });
