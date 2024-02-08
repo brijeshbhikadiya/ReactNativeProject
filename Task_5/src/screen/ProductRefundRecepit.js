@@ -4,6 +4,25 @@ import React, { Component } from 'react'
 
 
 export default class ProductRefundRecepit extends Component {
+  constructor(){
+    super()
+   this.state = {
+    arrData:[   //this cocnept called as a map one array is make and use tham less component.
+      {
+        title:"Subtotal",
+        date:"$220.00"
+      },
+      {
+        title:"Shipping",
+        date:"$10.00"
+      },
+      {
+        title:"Payment Surcharge",
+        date:"$5.00"
+      },
+    ]
+   }
+  }
   render() {
     return (
    
@@ -35,103 +54,120 @@ export default class ProductRefundRecepit extends Component {
                 </View>
               </View>
 
-              <View style={styles.line}></View>
+            <View style={{marginTop:25}}>
+            <View style={styles.line}></View>
 
-              <View style={styles.view2}>
-                  <View>
-                    <Image source={require('../assets/images/product_image.png')} style={{height:95,width:95}}></Image>
-                  </View>
-                  <View style={{marginLeft:20}}>
-                    <Text style={styles.text4}>Jelly Cream With Jeju Cherry {'\n'}Blossom</Text>
-                    <Text style={styles.text5}>L'Oreal</Text>
-                    <Text style={styles.text6}>Qty: 1 •  $10.00</Text>
-                  </View>
-              </View>
+<View style={styles.view2}>
+    <View>
+      <Image source={require('../assets/images/product_image.png')} style={{height:95,width:95}}></Image>
+    </View>
+    <View style={{marginLeft:20}}>
+      <Text style={styles.text4}>Jelly Cream With Jeju Cherry {'\n'}Blossom</Text>
+      <Text style={styles.text5}>L'Oreal</Text>
+      <Text style={styles.text6}>Qty: 1 •  $10.00</Text>
+    </View>
+</View>
 
-              <View style={styles.line}></View>
+<View style={styles.line}></View>
 
-              <View style={styles.view3}>
-                <View>
-                  <Text style={styles.text7}>Shipping Address</Text>
-                  <Text style={styles.text8}>1901 Thornridge Cir. Shiloh {'\n'}Oak St, Burlington, CO 80807, USA</Text>
-                </View>
-              </View>
+<View style={styles.view3}>
+  <View>
+    <Text style={styles.text7}>Shipping Address</Text>
+    <Text style={styles.text8}>1901 Thornridge Cir. Shiloh {'\n'}Oak St, Burlington, CO 80807, USA</Text>
+  </View>
+</View>
 
-              <View style={styles.line}></View>
+<View style={styles.line}></View>
 
-              <Text style={styles.text9}>Payment Info</Text>
+<Text style={styles.text9}>Payment Info</Text>
 
-              <View style={styles.view4}>
-                <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                  <Text style={styles.text10}>Subtotal</Text>
-                  <Text style={styles.text12}>$220.00</Text>
-                </View>
-                <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                  <Text style={styles.text11}>Shipping</Text>
-                  <Text style={styles.text13}>$10.00</Text>
-                </View>
-                <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                  <Text style={styles.text11}>Payment Surcharge</Text>
-                  <Text style={styles.text13}>$5.00</Text>
-                </View>
-              </View>
+{this.state.arrData.map((item)=>(
+    <View style={styles.view4}>
+      <Text style={styles.text10}>{item.title}</Text>
+      <Text style={styles.text12}>{item.date}</Text>
+    </View>
+  ))}
 
-              <View style={styles.line}></View>
+{/* <View style={styles.view4}>
+  <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+    <Text style={styles.text10}>Subtotal</Text>
+    <Text style={styles.text12}>$220.00</Text>
+  </View>
+  <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+    <Text style={styles.text11}>Shipping</Text>
+    <Text style={styles.text13}>$10.00</Text>
+  </View>
+  <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+    <Text style={styles.text11}>Payment Surcharge</Text>
+    <Text style={styles.text13}>$5.00</Text>
+  </View>
+</View> */}
 
-              <View style={styles.view5}>
-                <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                  <Text style={styles.text14}>Total</Text>
-                  <Text style={styles.text14}>$ 235.00</Text>
-                </View>
-              </View>
+<View style={styles.line}></View>
 
-              <Text style={styles.text9}>Refund Info</Text>
+<View style={styles.view5}>
+  <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+    <Text style={styles.text14}>Total</Text>
+    <Text style={styles.text14}>$ 235.00</Text>
+  </View>
+</View>
 
-              <View style={styles.view4}>
-                <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                  <Text style={styles.text10}>Subtotal</Text>
-                  <Text style={styles.text12}>$220.00</Text>
-                </View>
-                <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                  <Text style={styles.text11}>Shipping</Text>
-                  <Text style={styles.text13}>$10.00</Text>
-                </View>
-                <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                  <Text style={styles.text11}>Payment Surcharge</Text>
-                  <Text style={styles.text13}>$5.00</Text>
-                </View>
-              </View>
+<Text style={styles.text9}>Refund Info</Text>
 
-              <View style={styles.line}></View>
+{this.state.arrData.map((item)=>(
+    <View style={styles.view4}>
+      <Text style={styles.text10}>{item.title}</Text>
+      <Text style={styles.text12}>{item.date}</Text>
+    </View>
+  ))}
 
-              <View style={styles.view5}>
-                <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                  <Text style={styles.text14}>Total Refunded</Text>
-                  <Text style={styles.text14}>$ 235.00</Text>
-                </View>
-              </View>
+{/* <View style={styles.view4}>
+  <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+    <Text style={styles.text10}>Subtotal</Text>
+    <Text style={styles.text12}>$220.00</Text>
+  </View>
+  <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+    <Text style={styles.text11}>Shipping</Text>
+    <Text style={styles.text13}>$10.00</Text>
+  </View>
+  <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+    <Text style={styles.text11}>Payment Surcharge</Text>
+    <Text style={styles.text13}>$5.00</Text>
+  </View>
+</View> */}
 
-            
-            <View style={styles.view6}>
-                <View style={{flexDirection:'row',marginTop:11,justifyContent:"space-between"}}>
-                <Image source={require('../assets/images/discover.png')}></Image>
-                  <Text style={styles.text15}>Refunded To WAM Acc</Text>
-                  <Text style={styles.text16}>Total:</Text><Text style={styles.text17}> $235.00</Text>
-                </View>
-                <View style={styles.line2}></View>
+<View style={styles.line}></View>
 
-                <View style={{marginTop:11}}>
-                <Text style={styles.text7}>Refund reason</Text>
-                <Text style={styles.text19}>Wrong product arrived</Text>
-                </View>
+<View style={styles.view5}>
+  <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+    <Text style={styles.text14}>Total Refunded</Text>
+    <Text style={styles.text14}>$ 235.00</Text>
+  </View>
+</View>
 
-                <View style={styles.line2}></View>
-                
-                <Text style={styles.text18}>Note: All prices include GST</Text>
-                <View style={{flexDirection:'row',justifyContent:'center',marginTop:32}}>
-                  <Image source={require('../assets/images/share.png')}></Image>
-                </View>
-             </View>
+
+<View style={styles.view6}>
+  <View style={{flexDirection:'row',marginTop:11,justifyContent:"space-between"}}>
+  <Image source={require('../assets/images/discover.png')}></Image>
+    <Text style={styles.text15}>Refunded To WAM Acc</Text>
+    <Text style={styles.text16}>Total:</Text><Text style={styles.text17}> $235.00</Text>
+  </View>
+  <View style={styles.line2}></View>
+
+  <View style={{marginTop:11}}>
+  <Text style={styles.text7}>Refund reason</Text>
+  <Text style={styles.text19}>Wrong product arrived</Text>
+  </View>
+
+  <View style={styles.line2}></View>
+  
+  <Text style={styles.text18}>Note: All prices include GST</Text>
+  <View style={{flexDirection:'row',justifyContent:'center',marginTop:32}}>
+    <Image source={require('../assets/images/share.png')}></Image>
+  </View>
+</View>
+            </View>
+             
              </ImageBackground>
             
             
@@ -175,9 +211,11 @@ const styles = StyleSheet.create({
         marginHorizontal:25
       },
       view4:{
-        height:82,
+        //height:82,
         marginHorizontal:25,
-        marginTop:9
+        marginTop:9,
+        flexDirection:'row',
+        justifyContent:'space-between'
       },
       view5:{
         marginTop:12,

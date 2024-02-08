@@ -7,7 +7,10 @@ export default class Login extends Component {
     this.state={
       password:'',
       showPassword:false,
-      email:''
+      email:'',
+      isEmailFocused: false,
+      isPasswordFocused: false,
+      isPasswordNotEmpty: false
     }
   }
 
@@ -19,7 +22,7 @@ export default class Login extends Component {
 
   render() {
 
-    const { password, showPassword} = this.state;
+    const { password, showPassword,isEmailFocused,email,isPasswordNotEmpty,isPasswordFocused} = this.state;
 
     const isEmailValid=(text)=>{
       const emailPattern=/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
@@ -47,16 +50,18 @@ export default class Login extends Component {
 
                 <Text style={styles.usernametext}>Username</Text>
 
-                <TextInput style={styles.t2}
+                <TextInput style={[styles.t2, email.length > 0 ? styles.focusedInput:null]}
                   keyboardType='email-address'
                   placeholderTextColor={'rgba(13, 37, 60, 1)'}
+                  onFocus={() => this.setState({ isEmailFocused: true })}
+                  onBlur={() => this.setState({ isEmailFocused: false })}
                   onChangeText={(text)=>{
                     this.setState({email:text})
                 }}></TextInput>
 
-                <View style={styles.card}></View>
+               
 
-                <Text style={style=styles.emailvalidatetext}>
+                <Text style={styles.emailvalidatetext}>
                   {this.state.email==""?null:isEmailValid(this.state.email)?
                   <Text style={{color:'green'}}>Valid email!!!!</Text>:
                   <Text style={{color:'red'}}>invalid email!!!!</Text>}
@@ -66,26 +71,27 @@ export default class Login extends Component {
 
               <View style={{flexDirection:'row'}}>
 
-              <TextInput style={styles.passwordcontainer}
+              <TextInput style={[styles.passwordcontainer,isPasswordFocused && styles.focusedInput]}
                   keyboardType='name-phone-pad'
                   placeholderTextColor={'rgba(13, 37, 60, 1)'}
                   secureTextEntry={!showPassword}
+                  onFocus={() => this.setState({ isPasswordFocused: true })}
+                  onBlur={() => this.setState({ isPasswordFocused: false })}
                   value={password}
                   onChangeText={(text)=>this.setState({
-                        password:text
+                        password:text,
+                        isPasswordNotEmpty: text.length > 0
                   })}>
                 </TextInput>
-
-                <TouchableOpacity style={styles.showpasswordtiachable}
+              </View>
+              <TouchableOpacity style={styles.showpasswordtiachable}
                   onPress={this.togglePassword}>
                    <Text style={styles.showtext}>{showPassword ? 'Hide' : 'Show'}</Text>
                 </TouchableOpacity>
-
-              </View>
               
                 
              
-                <View style={styles.card}></View>
+                
 
                 <TouchableOpacity style={styles.touchableOpacity}>
                   <Text style={styles.logintext2}>LOGIN</Text>
@@ -117,6 +123,7 @@ const styles = StyleSheet.create({
   container:{
     flex:1,
     backgroundColor:'rgba(255, 255, 255, 1), rgba(244, 247, 255, 1)',
+    marginBottom:20
     
   },
   logo:{
@@ -208,6 +215,8 @@ const styles = StyleSheet.create({
        fontFamily:'Avenir',
        color:'#0D253C',
        marginTop:5,
+       borderBottomWidth:1,
+       borderBottomColor:'rgba(217, 223, 235, 1)'
     },
     card:{
       height:1,
@@ -261,7 +270,8 @@ const styles = StyleSheet.create({
       letterSpacing:1.75
     },
     passwordcontainer:{
-       width:'70%',
+        flex:1,
+      // width:'70%',
        //marginHorizontal:40,
        fontSize:16,
        fontStyle:'normal',
@@ -270,9 +280,16 @@ const styles = StyleSheet.create({
        color:'#0D253C',
        marginLeft:40,
        marginTop:5,
+       marginRight:40,
+       borderBottomColor:'rgba(217, 223, 235, 1)',
+       borderBottomWidth:1
+      
     },
     showpasswordtiachable:{
-      marginTop:17
+      
+      position:'absolute',
+      marginTop:290,
+     right:40
     },
     showtext:{
       color:'#376AED',
@@ -293,6 +310,10 @@ const styles = StyleSheet.create({
       color:'#000000',
       marginLeft:40,
       marginTop:5
+    },focusedInput:{
+      borderBottomColor:'blue'
     }
 
 })
+
+

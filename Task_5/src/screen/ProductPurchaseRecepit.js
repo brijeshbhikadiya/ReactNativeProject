@@ -8,6 +8,27 @@ import React, { Component } from 'react'
 
 
 export default class ProductPurchaseRecepit extends Component {
+  constructor(){
+    super()
+   this.state = {
+    arrData:[
+      {
+        title:"Subtotal",
+        date:"$220.00"
+      },
+      {
+        title:"Shipping",
+        date:"$10.00"
+      },
+      {
+        title:"Payment Surcharge",
+        date:"$5.00"
+      },
+    ]
+
+
+   }
+  }
   render() {
     return (
   
@@ -22,6 +43,7 @@ export default class ProductPurchaseRecepit extends Component {
             </View>
 
             <ImageBackground source={require('../assets/images/background_design.png')} style={styles.innercontainer}>
+                
                 <View style={styles.view1}>
                   <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                     <Text style={styles.text3}>Order Date:</Text>
@@ -58,21 +80,22 @@ export default class ProductPurchaseRecepit extends Component {
                 <View style={styles.line}></View>
 
                 <Text style={styles.text9}>Payment Info</Text>
-
-                <View style={styles.view4}>
-                  <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                    <Text style={styles.text10}>Subtotal</Text>
-                    <Text style={styles.text12}>$220.00</Text>
+                {this.state.arrData.map((item)=>(
+                  <View style={styles.view4}>
+                    <Text style={styles.text10}>{item.title}</Text>
+                    <Text style={styles.text12}>{item.date}</Text>
                   </View>
-                  <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+                ))}
+                
+                  {/* <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                     <Text style={styles.text11}>Shipping</Text>
                     <Text style={styles.text13}>$10.00</Text>
                   </View>
                   <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                     <Text style={styles.text11}>Payment Surcharge</Text>
                     <Text style={styles.text13}>$5.00</Text>
-                  </View>
-                </View>
+                  </View> */}
+                {/* </View> */}
 
                 <View style={styles.line}></View>
 
@@ -140,9 +163,11 @@ const styles = StyleSheet.create({
       marginHorizontal:25
     },
     view4:{
-      height:82,
+      //height:82,
       marginHorizontal:25,
-      marginTop:9
+      marginTop:9,
+      flexDirection:'row',
+      justifyContent:'space-between'
     },
     view5:{
       marginTop:12,

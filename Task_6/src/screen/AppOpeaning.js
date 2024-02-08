@@ -28,16 +28,15 @@ export default class AppOpeaning extends Component {
 
     handleScrolling=()=>{
         this.scrollViewRef.current.scrollTo({x:380,y:380,animated:true});
-
     };
 
     handleScrolling1=()=>{
         this.scrollViewRef.current.scrollTo({x:775,y:775,animated:true});
     }
 
-    handleScrolling2=()=>{
-        this.scrollViewRef.current.scrollTo({x:0,y:0,animated:true});
-    }
+    // handleScrolling2=()=>{
+    //     this.scrollViewRef.current.scrollTo({x:'null',y:'null',animated:true});
+    // }
   
 
   render() {
@@ -151,7 +150,7 @@ export default class AppOpeaning extends Component {
         </View>
 
         <View style={styles.view6}>
-            <TouchableOpacity style={styles.getstarted} onPress={this.handleScrolling2}>
+            <TouchableOpacity style={styles.getstarted} >
                 <Text style={styles.text5}>Get Started</Text>
             </TouchableOpacity>
         </View>
