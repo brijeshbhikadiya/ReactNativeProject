@@ -66,27 +66,6 @@ export default class Login extends Component {
                   <Text style={{color:'red'}}>invalid email!!!!</Text>}
                 </Text>
 
-              {/* <Text style={styles.passwordtext}>Password</Text>
-
-              <View style={{flexDirection:'row'}}>
-
-              <TextInput style={[styles.passwordcontainer,isPasswordFocused && styles.focusedInput]}
-                  keyboardType='name-phone-pad'
-                  placeholderTextColor={'rgba(13, 37, 60, 1)'}
-                  secureTextEntry={!showPassword}
-                  onFocus={() => this.setState({ isPasswordFocused: true })}
-                  onBlur={() => this.setState({ isPasswordFocused: false })}
-                  value={password}
-                  onChangeText={(text)=>this.setState({
-                        password:text,
-                        isPasswordNotEmpty: text.length > 0
-                  })}>
-                </TextInput>
-              </View>
-              <TouchableOpacity style={styles.showpasswordtiachable}
-                  onPress={this.togglePassword}>
-                   <Text style={styles.showtext}>{showPassword ? 'Hide' : 'Show'}</Text>
-                </TouchableOpacity> */}
 
 <View style={[styles.passwordcontainer,isPasswordFocused ? styles.focusedInput:null]}>
                 <Text style={styles.passwrodText}>Password</Text>
