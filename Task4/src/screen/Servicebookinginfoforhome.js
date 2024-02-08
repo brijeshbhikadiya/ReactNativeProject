@@ -15,7 +15,7 @@ export default class serviceBookingInfo extends Component {
 
       <View style={{height:190,backgroundColor:'white'}}>
         <View style={styles.viewFirst}>
-        <Image source={require('../assets/images/arrow.png')}></Image>
+        <Image source={require('../assets/images/arrow.png')} style={{marginLeft:16}}></Image>
         <Text style={styles.requestInfoText}>Request Info</Text>
         <Image source={require('../assets/images/dot.png')} style={{position:'absolute',right:11}}></Image>
         </View>
@@ -299,6 +299,7 @@ const styles=StyleSheet.create({
     container:{
         flex:1,
         backgroundColor:'#F5F5F5',
+        marginBottom:20,marginTop:20
     },
     //firstview
     viewFirst:{
@@ -307,6 +308,7 @@ const styles=StyleSheet.create({
       borderBottomWidth:1,
       borderColor:'rgba(0, 0, 0, 0.04)',
       marginTop:14,
+      paddingBottom:10
     },
     bookingInfoView:{
         height:300,
@@ -690,7 +692,7 @@ const styles=StyleSheet.create({
     lineHeight:29,
     fontWeight:'700',
     marginTop:16,
-    marginLeft:16,
+    marginLeft:12,
     letterSpacing:1,
   },
   eventmakeUpText:{

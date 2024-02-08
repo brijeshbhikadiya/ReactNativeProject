@@ -10,7 +10,6 @@ export default class Login extends Component {
       email:'',
       isEmailFocused: false,
       isPasswordFocused: false,
-      isPasswordNotEmpty: false
     }
   }
 
@@ -22,7 +21,7 @@ export default class Login extends Component {
 
   render() {
 
-    const { password, showPassword,isEmailFocused,email,isPasswordNotEmpty,isPasswordFocused} = this.state;
+    const { password, showPassword,isEmailFocused,isPasswordFocused} = this.state;
 
     const isEmailValid=(text)=>{
       const emailPattern=/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
@@ -50,7 +49,7 @@ export default class Login extends Component {
 
                 <Text style={styles.usernametext}>Username</Text>
 
-                <TextInput style={[styles.t2, email.length > 0 ? styles.focusedInput:null]}
+                <TextInput style={[styles.t2, isEmailFocused ? styles.focusedInput:null]}
                   keyboardType='email-address'
                   placeholderTextColor={'rgba(13, 37, 60, 1)'}
                   onFocus={() => this.setState({ isEmailFocused: true })}
@@ -67,7 +66,7 @@ export default class Login extends Component {
                   <Text style={{color:'red'}}>invalid email!!!!</Text>}
                 </Text>
 
-              <Text style={styles.passwordtext}>Password</Text>
+              {/* <Text style={styles.passwordtext}>Password</Text>
 
               <View style={{flexDirection:'row'}}>
 
@@ -87,7 +86,26 @@ export default class Login extends Component {
               <TouchableOpacity style={styles.showpasswordtiachable}
                   onPress={this.togglePassword}>
                    <Text style={styles.showtext}>{showPassword ? 'Hide' : 'Show'}</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
+
+<View style={[styles.passwordcontainer,isPasswordFocused ? styles.focusedInput:null]}>
+                <Text style={styles.passwrodText}>Password</Text>
+                <View style={styles.passwordView}>
+                    <TextInput 
+                        placeholderTextColor={'#0D253C'}
+                        style={styles.passwordTextInput}
+                        secureTextEntry={!showPassword}
+                        onFocus={() => this.setState({ isPasswordFocused: true })}
+                        onBlur={() => this.setState({ isPasswordFocused: false })}
+                        onChangeText={(text)=>this.setState({
+                          password:text,
+                    })}
+                    ></TextInput>
+                    <TouchableOpacity onPress={this.togglePassword}>
+                            <Text style={styles.showText}>{showPassword ? 'Hide' : 'Show'}</Text>
+                    </TouchableOpacity>
+                </View>
+                </View>
               
                 
              
@@ -269,22 +287,13 @@ const styles = StyleSheet.create({
       textTransform:'uppercase',
       letterSpacing:1.75
     },
-    passwordcontainer:{
-        flex:1,
-      // width:'70%',
-       //marginHorizontal:40,
-       fontSize:16,
-       fontStyle:'normal',
-       fontWeight:'800',
-       fontFamily:'Avenir',
-       color:'#0D253C',
-       marginLeft:40,
-       marginTop:5,
-       marginRight:40,
-       borderBottomColor:'rgba(217, 223, 235, 1)',
-       borderBottomWidth:1
-      
-    },
+    passwordcontainer:{flexDirection:'column',
+     borderBottomColor:'rgba(217, 223, 235, 1)',
+     marginTop:14,
+     borderBottomWidth:1,
+     width:330,
+     marginLeft:40,
+  },
     showpasswordtiachable:{
       
       position:'absolute',
@@ -312,7 +321,48 @@ const styles = StyleSheet.create({
       marginTop:5
     },focusedInput:{
       borderBottomColor:'blue'
-    }
+    },
+    passwrodText:{
+
+      fontFamily:'Avenir',
+      fontSize:14,
+      lineHeight:19.12,
+      fontWeight:'400',
+      marginTop:20,
+      // marginLeft:40,
+      color:'#2D4379'
+  },
+  //username TextInput
+  passwordTextInput:{
+
+      flex:1,
+      height:37,
+      marginTop:12,
+      // marginHorizontal:40,
+      fontSize:16,
+      fontWeight:'500',
+      lineHeight:21.86,
+      // borderBottomColor:'#376AED',
+      // borderBottomWidth:2,
+      // paddingBottom:12,
+      // paddingTop:1
+  },
+  //password view
+  passwordView:{
+
+      flexDirection:'row',
+      justifyContent:'space-between',
+      paddingBottom:10
+  },
+  showText:{
+
+      color:'#376AED',
+      fontSize:14,
+      lineHeight:19.12,
+      fontWeight:'500',
+      // marginEnd:40,
+      marginTop:14,
+  },
 
 })
 
