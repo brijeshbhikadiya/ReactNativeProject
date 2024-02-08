@@ -27,7 +27,7 @@ export default class ExclusiveFeatures12 extends Component {
                     ratingtext:"4.5",
                     starimage:require('../assets/images/star.png'),
                     locationimage:require('../assets/images/location.png'),
-                    locationname:"Salwa Road, Doha Qatar",
+                    locationname:"Banana Island Resort,Doha Qatar",
                     distance:"2.5 km away"
   
                   },
@@ -85,7 +85,7 @@ export default class ExclusiveFeatures12 extends Component {
                   <Image source={item.locationimage} style={{marginTop:4.5}}></Image>
                      <Text style={styles.locationnamestyle}>{item.locationname}</Text>
                  </View>
-                 <Text style={{color:'rgba(137, 137, 137, 1)',fontWeight:'300',fontSize:14,marginTop:4}}>{item.distance}</Text>
+                 <Text style={styles.distancetext}>{item.distance}</Text>
              </View>  
              </View>
         ))}
@@ -106,9 +106,6 @@ const styles = StyleSheet.create({
     view1:{
         flexDirection:'row',
         justifyContent:'center',
-        //marginTop:22,
-        //marginHorizontal:20,
-        
     },
     view2:{
         marginHorizontal:16,
@@ -185,5 +182,11 @@ const styles = StyleSheet.create({
         fontWeight:'400',
         color:'rgba(79, 79, 79, 1)',
         marginLeft:4
+    },
+    distancetext:{
+        color:'rgba(137, 137, 137, 1)',
+        fontWeight:'300',
+        fontSize:14,
+        marginTop:4
     }
 })
