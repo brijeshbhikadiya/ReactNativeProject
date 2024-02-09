@@ -766,17 +766,18 @@ t1:{
   paddingLeft:17,
   },
    s:{
-    borderWidth:0.1,
-    borderColor:'white',
-    borderRadius:8,
+     borderWidth:0.1,
+     borderColor:'black',
+    //borderRadius:8,
    },
    s1:{
    
-    shadowRadius:8,
-    shadowColor:'gray',
+    shadowRadius:100,
+    //shadowColor:'gray',
     shadowOpacity:0.7,
-    shadowOffset:{height:0,width:0},
-    elevation:2
+    shadowOffset:{height:5,width:5},
+    elevation:5,
+    shadowColor:'#000000'
 
    },
    t2:{

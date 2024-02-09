@@ -72,13 +72,17 @@ export default class MyOrder extends Component {
     return (
     <ScrollView>
       <View style={styles.container}>
+      <StatusBar
+      backgroundColor="transparent"
+      translucent={true}
+      />
         <View style={styles.innerview}>
 
         <View style={styles.view1}>
             <Image source={require('../assets/images/back_button.png')} style={styles.backbutton}></Image>
             <Text style={styles.myordertext}>My Orders</Text>
         </View>
-
+        
         <View style={[styles.view2,styles.shadow]}>
             <Image source={require('../assets/images/search.png')} style={styles.search}></Image>
             <TextInput
@@ -117,6 +121,8 @@ export default class MyOrder extends Component {
               </View> 
          </View>
         ))}
+
+        <View style={{backgroundColor:'white',marginTop:5,height:50}}></View>
       </View>
       </ScrollView>
     )
