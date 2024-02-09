@@ -6,7 +6,7 @@ export default class ViewingMakeupArtistListProduct extends Component {
         super()
         this.state={
             arrData:[{
-                image1:require('../assets/images/product_3.png'),
+            image1:require('../assets/images/product_3.png'),
             image2:require('../assets/images/full_bag.png'),
             imagename1:"Apple Skin-Perfecting\nHydrating  Foundation" ,
             imageprice1:"$5.00",
@@ -19,7 +19,7 @@ export default class ViewingMakeupArtistListProduct extends Component {
             imagename1:"Jelly Cream With Jeju\npalettes" ,
             imageprice1:"$5.00",
             image3:require('../assets/images/product_6.png'),
-            inamgename2:"Eyeshadow\npalettes"     
+            inamgename2:"Eyeshadow\npalettes" 
         }],
     }}
   render() {
@@ -126,7 +126,6 @@ const styles = StyleSheet.create({
     view3:{
         flexDirection:'row',
         marginTop:14,
-        //marginBottom:14
     },
     onsaleview:{
         backgroundColor:'rgba(206, 28, 79, 1)',
@@ -164,7 +163,6 @@ const styles = StyleSheet.create({
     },
     backimage:{
         position:'absolute',
-        //left:16,
         top:25
     },
     profileimage:{

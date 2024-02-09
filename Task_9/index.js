@@ -8,4 +8,4 @@ import {name as appName} from './app.json';
 import MakeupArtistProfile from './src/screen/MakeupArtistProfile';
 import ViewingMakeupArtistListProduct from './src/screen/ViewingMakeupArtistListProduct';
 
-AppRegistry.registerComponent(appName, () => ViewingMakeupArtistListProduct);
+AppRegistry.registerComponent(appName, () => MakeupArtistProfile);
