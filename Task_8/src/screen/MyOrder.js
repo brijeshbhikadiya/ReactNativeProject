@@ -73,16 +73,16 @@ export default class MyOrder extends Component {
     <ScrollView>
       <View style={styles.container}>
       <StatusBar
-      backgroundColor="transparent"
-      translucent={true}
-      />
+          barStyle={'dark-content'}
+          translucent={true}
+          backgroundColor={'white'}></StatusBar>
         <View style={styles.innerview}>
 
         <View style={styles.view1}>
             <Image source={require('../assets/images/back_button.png')} style={styles.backbutton}></Image>
             <Text style={styles.myordertext}>My Orders</Text>
         </View>
-        
+
         <View style={[styles.view2,styles.shadow]}>
             <Image source={require('../assets/images/search.png')} style={styles.search}></Image>
             <TextInput
@@ -186,7 +186,7 @@ const styles=StyleSheet.create({
     shadowColor: '#000000',
     shadowRadius: 3,
     shadowOpacity: 0.5,
-    // shadowOffset: {width: 0, height: 0},
+    shadowOffset: {width: 0, height: 0},
     elevation: 5,
     },
     backbutton:{

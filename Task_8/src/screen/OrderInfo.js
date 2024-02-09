@@ -104,7 +104,6 @@ export default class OrderInfo extends Component {
             <Text style={styles.text18}>Home</Text>
             <Text style={styles.text19}>1901 Thornridge Cir. Shiloh{'\n'} Oak St, Burlington, CO 80807, USA</Text>
         </View>
-        </View>
 
         <View style={{height:240,backgroundColor:'white',marginTop:10}}>
         <Text style={styles.paymentinfotext}>Payment Info</Text>
@@ -126,6 +125,8 @@ export default class OrderInfo extends Component {
         <Text style={styles.text23}>Note: All prices include GST</Text>
         
       </View>
+        
+        </View>
       </ScrollView>
     )
   }
@@ -134,7 +135,8 @@ export default class OrderInfo extends Component {
 
 const styles= StyleSheet.create({
     container:{
-        flex:1
+        flex:1,
+        backgroundColor:'rgba(0, 0, 0, 0.04)'
     },
     innerview:{
         backgroundColor:'white',
@@ -351,7 +353,7 @@ const styles= StyleSheet.create({
         alignItems:'center',
         shadowColor:'#000000',
         shadowRadius:3,
-        shadowOffset:0.8,
+        shadowOpacity:0.8,
         shadowOffset:{width:6,height:6},
         elevation:5,
         borderColor:'#E1E1E1',
