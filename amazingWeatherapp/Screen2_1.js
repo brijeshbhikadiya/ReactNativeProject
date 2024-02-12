@@ -756,23 +756,24 @@ container:{
     flex:1,
     marginHorizontal:15,
     marginVertical:30,
-   
     
 },
 t1:{
   color:"black",
-  width:330,
+  // width:330,
   height:52,
   paddingLeft:17,
+  borderRadius:20,
+  backgroundColor:'white'
   },
    s:{
      borderWidth:0.1,
      borderColor:'black',
-    //borderRadius:8,
+    borderRadius:20,
    },
    s1:{
    
-    shadowRadius:100,
+    shadowRadius:3,
     //shadowColor:'gray',
     shadowOpacity:0.7,
     shadowOffset:{height:5,width:5},
@@ -782,33 +783,36 @@ t1:{
    },
    t2:{
     color:"black",
-        width:330,
-        height:52,
-        paddingLeft:17,
-        marginTop:8,
+    // width:330,
+    height:52,
+    paddingLeft:17,
+    borderRadius:20,
+    backgroundColor:'white'
    
    },
    t3:{
-        color:"black",
-        width:330,
-        height:52,
-        paddingLeft:17,
-        marginTop:8,
-       },
-       t4:{
-        
-        color:"black",
-        width:330,
-        height:52,
-        paddingLeft:17,
-        marginTop:8, 
-       },
+    color:"black",
+    // width:330,
+    height:52,
+    paddingLeft:17,
+    borderRadius:20,
+    backgroundColor:'white'
+   },
+   t4:{
+    color:"black",
+    // width:330,
+    height:52,
+    paddingLeft:17,
+    borderRadius:20,
+    backgroundColor:'white'
+   },
        t5:{
         color:"black",
-        width:330,
+        // width:330,
         height:52,
         paddingLeft:17,
-        marginTop:8,
+        borderRadius:20,
+        backgroundColor:'white'
    }
 
 })
