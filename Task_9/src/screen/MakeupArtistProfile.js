@@ -25,12 +25,21 @@ export default class MakeupArtistProfile extends Component {
                 image2:require('../assets/images/image_11.png'),
                 image3:require('../assets/images/image_12.png')
             }
-        ]
+        ],
+        selectedTab:'Gallery',
+         }
         }
-    }
+
+        handleTabPress=(Tab)=>{
+            this.setState({
+                selectedTab:Tab
+               
+            })
+        };
+        
   render() {
     return (
-        <ScrollView>
+      
       <View style={styles.contianer}>
             <View style={styles.innerview}>
                 <View style={styles.view1}>
@@ -80,21 +89,24 @@ export default class MakeupArtistProfile extends Component {
 
                     </View>
                     <View style={styles.view5}>
-                        <TouchableOpacity>
-                            <Text style={styles.text4}>Posts</Text>
+                        <TouchableOpacity onPress={()=>this.handleTabPress('Posts')}>
+                            <Text style={[styles.text4,this.state.selectedTab==='Posts'?styles.selectedTab:null]}>Posts</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity>
-                            <Text style={styles.text4}>Services</Text>
+                        <TouchableOpacity onPress={()=>this.handleTabPress('Services')}>
+                            <Text style={[styles.text4, this.state.selectedTab==='Services'?styles.selectedTab:null]}>Services</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity>
-                            <Text style={styles.text4}>Products Used</Text>
+                        <TouchableOpacity onPress={()=>this.handleTabPress('Products Used')}>
+                            <Text style={[styles.text4, this.state.selectedTab==='Products Used'?styles.selectedTab:null]}>Products Used</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity>
-                            <Text style={{color:'rgba(222, 128, 154, 1)',fontWeight:'400',fontSize:14}}>Gallery</Text>
+                        <TouchableOpacity onPress={()=>this.handleTabPress('Gallery')}>
+                            <Text style={[styles.text4, this.state.selectedTab==='Gallery'?styles.selectedTab:null]}>Gallery</Text>
                         </TouchableOpacity>
+                       
                     </View>
-                    <View style={styles.line2}></View>
+                    
+                   
             </View>
+            <ScrollView>
             <View style={{height:580,backgroundColor:'white',marginTop:4}}>
             {this.state.arrData.map((item)=>(
                  <View style={styles.innerview2}>
@@ -104,11 +116,12 @@ export default class MakeupArtistProfile extends Component {
              </View>
             ))}
             </View>
+            </ScrollView>
            
            
             
       </View>
-      </ScrollView>
+      
     )
   }
 }
@@ -148,7 +161,7 @@ const styles =StyleSheet.create({
         width:110,
         backgroundColor:'rgba(222, 128, 154, 1)',
         marginTop:18,
-        marginLeft:290
+        marginLeft:283
     },
     view1:{
         flexDirection:'row',
@@ -302,6 +315,14 @@ const styles =StyleSheet.create({
         color:'white',
         fontWeight:'600',
         fontSize:16
+    },
+    selectedTab:{
+    
+    borderBottomWidth: 4,
+    borderTopLeftRadius:10,
+    borderTopRightRadius:10,
+    borderBottomColor: 'pink',
+    paddingBottom: 20,
     }
 
 

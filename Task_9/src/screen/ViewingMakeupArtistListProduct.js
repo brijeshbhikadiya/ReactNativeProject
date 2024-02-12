@@ -21,7 +21,17 @@ export default class ViewingMakeupArtistListProduct extends Component {
             image3:require('../assets/images/product_6.png'),
             inamgename2:"Eyeshadow\npalettes" 
         }],
-    }}
+        quantity:1}  
+    }
+    decrementQuantity = () => {
+        if (this.state.quantity > 1) {
+            this.setState(prevState => ({ quantity: prevState.quantity - 1 }));
+        }
+    };
+
+    incrementQuantity = () => {
+        this.setState(prevState => ({ quantity: prevState.quantity + 1 }));
+    };
   render() {
     return (
         <ScrollView>
@@ -50,11 +60,11 @@ export default class ViewingMakeupArtistListProduct extends Component {
                     <Text style={styles.onsaletext}>On Sale</Text>
                 </View>
                 <View style={styles.productaddview}>
-                    <TouchableOpacity>
-                        <Image source={require('../assets/images/minus.png')} style={styles.minusimage}></Image>
+                    <TouchableOpacity onPress={this.decrementQuantity}>
+                        <Image source={require('../assets/images/minus.png')} style={styles.minusimage} ></Image>
                     </TouchableOpacity>
-                    <Text style={styles.text2}>1</Text>
-                    <TouchableOpacity>
+                    <Text style={styles.text2}>{this.state.quantity}</Text>
+                    <TouchableOpacity onPress={this.incrementQuantity}>
                         <Image source={require('../assets/images/plus_1.png')} style={styles.minusimage}></Image>
                     </TouchableOpacity>
                 </View>
@@ -107,7 +117,7 @@ const styles = StyleSheet.create({
     },
     view1:{
         flexDirection:'row'
-    },
+    },  
     view2:{
         flexDirection:'row',
         marginTop:75,
