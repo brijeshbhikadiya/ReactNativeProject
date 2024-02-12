@@ -12,11 +12,10 @@ export default class task1 extends Component {
             phone:"",
             age:"",
             email:"",
-        }
-        
-        
+        } 
     }
 
+    
     render() {
     const vEmail=(email)=>{
       const ex=/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/
