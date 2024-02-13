@@ -51,10 +51,28 @@ const data = [{
 },]
 
 export default class Demo3 extends Component {
+    constructor(){
+        super()
+        this.scrollViewRef = React.createRef();
+    }
+
+    scrollToTop=()=>{
+        if(this.scrollViewRef.current){
+            this.scrollViewRef.current.scrollToOffset({offset:0,animated:true})
+        }
+    }
+
+    scrollToEnd=()=>{
+        if(this.scrollViewRef.current){
+            this.scrollViewRef.current.scrollToOffset({animated:true})
+        }
+    }
   render() {
     return (
       <View style={styles.contianer}>
+        {/* <TouchableOpacity onPress={this.scrollToEnd}><Text>Scroll To End</Text></TouchableOpacity> */}
         <FlatList
+        ref={this.scrollViewRef}
         data={data}
         renderItem={({item})=>
         <View style={{flexDirection:'row',backgroundColor:'white',flex:1,marginVertical:10,marginHorizontal:10,shadowColor:'black',shadowOpacity:0.5,shadowColor:'grey',elevation:5,borderRadius:10,height:100}}>
@@ -67,6 +85,7 @@ export default class Demo3 extends Component {
         </View>
     }>
         </FlatList>
+        <TouchableOpacity onPress={this.scrollToTop}><Text>Scroll To Top</Text></TouchableOpacity>
       </View>
     )
   }

@@ -1,4 +1,4 @@
-import { FlatList, Image, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Animated, FlatList, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { Component } from 'react'
 
 const data=[
@@ -46,32 +46,36 @@ const data=[
         uri:require('../assets/images/image_1.png'),
         imagename:"Jane Cooper",
         phoneno:"(270)555-0117"
-    },
+    }, 
     {
         uri:require('../assets/images/image_1.png'),
         imagename:"Jane Cooper",
         phoneno:"(270)555-0117"
-    },
+    }, 
     {
         uri:require('../assets/images/image_1.png'),
         imagename:"Jane Cooper",
         phoneno:"(270)555-0117"
-    },
-    {
-        uri:require('../assets/images/image_1.png'),
-        imagename:"Jane Cooper",
-        phoneno:"(270)555-0117"
-    },
-    {
-        uri:require('../assets/images/image_1.png'),
-        imagename:"Jane Cooper",
-        phoneno:"(270)555-0117"
-    },
+    }, 
     {
         uri:require('../assets/images/image_1.png'),
         imagename:"Jane Cooper",
         phoneno:"(270)555-0117"
     }
+    , 
+    {
+        uri:require('../assets/images/image_1.png'),
+        imagename:"Jane Cooper",
+        phoneno:"(270)555-0117"
+    }, 
+    {
+        uri:require('../assets/images/image_1.png'),
+        imagename:"Jane Cooper",
+        phoneno:"(270)555-0117"
+    }
+    
+    
+    
 
 
 ]
@@ -80,31 +84,35 @@ const ItemSeparator=()=><View style={{width:296,borderBottomWidth:1,borderBottom
 const Header = () => <Text style={{fontSize:30,fontWeight:'700',color:'black',alignSelf:'center'}}>FlatList Header</Text>
 const Footer = () => <Text style={{fontSize:30,fontWeight:'700',color:'black',alignSelf:'center'}}>FlatList Footer</Text>
 export default class Demo4 extends Component {
+
   render() {
     return (
+       
       <View style={StyleSheet.container}>
-        <View style={styles.view1}>
+        {/* <View style={styles.view1}>
             <Image source={require('../assets/images/arrowLeft.png')} style={styles.backimage}></Image>
             <Text style={styles.mycontact}>My Contacts</Text>
             <Image source={require('../assets/images/ico-add.png')} style={styles.plus}></Image>
-        </View>
+        </View> */}
+        
 
-   <View style={styles.view2}>
-        <View style={styles.view3}>
+   {/* <View style={styles.view2}> */}
+        {/* <View style={styles.view3}>
             <Image  source={require('../assets/images/Group.png')} style={styles.searchimage}></Image>
             <TextInput
             placeholder='Search'
             style={styles.serchtext}></TextInput>
-         </View>
-        
+         </View> */}
+         
          <FlatList
-         contentContainerStyle={{marginTop:20}}
+        // ref={this.scrollViewRef}
+         
          data={data}
-         ItemSeparatorComponent={ItemSeparator}
-         ListHeaderComponent={Header}
-         ListFooterComponent={Footer}
+         //ItemSeparatorComponent={ItemSeparator}
+        //  ListHeaderComponent={Header}
+        //  ListFooterComponent={Footer}
          renderItem={({item})=>
-         <View style={{flexDirection:'row',marginLeft:27,marginTop:10}}>
+         <View style={{flexDirection:'row',marginLeft:27,marginTop:10,marginBottom:30}}>
             <Image source={item.uri}></Image>
             <View style={{marginLeft:8}}>
                 <Text style={styles.imagenametext}>{item.imagename}</Text>
@@ -113,10 +121,13 @@ export default class Demo4 extends Component {
          </View>
          }></FlatList>
 
+    {/* </View> */}
+    
+    <TouchableOpacity onPress={this.scrollToTop}><Text style={{fontSize:100}}>Scroll To Top</Text></TouchableOpacity>
+    
     </View>
-         
-       
-    </View>
+    
+    
     )
   }
 }
@@ -131,6 +142,9 @@ const styles = StyleSheet.create({
         backgroundColor:'rgba(246, 246, 246, 1)'
     },
     view2:{
+       // width:2000,
+      // flex:1,
+        height:1000,
         backgroundColor:'white',
         marginTop:60,
         marginBottom:60

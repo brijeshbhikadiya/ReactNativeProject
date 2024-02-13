@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { FlatList, StyleSheet, Text, View,TouchableOpacity } from 'react-native'
 import React, { Component } from 'react'
 
 const data =[
@@ -35,6 +35,7 @@ export default class Demo2 extends Component {
             </View>
         }>
         </FlatList>
+        <TouchableOpacity><Text>Scroll To Top</Text></TouchableOpacity>
       </View>
     )
   }

@@ -1,4 +1,4 @@
-import { FlatList, Image, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { Component } from 'react'
 
 const Data=[
@@ -80,6 +80,8 @@ export default class Demo extends Component {
             
         }
         style={styles.flatlist}></FlatList>
+
+      
          </View>
        
      
