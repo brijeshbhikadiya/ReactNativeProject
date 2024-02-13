@@ -1,130 +1,175 @@
 import { Animated, FlatList, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { Component } from 'react'
 
-const data=[
-    {
-        uri:require('../assets/images/image_1.png'),
-        imagename:"Jane Cooper",
-        phoneno:"(270)555-0117"
-    },
-    {
-        uri:require('../assets/images/image_1.png'),
-        imagename:"Jane Cooper",
-        phoneno:"(270)555-0117"
-    },
-    {
-        uri:require('../assets/images/image_1.png'),
-        imagename:"Jane Cooper",
-        phoneno:"(270)555-0117"
-    },
-    {
-        uri:require('../assets/images/image_1.png'),
-        imagename:"Jane Cooper",
-        phoneno:"(270)555-0117"
-    },
-    {
-        uri:require('../assets/images/image_1.png'),
-        imagename:"Jane Cooper",
-        phoneno:"(270)555-0117"
-    },
-    {
-        uri:require('../assets/images/image_1.png'),
-        imagename:"Jane Cooper",
-        phoneno:"(270)555-0117"
-    },
-    {
-        uri:require('../assets/images/image_1.png'),
-        imagename:"Jane Cooper",
-        phoneno:"(270)555-0117"
-    },
-    {
-        uri:require('../assets/images/image_1.png'),
-        imagename:"Jane Cooper",
-        phoneno:"(270)555-0117"
-    },
-    {
-        uri:require('../assets/images/image_1.png'),
-        imagename:"Jane Cooper",
-        phoneno:"(270)555-0117"
-    }, 
-    {
-        uri:require('../assets/images/image_1.png'),
-        imagename:"Jane Cooper",
-        phoneno:"(270)555-0117"
-    }, 
-    {
-        uri:require('../assets/images/image_1.png'),
-        imagename:"Jane Cooper",
-        phoneno:"(270)555-0117"
-    }, 
-    {
-        uri:require('../assets/images/image_1.png'),
-        imagename:"Jane Cooper",
-        phoneno:"(270)555-0117"
-    }
-    , 
-    {
-        uri:require('../assets/images/image_1.png'),
-        imagename:"Jane Cooper",
-        phoneno:"(270)555-0117"
-    }, 
-    {
-        uri:require('../assets/images/image_1.png'),
-        imagename:"Jane Cooper",
-        phoneno:"(270)555-0117"
-    }
-    
-    
-    
-
-
-]
+ 
 
 const ItemSeparator=()=><View style={{width:296,borderBottomWidth:1,borderBottomColor:'rgba(185, 185, 185, 1)',marginTop:10,marginLeft:70}}></View>
 const Header = () => <Text style={{fontSize:30,fontWeight:'700',color:'black',alignSelf:'center'}}>FlatList Header</Text>
 const Footer = () => <Text style={{fontSize:30,fontWeight:'700',color:'black',alignSelf:'center'}}>FlatList Footer</Text>
 export default class Demo4 extends Component {
+    constructor(){
+        super()
+        this.scrollViewRef = React.createRef();
+        this.state={
+          
+            data:[
+                {
+                    uri:require('../assets/images/image_1.png'),
+                    imagename:"Jane Cooper",
+                    phoneno:"(270)555-0117"
+                },
+                {
+                    uri:require('../assets/images/image_1.png'),
+                    imagename:"Jane Cooper",
+                    phoneno:"(270)555-0117"
+                },
+                {
+                    uri:require('../assets/images/image_1.png'),
+                    imagename:"Jane Cooper",
+                    phoneno:"(270)555-0117"
+                },
+                {
+                    uri:require('../assets/images/image_1.png'),
+                    imagename:"Jane Cooper",
+                    phoneno:"(270)555-0117"
+                },
+                {
+                    uri:require('../assets/images/image_1.png'),
+                    imagename:"Jane Cooper",
+                    phoneno:"(270)555-0117"
+                },
+                {
+                    uri:require('../assets/images/image_1.png'),
+                    imagename:"Jane Cooper",
+                    phoneno:"(270)555-0117"
+                },
+                {
+                    uri:require('../assets/images/image_1.png'),
+                    imagename:"Jane Cooper",
+                    phoneno:"(270)555-0117"
+                },
+                {
+                    uri:require('../assets/images/image_1.png'),
+                    imagename:"Jane Cooper",
+                    phoneno:"(270)555-0117"
+                },
+                {
+                    uri:require('../assets/images/image_1.png'),
+                    imagename:"Jane Cooper",
+                    phoneno:"(270)555-0117"
+                }, 
+                {
+                    uri:require('../assets/images/image_1.png'),
+                    imagename:"Jane Cooper",
+                    phoneno:"(270)555-0117"
+                }, 
+                {
+                    uri:require('../assets/images/image_1.png'),
+                    imagename:"Jane Cooper",
+                    phoneno:"(270)555-0117"
+                }, 
+                {
+                    uri:require('../assets/images/image_1.png'),
+                    imagename:"Jane Cooper",
+                    phoneno:"(270)555-0117"
+                }
+                , 
+                {
+                    uri:require('../assets/images/image_1.png'),
+                    imagename:"Jane Cooper",
+                    phoneno:"(270)555-0117"
+                }, 
+                {
+                    uri:require('../assets/images/image_1.png'),
+                    imagename:"Jane Cooper",
+                    phoneno:"(270)555-0117"
+                }    
+            ]
+
+            
+        }
+       
+    }
+    scrollToTop=()=>{
+        if(this.scrollViewRef.current){
+            this.scrollViewRef.current.scrollToOffset({offset:0,animated:true})
+        }
+    }
 
   render() {
     return (
        
-      <View style={StyleSheet.container}>
-        {/* <View style={styles.view1}>
+//       <View style={StyleSheet.container}>
+//          <View style={styles.view1}>
+//             <Image source={require('../assets/images/arrowLeft.png')} style={styles.backimage}></Image>
+//             <Text style={styles.mycontact}>My Contacts</Text>
+//             <Image source={require('../assets/images/ico-add.png')} style={styles.plus}></Image>
+//         </View> 
+        
+
+//    <View style={styles.view2}> 
+//          <View style={styles.view3}>
+//             <Image  source={require('../assets/images/Group.png')} style={styles.searchimage}></Image>
+//             <TextInput
+//             placeholder='Search'
+//             style={styles.serchtext}></TextInput>
+//          </View> 
+         
+//          <FlatList
+//         // ref={this.scrollViewRef}
+         
+//          data={this.state.data}
+//          //ItemSeparatorComponent={ItemSeparator}
+//         //  ListHeaderComponent={Header}
+//         //  ListFooterComponent={Footer}
+//          renderItem={({item})=>
+//          <View style={{flexDirection:'row',marginLeft:27,marginTop:10,marginBottom:30}}>
+//             <Image source={item.uri}></Image>
+//             <View style={{marginLeft:8}}>
+//                 <Text style={styles.imagenametext}>{item.imagename}</Text>
+//                 <Text style={styles.phonenotext}>{item.phoneno}</Text>
+//             </View>
+//          </View>
+//          }></FlatList>
+
+    // </View> 
+    
+    // <TouchableOpacity onPress={this.scrollToTop}><Text style={{fontSize:100}}>Scroll To Top</Text></TouchableOpacity>
+    
+    // </View>
+    <View style={styles.container}>
+        <View style={styles.view1}>
             <Image source={require('../assets/images/arrowLeft.png')} style={styles.backimage}></Image>
             <Text style={styles.mycontact}>My Contacts</Text>
             <Image source={require('../assets/images/ico-add.png')} style={styles.plus}></Image>
-        </View> */}
-        
-
-   {/* <View style={styles.view2}> */}
-        {/* <View style={styles.view3}>
+        </View> 
+       
+         <View style={styles.view3}>
             <Image  source={require('../assets/images/Group.png')} style={styles.searchimage}></Image>
             <TextInput
             placeholder='Search'
             style={styles.serchtext}></TextInput>
-         </View> */}
+         </View>
          
          <FlatList
-        // ref={this.scrollViewRef}
+        ref={this.scrollViewRef}
          
-         data={data}
+         data={this.state.data}
          //ItemSeparatorComponent={ItemSeparator}
         //  ListHeaderComponent={Header}
         //  ListFooterComponent={Footer}
          renderItem={({item})=>
          <View style={{flexDirection:'row',marginLeft:27,marginTop:10,marginBottom:30}}>
-            <Image source={item.uri}></Image>
+            <Image source={item.uri} style={{height:90,width:90}}/>
             <View style={{marginLeft:8}}>
                 <Text style={styles.imagenametext}>{item.imagename}</Text>
                 <Text style={styles.phonenotext}>{item.phoneno}</Text>
             </View>
          </View>
-         }></FlatList>
+         }/>
 
-    {/* </View> */}
-    
-    <TouchableOpacity onPress={this.scrollToTop}><Text style={{fontSize:100}}>Scroll To Top</Text></TouchableOpacity>
-    
+
+    <TouchableOpacity onPress={this.scrollToTop}><Text>Scroll To Top</Text></TouchableOpacity>
     </View>
     
     
