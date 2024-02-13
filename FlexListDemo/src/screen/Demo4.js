@@ -95,6 +95,18 @@ export default class Demo4 extends Component {
             this.scrollViewRef.current.scrollToOffset({offset:0,animated:true})
         }
     }
+    
+    scrollToIndex = (index) => {
+        if (this.scrollViewRef.current) {
+          this.scrollViewRef.current.scrollToIndex({ animated: true, index });
+        }
+      };
+
+      scrollToItem = (item) => {
+        if (this.scrollViewRef.current) {
+          this.scrollViewRef.current.scrollToItem({ animated: true, item });
+        }
+      };
 
   render() {
     return (
@@ -155,9 +167,10 @@ export default class Demo4 extends Component {
         ref={this.scrollViewRef}
          
          data={this.state.data}
-         //ItemSeparatorComponent={ItemSeparator}
-        //  ListHeaderComponent={Header}
-        //  ListFooterComponent={Footer}
+         ItemSeparatorComponent={ItemSeparator}
+         ListHeaderComponent={Header}
+         ListFooterComponent={Footer}
+         inverted={true}
          renderItem={({item})=>
          <View style={{flexDirection:'row',marginLeft:27,marginTop:10,marginBottom:30}}>
             <Image source={item.uri} style={{height:90,width:90}}/>
@@ -169,7 +182,7 @@ export default class Demo4 extends Component {
          }/>
 
 
-    <TouchableOpacity onPress={this.scrollToTop}><Text>Scroll To Top</Text></TouchableOpacity>
+    <TouchableOpacity onPress={()=>{this.scrollToItem(this.state.data[0])}}><Text>Scroll To Top</Text></TouchableOpacity>
     </View>
     
     
