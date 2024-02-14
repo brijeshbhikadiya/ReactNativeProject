@@ -43,14 +43,13 @@ export default class AppOpeaning extends Component {
         isDetailViewVisible:false
     });
 
-    handleView=(index)=>{
-        this.setState({
-            currentIndex:index
-        });
-    }
 };
 
-
+handleView=(index)=>{
+    this.setState({
+        currentIndex:index
+    });
+}
     // handleScrolling=()=>{
     //     this.scrollViewRef.current.scrollTo({x:380,y:380,animated:true});
     // };
@@ -96,17 +95,16 @@ export default class AppOpeaning extends Component {
         </View>
         
         <View>
-                    
-            
-                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} pagingEnabled={true} ref={this.scrollViewRef}    
+                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} pagingEnabled ref={this.scrollViewRef}    
                 onScroll={evnt => {
                   let indexValue = evnt.nativeEvent.contentOffset.x / screenWidth;
                   console.log('indexValue--', Math.ceil(indexValue));
                   this.setState({currentIndex: Math.ceil(indexValue)});
                 }}>
                 {this.state.arrData.map((item,index)=>(
-                <View key={index} style={{
-             width: screenWidth,
+                <View key={index} 
+            style={{display:this.state.currentIndex === index ? 'flex':'flex',
+            width: screenWidth,
             alignSelf: 'center',}}>
                     <View style={styles.view2}>
                         <Image source={item.image1}></Image>
@@ -196,20 +194,27 @@ export default class AppOpeaning extends Component {
     
         ))}
             </ScrollView>
-
+            </View>
+    
             <View style={{flexDirection:'row',justifyContent:'center'}}>
                 {this.state.arrData.map((item,index)=>{
                     return(
-                        <TouchableOpacity onPress={() => {this.handleView}}>
-                            {this.state.currentIndex === index ? <View style={styles.blueLine}></View>:<View style={styles.roundIcon}></View>}
+                        <TouchableOpacity onPress={() => {
+                            this.scrollViewRef.current?.scrollTo({
+                                x:screenWidth*(this.state.currentIndex+1),
+                            })
+                            this.handleView(index);
+                            }}>
+                            {this.state.currentIndex === index ?(<View style={styles.blueLine}></View>) :(<View style={styles.roundIcon}></View>)}
                         </TouchableOpacity>
-                    )
+                    );
                 })}
             </View>
             
 
             <View style={styles.view6}>
             <TouchableOpacity style={styles.getstarted} onPress={() => {
+                if(this.st.currentIndex<2){
             this.scrollViewRef.current.scrollTo({
               x: screenWidth * (this.state.currentIndex+1),
               animated: true,
@@ -217,13 +222,13 @@ export default class AppOpeaning extends Component {
             this.setState({
               currentIndex: this.state.currentIndex + 1,
             });
+        }
           }}>
                 <Text style={styles.text5}>Get Started</Text>
             </TouchableOpacity>
         </View>
 
-        </View>
-    
+        
 
         <View style={styles.view7}>
             <Text style={{color:'rgba(29, 58, 112, 1)',fontSize:13,fontWeight:'400'}}>Just want to take a look?</Text ><Text style={{color:'rgba(22, 182, 231, 1)',fontSize:13,fontWeight:'400'}}> Check our rates</Text>

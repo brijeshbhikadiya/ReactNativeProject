@@ -111,79 +111,79 @@ export default class Demo4 extends Component {
   render() {
     return (
        
-//       <View style={StyleSheet.container}>
-//          <View style={styles.view1}>
-//             <Image source={require('../assets/images/arrowLeft.png')} style={styles.backimage}></Image>
-//             <Text style={styles.mycontact}>My Contacts</Text>
-//             <Image source={require('../assets/images/ico-add.png')} style={styles.plus}></Image>
-//         </View> 
-        
-
-//    <View style={styles.view2}> 
-//          <View style={styles.view3}>
-//             <Image  source={require('../assets/images/Group.png')} style={styles.searchimage}></Image>
-//             <TextInput
-//             placeholder='Search'
-//             style={styles.serchtext}></TextInput>
-//          </View> 
-         
-//          <FlatList
-//         // ref={this.scrollViewRef}
-         
-//          data={this.state.data}
-//          //ItemSeparatorComponent={ItemSeparator}
-//         //  ListHeaderComponent={Header}
-//         //  ListFooterComponent={Footer}
-//          renderItem={({item})=>
-//          <View style={{flexDirection:'row',marginLeft:27,marginTop:10,marginBottom:30}}>
-//             <Image source={item.uri}></Image>
-//             <View style={{marginLeft:8}}>
-//                 <Text style={styles.imagenametext}>{item.imagename}</Text>
-//                 <Text style={styles.phonenotext}>{item.phoneno}</Text>
-//             </View>
-//          </View>
-//          }></FlatList>
-
-    // </View> 
-    
-    // <TouchableOpacity onPress={this.scrollToTop}><Text style={{fontSize:100}}>Scroll To Top</Text></TouchableOpacity>
-    
-    // </View>
-    <View style={styles.container}>
-        <View style={styles.view1}>
+      <View style={StyleSheet.container}>
+         <View style={styles.view1}>
             <Image source={require('../assets/images/arrowLeft.png')} style={styles.backimage}></Image>
             <Text style={styles.mycontact}>My Contacts</Text>
             <Image source={require('../assets/images/ico-add.png')} style={styles.plus}></Image>
         </View> 
-       
+        
+
+   <View style={styles.view2}> 
          <View style={styles.view3}>
             <Image  source={require('../assets/images/Group.png')} style={styles.searchimage}></Image>
             <TextInput
             placeholder='Search'
             style={styles.serchtext}></TextInput>
-         </View>
+         </View> 
          
          <FlatList
-        ref={this.scrollViewRef}
+        // ref={this.scrollViewRef}
          
          data={this.state.data}
-         ItemSeparatorComponent={ItemSeparator}
-         ListHeaderComponent={Header}
-         ListFooterComponent={Footer}
-         inverted={true}
+         //ItemSeparatorComponent={ItemSeparator}
+        //  ListHeaderComponent={Header}
+        //  ListFooterComponent={Footer}
          renderItem={({item})=>
          <View style={{flexDirection:'row',marginLeft:27,marginTop:10,marginBottom:30}}>
-            <Image source={item.uri} style={{height:90,width:90}}/>
+            <Image source={item.uri}></Image>
             <View style={{marginLeft:8}}>
                 <Text style={styles.imagenametext}>{item.imagename}</Text>
                 <Text style={styles.phonenotext}>{item.phoneno}</Text>
             </View>
          </View>
-         }/>
+         }></FlatList>
 
-
-    <TouchableOpacity onPress={()=>{this.scrollToItem(this.state.data[0])}}><Text>Scroll To Top</Text></TouchableOpacity>
+    </View> 
+    
+    <TouchableOpacity onPress={this.scrollToTop}><Text style={{fontSize:100}}>Scroll To Top</Text></TouchableOpacity>
+    
     </View>
+    // <View style={styles.container}>
+    //     <View style={styles.view1}>
+    //         <Image source={require('../assets/images/arrowLeft.png')} style={styles.backimage}></Image>
+    //         <Text style={styles.mycontact}>My Contacts</Text>
+    //         <Image source={require('../assets/images/ico-add.png')} style={styles.plus}></Image>
+    //     </View> 
+       
+    //      <View style={styles.view3}>
+    //         <Image  source={require('../assets/images/Group.png')} style={styles.searchimage}></Image>
+    //         <TextInput
+    //         placeholder='Search'
+    //         style={styles.serchtext}></TextInput>
+    //      </View>
+         
+    //      <FlatList
+    //     ref={this.scrollViewRef}
+         
+    //      data={this.state.data}
+    //      ItemSeparatorComponent={ItemSeparator}
+    //      ListHeaderComponent={Header}
+    //      ListFooterComponent={Footer}
+    //      inverted={true}
+    //      renderItem={({item})=>
+    //      <View style={{flexDirection:'row',marginLeft:27,marginTop:10,marginBottom:30}}>
+    //         <Image source={item.uri} style={{height:90,width:90}}/>
+    //         <View style={{marginLeft:8}}>
+    //             <Text style={styles.imagenametext}>{item.imagename}</Text>
+    //             <Text style={styles.phonenotext}>{item.phoneno}</Text>
+    //         </View>
+    //      </View>
+    //      }/>
+
+
+    // <TouchableOpacity onPress={()=>{this.scrollToItem(this.state.data[0])}}><Text>Scroll To Top</Text></TouchableOpacity>
+    // </View>
     
     
     )
