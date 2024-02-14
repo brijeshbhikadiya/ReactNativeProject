@@ -8,7 +8,7 @@ export default class Task10 extends Component {
         data1:[{
             uri1:require('../assets/images/hotel_image1.png'),
             imagename:"National Cancel Hospital",
-            locationimage:require('../assets/images/location_2.png'),
+            locationimage:require('../assets/images/location.png'),
             locationname:"Delhi, India",
             hospitalcodetext:"Hospital Code :",
             codetext:"A898"
@@ -16,7 +16,7 @@ export default class Task10 extends Component {
         {
             uri1:require('../assets/images/hotel_image1.png'),
             imagename:"The Heart Hopsital",
-            locationimage:require('../assets/images/location_2.png'),
+            locationimage:require('../assets/images/location.png'),
             locationname:"Delhi, India",
             hospitalcodetext:"Hospital Code :",
             codetext:"A898"
@@ -54,7 +54,63 @@ export default class Task10 extends Component {
         },
         {
             uri1:require('../assets/images/product_poster1.png')
-        }]
+        }],
+        arrData:[{
+            uri1:require('../assets/images/product_imge1.png'),
+            prodcutname:"Cardio Thoracic",
+            productdis:"Luden's Throat Drops\nCherry - 25 ct",
+            productprice:"₹ 150.00",
+            productcrosprice:"₹ 170.00",
+            addtext:"Add",
+            uri2:require('../assets/images/product_image2.png'),
+            prodcutname2:"Cardio Thoracic",
+            productdis2:"Ostocalcium B12 Syrup-\n200ml-Banana",
+        },
+        {
+            uri1:require('../assets/images/product_imge1.png'),
+            prodcutname:"Cardio Thoracic",
+            productdis:"Luden's Throat Drops\nCherry - 25 ct",
+            productprice:"₹ 150.00",
+            productcrosprice:"₹ 170.00",
+            addtext:"Add",
+            uri2:require('../assets/images/product_image2.png'),
+            prodcutname2:"Cardio Thoracic",
+            productdis2:"Ostocalcium B12 Syrup-\n200ml-Banana",
+        },
+        {
+            uri1:require('../assets/images/product_imge1.png'),
+            prodcutname:"Cardio Thoracic",
+            productdis:"Luden's Throat Drops\nCherry - 25 ct",
+            productprice:"₹ 150.00",
+            productcrosprice:"₹ 170.00",
+            addtext:"Add",
+            uri2:require('../assets/images/product_image2.png'),
+            prodcutname2:"Cardio Thoracic",
+            productdis2:"Ostocalcium B12 Syrup-\n200ml-Banana",
+        },
+        {
+            uri1:require('../assets/images/product_imge1.png'),
+            prodcutname:"Cardio Thoracic",
+            productdis:"Luden's Throat Drops\nCherry - 25 ct",
+            productprice:"₹ 150.00",
+            productcrosprice:"₹ 170.00",
+            addtext:"Add",
+            uri2:require('../assets/images/product_image2.png'),
+            prodcutname2:"Cardio Thoracic",
+            productdis2:"Ostocalcium B12 Syrup-\n200ml-Banana",
+        },
+        {
+            uri1:require('../assets/images/product_imge1.png'),
+            prodcutname:"Cardio Thoracic",
+            productdis:"Luden's Throat Drops\nCherry - 25 ct",
+            productprice:"₹ 150.00",
+            productcrosprice:"₹ 170.00",
+            addtext:"Add",
+            uri2:require('../assets/images/product_image2.png'),
+            prodcutname2:"Cardio Thoracic",
+            productdis2:"Ostocalcium B12 Syrup-\n200ml-Banana",
+        },
+    ]
     }
   }
   render() {
@@ -185,6 +241,7 @@ export default class Task10 extends Component {
         <FlatList
         data={this.state.data3}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
         renderItem={({item})=>
             <View style={{marginTop:20,marginLeft:22}}>
                 <Image source={item.uri1}></Image>
@@ -198,9 +255,53 @@ export default class Task10 extends Component {
             </TouchableOpacity>
         </View>
 
+        <View>
+            {this.state.arrData.map((item)=>(
+            <View style={{flexDirection:'row'}}>
+                <View style={{marginTop:10,marginLeft:22,backgroundColor:'white',width:170,height:252,borderRadius:10,shadowColor:'black',shadowOpacity:0.5,shadowRadius:10,elevation:5}}>
+                    <Image source={item.uri1} style={{alignSelf:'center',marginTop:27}}></Image>
+                    <Text style={styles.pname}>{item.prodcutname}</Text>
+                    <Text style={styles.pdesc}>{item.productdis}</Text>
+                    <View style={{flexDirection:'row',marginLeft:12,marginTop:10}}>
+                        <View>
+                        <Text style={styles.ptext}>{item.productprice}</Text>
+                        <Text style={styles.pclosetext}>{item.productcrosprice}</Text>
+                        </View>
+                        <View >
+                            <TouchableOpacity style={styles.addtouchable}>
+                                <Text style={styles.addtextstyle}>{item.addtext}</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+                <View style={{marginTop:10,marginLeft:22,backgroundColor:'white',width:170,height:252,borderRadius:10,shadowColor:'black',shadowOpacity:0.5,shadowRadius:10,elevation:5}}>
+                    <Image source={item.uri2} style={{alignSelf:'center',marginTop:27}}></Image>
+                    <Text style={styles.pname}>{item.prodcutname2}</Text>
+                    <Text style={styles.pdesc}>{item.productdis2}</Text>
+                    <View style={{flexDirection:'row',marginLeft:12,marginTop:10}}>
+                        <View>
+                        <Text style={styles.ptext}>{item.productprice}</Text>
+                        <Text style={styles.pclosetext}>{item.productcrosprice}</Text>
+                        </View>
+                        <View >
+                            <TouchableOpacity style={styles.addtouchable}>
+                                <Text style={styles.addtextstyle}>{item.addtext}</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+            </View>
+          ))}   
         </View>
-        </ScrollView>
-      </View>
+
+        <TouchableOpacity style={styles.viewallproducttouchable}>
+            <Text style={{color:'rgba(160, 32, 240, 1)',fontWeight:'500',fontSize:16}}>
+            View all products
+            </Text>
+        </TouchableOpacity>
+    </View>
+    </ScrollView>
+</View>
       
     )
   }
@@ -286,6 +387,7 @@ const styles =StyleSheet.create({
         borderRadius:10,
         width:312,
         height:147,
+        marginBottom:5,
         shadowColor:'black',
         shadowOpacity:0.5,
         shadowRadius:30,
@@ -300,6 +402,27 @@ const styles =StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         borderRadius:5
+    },
+    addtouchable:{
+        backgroundColor:'rgba(255, 69, 0, 1)',
+        borderRadius:6,
+        height:27,
+        width:53,
+        justifyContent:'center',
+        alignItems:'center',
+        marginLeft:31,
+        marginTop:6
+    },
+    viewallproducttouchable:{
+        backgroundColor:'rgba(160, 32, 240, 0.08)',
+        height:48,
+        width:313,
+        marginHorizontal:40,
+        marginTop:18,
+        borderRadius:7,
+        justifyContent:'center',
+        alignItems:'center',
+        marginBottom:20
     },
     doctorimage:{
         position:'absolute',
@@ -458,6 +581,37 @@ const styles =StyleSheet.create({
         color:'rgba(255, 69, 0, 1)',
         fontWeight:'700',
         fontSize:20
+    },
+    pname:{
+        color:'rgba(133, 139, 159, 1)',
+        fontWeight:'500',
+        fontSize:13,
+        marginTop:20,
+        marginLeft:12
+    },
+    pdesc:{
+        color:'rgba(33, 40, 59, 1)',
+        fontWeight:'500',
+        fontSize:14,
+        marginLeft:12
+    },
+    ptext:{
+        color:'rgba(255, 69, 0, 1)',
+        fontWeight:'700',
+        fontSize:14,
+        //marginTop:
+    },
+    pclosetext:{
+        color:'rgba(133, 139, 159, 1)',
+        fontWeight:'400',
+        fontSize:12,
+        marginTop:2,
+        textDecorationLine:'line-through'
+    },
+    addtextstyle:{
+        color:'rgba(255, 255, 255, 1)',
+        fontWeight:'500',
+        fontSize:14
     }
     
     
