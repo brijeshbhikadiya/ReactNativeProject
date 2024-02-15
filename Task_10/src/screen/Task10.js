@@ -5,6 +5,7 @@ export default class Task10 extends Component {
   constructor(){
     super()
     this.state={
+        //showAllProducts: false,
         data1:[{
             uri1:require('../assets/images/hotel_image1.png'),
             imagename:"National Cancel Hospital",
@@ -260,46 +261,124 @@ export default class Task10 extends Component {
 
         <View>
             {this.state.arrData.map((item)=>(
-            <View style={{flexDirection:'row'}}>
-                <View style={{marginTop:10,marginLeft:22,backgroundColor:'white',width:170,height:252,borderRadius:10,shadowColor:'black',shadowOpacity:0.5,shadowRadius:10,elevation:5}}>
-                    <Image source={item.uri1} style={{alignSelf:'center',marginTop:27}}></Image>
-                    <Text style={styles.pname}>{item.prodcutname}</Text>
-                    <Text style={styles.pdesc}>{item.productdis}</Text>
-                    <View style={{flexDirection:'row',marginLeft:12,marginTop:10}}>
-                        <View>
-                        <Text style={styles.ptext}>{item.productprice}</Text>
-                        <Text style={styles.pclosetext}>{item.productcrosprice}</Text>
+                <View style={{flexDirection:'row'}}>
+                    <View style={{marginTop:10,marginLeft:22,backgroundColor:'white',width:170,height:252,borderRadius:10,shadowColor:'black',shadowOpacity:0.5,shadowRadius:10,elevation:5}}>
+                        <Image source={item.uri1} style={{alignSelf:'center',marginTop:27}}></Image>
+                        <Text style={styles.pname}>{item.prodcutname}</Text>
+                        <Text style={styles.pdesc}>{item.productdis}</Text>
+                        <View style={{flexDirection:'row',marginLeft:12,marginTop:10}}>
+                            <View>
+                            <Text style={styles.ptext}>{item.productprice}</Text>
+                            <Text style={styles.pclosetext}>{item.productcrosprice}</Text>
+                            </View>
+                            <View >
+                                <TouchableOpacity style={styles.addtouchable}>
+                                    <Text style={styles.addtextstyle}>{item.addtext}</Text>
+                                </TouchableOpacity>
+                            </View>
                         </View>
-                        <View >
-                            <TouchableOpacity style={styles.addtouchable}>
-                                <Text style={styles.addtextstyle}>{item.addtext}</Text>
-                            </TouchableOpacity>
+                    </View>
+                    <View style={{marginTop:10,marginLeft:22,backgroundColor:'white',width:170,height:252,borderRadius:10,shadowColor:'black',shadowOpacity:0.5,shadowRadius:10,elevation:5}}>
+                        <Image source={item.uri2} style={{alignSelf:'center',marginTop:27}}></Image>
+                        <Text style={styles.pname}>{item.prodcutname2}</Text>
+                        <Text style={styles.pdesc}>{item.productdis2}</Text>
+                        <View style={{flexDirection:'row',marginLeft:12,marginTop:10}}>
+                            <View>
+                            <Text style={styles.ptext}>{item.productprice}</Text>
+                            <Text style={styles.pclosetext}>{item.productcrosprice}</Text>
+                            </View>
+                            <View >
+                                <TouchableOpacity style={styles.addtouchable}>
+                                    <Text style={styles.addtextstyle}>{item.addtext}</Text>
+                                </TouchableOpacity>
+                            </View>
                         </View>
                     </View>
                 </View>
-                <View style={{marginTop:10,marginLeft:22,backgroundColor:'white',width:170,height:252,borderRadius:10,shadowColor:'black',shadowOpacity:0.5,shadowRadius:10,elevation:5}}>
-                    <Image source={item.uri2} style={{alignSelf:'center',marginTop:27}}></Image>
-                    <Text style={styles.pname}>{item.prodcutname2}</Text>
-                    <Text style={styles.pdesc}>{item.productdis2}</Text>
-                    <View style={{flexDirection:'row',marginLeft:12,marginTop:10}}>
-                        <View>
-                        <Text style={styles.ptext}>{item.productprice}</Text>
-                        <Text style={styles.pclosetext}>{item.productcrosprice}</Text>
-                        </View>
-                        <View >
-                            <TouchableOpacity style={styles.addtouchable}>
-                                <Text style={styles.addtextstyle}>{item.addtext}</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </View>
-            </View>
-          ))}   
+              ))}
+            
         </View>
+        {/* //jayre show all product per click kariye tayre extra item aaave e code ahiya che logic */}
+{/* 
+        <View>
+            {this.state.showAllProducts?
+            this.state.arrData.map((item)=>(
+                <View style={{flexDirection:'row'}}>
+                    <View style={{marginTop:10,marginLeft:22,backgroundColor:'white',width:170,height:252,borderRadius:10,shadowColor:'black',shadowOpacity:0.5,shadowRadius:10,elevation:5}}>
+                        <Image source={item.uri1} style={{alignSelf:'center',marginTop:27}}></Image>
+                        <Text style={styles.pname}>{item.prodcutname}</Text>
+                        <Text style={styles.pdesc}>{item.productdis}</Text>
+                        <View style={{flexDirection:'row',marginLeft:12,marginTop:10}}>
+                            <View>
+                            <Text style={styles.ptext}>{item.productprice}</Text>
+                            <Text style={styles.pclosetext}>{item.productcrosprice}</Text>
+                            </View>
+                            <View >
+                                <TouchableOpacity style={styles.addtouchable}>
+                                    <Text style={styles.addtextstyle}>{item.addtext}</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </View>
+                    <View style={{marginTop:10,marginLeft:22,backgroundColor:'white',width:170,height:252,borderRadius:10,shadowColor:'black',shadowOpacity:0.5,shadowRadius:10,elevation:5}}>
+                        <Image source={item.uri2} style={{alignSelf:'center',marginTop:27}}></Image>
+                        <Text style={styles.pname}>{item.prodcutname2}</Text>
+                        <Text style={styles.pdesc}>{item.productdis2}</Text>
+                        <View style={{flexDirection:'row',marginLeft:12,marginTop:10}}>
+                            <View>
+                            <Text style={styles.ptext}>{item.productprice}</Text>
+                            <Text style={styles.pclosetext}>{item.productcrosprice}</Text>
+                            </View>
+                            <View >
+                                <TouchableOpacity style={styles.addtouchable}>
+                                    <Text style={styles.addtextstyle}>{item.addtext}</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </View>
+                </View>
+              )):this.state.arrData.slice(0,3).map((item)=>(<View style={{flexDirection:'row'}}>
+              <View style={{marginTop:10,marginLeft:22,backgroundColor:'white',width:170,height:252,borderRadius:10,shadowColor:'black',shadowOpacity:0.5,shadowRadius:10,elevation:5}}>
+                  <Image source={item.uri1} style={{alignSelf:'center',marginTop:27}}></Image>
+                  <Text style={styles.pname}>{item.prodcutname}</Text>
+                  <Text style={styles.pdesc}>{item.productdis}</Text>
+                  <View style={{flexDirection:'row',marginLeft:12,marginTop:10}}>
+                      <View>
+                      <Text style={styles.ptext}>{item.productprice}</Text>
+                      <Text style={styles.pclosetext}>{item.productcrosprice}</Text>
+                      </View>
+                      <View >
+                          <TouchableOpacity style={styles.addtouchable}>
+                              <Text style={styles.addtextstyle}>{item.addtext}</Text>
+                          </TouchableOpacity>
+                      </View>
+                  </View>
+              </View>
+              <View style={{marginTop:10,marginLeft:22,backgroundColor:'white',width:170,height:252,borderRadius:10,shadowColor:'black',shadowOpacity:0.5,shadowRadius:10,elevation:5}}>
+                  <Image source={item.uri2} style={{alignSelf:'center',marginTop:27}}></Image>
+                  <Text style={styles.pname}>{item.prodcutname2}</Text>
+                  <Text style={styles.pdesc}>{item.productdis2}</Text>
+                  <View style={{flexDirection:'row',marginLeft:12,marginTop:10}}>
+                      <View>
+                      <Text style={styles.ptext}>{item.productprice}</Text>
+                      <Text style={styles.pclosetext}>{item.productcrosprice}</Text>
+                      </View>
+                      <View >
+                          <TouchableOpacity style={styles.addtouchable}>
+                              <Text style={styles.addtextstyle}>{item.addtext}</Text>
+                          </TouchableOpacity>
+                      </View>
+                  </View>
+              </View>
+          </View>))}
+            
+        </View> */}
 
-        <TouchableOpacity style={styles.viewallproducttouchable}>
+        {/* onPress={()=> this.setState((prevState)=>({showAllProducts:!prevState.showAllProducts})) */}
+
+        <TouchableOpacity style={styles.viewallproducttouchable}> 
             <Text style={{color:'rgba(160, 32, 240, 1)',fontWeight:'500',fontSize:16}}>
-            View all products
+           {this.state.showAllProducts?'View less products':'View show products'} 
             </Text>
         </TouchableOpacity>
     </View>
