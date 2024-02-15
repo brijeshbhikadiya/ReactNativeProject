@@ -125,7 +125,10 @@ export default class Task10 extends Component {
                 <Text style={styles.locationnametext}>Delhi, India</Text>
             </View>
             <Image source={require('../assets/images/notification.png')} style={styles.notificationimage}></Image>
-            <Image source={require('../assets/images/addToBasket.png')} style={styles.addtobasketimage}></Image>
+            <TouchableOpacity style={styles.addtobasketimage}>
+                <Image source={require('../assets/images/addToBasket.png')} ></Image>
+            </TouchableOpacity>
+           
         </View>
 
         <View style={styles.searchbar}>
