@@ -23,21 +23,21 @@ export default class BrandProfile extends Component {
                 crossprice:"$10.00"
             },
             {
-                uri1:require('../assets/images/product2.png'),
+                uri1:require('../assets/images/product6.png'),
                 productname:"Jelly Cream With Jeju\nCherry Blossom",
                 productprice:"$5.00",
                 //unavailabletext:"On Sale",
                 shoppingbagimage:require('../assets/images/empty_image2.png')
             },
             {
-                uri1:require('../assets/images/product2.png'),
+                uri1:require('../assets/images/product5.png'),
                 productname:"Jelly Cream With Jeju\nCherry Blossom",
                 productprice:"$5.00",
                 //unavailabletext:"On Sale",
                 shoppingbagimage:require('../assets/images/empty_image2.png')
             },
             {
-                uri1:require('../assets/images/product2.png'),
+                uri1:require('../assets/images/product4.png'),
                 productname:"Jelly Cream With Jeju\nCherry Blossom",
                 productprice:"$5.00",
                 //unavailabletext:"On Sale",
@@ -55,8 +55,9 @@ export default class BrandProfile extends Component {
 };
   render() {
     return (
-        <ScrollView>
+      
       <View style={StyleSheet.container}>
+          <ScrollView>
         <View style={styles.innerview}>
                 <View style={styles.view1}>
                     <Image source={require('../assets/images/back.png')} style={styles.backimage}></Image>
@@ -130,7 +131,7 @@ export default class BrandProfile extends Component {
             renderItem={({item})=>
             
            <View style={styles.flatlistview}>
-            <Image source={item.uri1}></Image>
+            <Image source={item.uri1} style={{height:117,width:117}}></Image>
             {
             item.unavailabletext=="Unavailable"?
             <View style={styles.unavailabletouchable}>
@@ -182,7 +183,7 @@ export default class BrandProfile extends Component {
             renderItem={({item})=>
             
            <View style={styles.flatlistview}>
-            <Image source={item.uri1}></Image>
+            <Image source={item.uri1} style={{height:117,width:117}}></Image>
             {item.unavailabletext=="On Sale"?
             <View style={styles.onsalestyle}>
             <Text style={styles.unavailabletextstyle}>{item.unavailabletext}</Text>
@@ -208,9 +209,18 @@ export default class BrandProfile extends Component {
             </View>
            
         </View>
+
+        </ScrollView>
+
+        <TouchableOpacity style={styles.filtertouchable}>
+            <Image source={require('../assets/images/filter.png')}></Image>
+        </TouchableOpacity>
         
       </View>
-    </ScrollView>
+
+   
+
+    
     )
   }
 }
@@ -484,5 +494,21 @@ const styles = StyleSheet.create({
         position:'absolute',
         left:9,
         top:8.77
+    },
+    filtertouchable:{
+        height:42,
+        width:42,
+        borderRadius:100,
+        shadowColor:'black',
+        shadowOpacity:0.7,
+        shadowOffset:{width:6,height:6},
+        shadowRadius:100,
+        elevation:5,
+        backgroundColor:'rgba(206, 28, 79, 1)',
+        justifyContent:'center',
+        alignItems:'center',
+        position:'absolute',
+        right:20,
+        bottom:12
     }
 })
