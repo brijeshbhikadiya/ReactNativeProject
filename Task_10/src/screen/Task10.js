@@ -110,8 +110,7 @@ export default class Task10 extends Component {
             uri2:require('../assets/images/product_image2.png'),
             prodcutname2:"Cardio Thoracic",
             productdis2:"Ostocalcium B12 Syrup-\n200ml-Banana",
-        },
-    ]
+        },]
     }
   }
   render() {

@@ -42,7 +42,38 @@ export default class BrandProfile extends Component {
                 productprice:"$5.00",
                 //unavailabletext:"On Sale",
                 shoppingbagimage:require('../assets/images/empty_image2.png')
-            }]
+            }],
+            arrData:[{
+                uri2:require('../assets/images/main_image.png'),
+                imagedate:"Posted at 10 April, 2022",
+                imagedes:"Beneath the makeup and behind the smile, I am just a girl",
+                imagedes2:"who wishes for the world.Beneathsdsd the..",
+                imagedes3:"See more",
+                likeimage:require('../assets/images/like.png'),
+                liket:"56k",
+                commentimage:require('../assets/images/comment.png'),
+                commentt:"235",
+                shareimage:require('../assets/images/share.png'),
+                sharet:"123",
+                moreimage:require('../assets/images/more_2.png')
+
+            },
+            {
+                uri2:require('../assets/images/main_image2.png'),
+                imagedate:"Posted at 10 April, 2022",
+                imagedes:"Beneath the makeup and behind the smile, I am just a girl",
+                imagedes2:"who wishes for the world.Beneathsdsd the..",
+                imagedes3:"See more",
+                likeimage:require('../assets/images/like.png'),
+                liket:"56k",
+                commentimage:require('../assets/images/comment.png'),
+                commentt:"235",
+                shareimage:require('../assets/images/share.png'),
+                sharet:"123",
+                moreimage:require('../assets/images/more_2.png')
+
+            }
+        ]
     }
 }
 
@@ -56,8 +87,8 @@ export default class BrandProfile extends Component {
   render() {
     return (
       
-      <View style={StyleSheet.container}>
-          <ScrollView>
+      <View style={styles.container}>
+        
         <View style={styles.innerview}>
                 <View style={styles.view1}>
                     <Image source={require('../assets/images/back.png')} style={styles.backimage}></Image>
@@ -112,15 +143,18 @@ export default class BrandProfile extends Component {
                 </View>     
             </View>
 
+       
+            <ScrollView>
         
-        <View style={styles.postview}>
-            <Image source={require('../assets/images/main_image.png')} style={styles.mainimagestyle}></Image>
-            <Text style={styles.posteddatetext}>Posted at 10 April, 2022</Text>
+        {this.state.arrData.map((item)=>(
+            <View style={styles.postview}>
+            <Image source={item.uri2} style={styles.mainimagestyle}></Image>
+            <Text style={styles.posteddatetext}>{item.imagedate}</Text>
             <View>
-                <Text style={styles.postdes}>Beneath the makeup and behind the smile, I am just a girl</Text>
+                <Text style={styles.postdes}>{item.imagedes}</Text>
                 <View style={{flexDirection:'row'}}>
-                    <Text style={styles.postdes}>who wishes for the world.Beneathsdsd the..</Text>
-                    <TouchableOpacity style={{marginTop:7,marginLeft:-17}}><Text style={styles.seemoretext}>See more</Text></TouchableOpacity>
+                    <Text style={styles.postdes}>{item.imagedes2}</Text>
+                    <TouchableOpacity style={{marginTop:7,marginLeft:-17}}><Text style={styles.seemoretext}>{item.imagedes3}</Text></TouchableOpacity>
                 </View>
             </View>
         <View>
@@ -153,64 +187,20 @@ export default class BrandProfile extends Component {
             }></FlatList>
         </View>
             <View style={{backgroundColor:'rgba(0, 0, 0, 0.03)',height:41,marginTop:8,flexDirection:'row'}}>
-                <Image source={require('../assets/images/like.png')} style={styles.likebutton}></Image>
-                <Text style={styles.liketext}>56k</Text>
-                <Image source={require('../assets/images/comment.png')} style={styles.likebutton}></Image>
-                <Text style={styles.liketext}>235</Text>
-                <Image source={require('../assets/images/share.png')} style={styles.likebutton}></Image>
-                <Text style={styles.liketext}>123</Text>
-                <Image source={require('../assets/images/more_2.png')} style={styles.more2image}></Image>
+                <Image source={item.likeimage} style={styles.likebutton}></Image>
+                <Text style={styles.liketext}>{item.liket}</Text>
+                <Image source={item.commentimage} style={styles.likebutton}></Image>
+                <Text style={styles.liketext}>{item.commentt}</Text>
+                <Image source={item.shareimage} style={styles.likebutton}></Image>
+                <Text style={styles.liketext}>{item.sharet}</Text>
+                <Image source={item.moreimage} style={styles.more2image}></Image>
             </View>
            
         </View>
-
-        
-        <View style={styles.postview}>
-            <Image source={require('../assets/images/main_image2.png')} style={styles.mainimagestyle}></Image>
-            <Text style={styles.posteddatetext}>Posted at 10 April, 2022</Text>
-            <View>
-                <Text style={styles.postdes}>Beneath the makeup and behind the smile, I am just a girl</Text>
-                <View style={{flexDirection:'row'}}>
-                    <Text style={styles.postdes}>who wishes for the world.Beneathsdsd the..</Text>
-                    <TouchableOpacity style={{marginTop:7,marginLeft:-17}}><Text style={styles.seemoretext}>See more</Text></TouchableOpacity>
-                </View>
-            </View>
-        <View>
-        <FlatList
-            data={this.state.data1}
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            renderItem={({item})=>
-            
-           <View style={styles.flatlistview}>
-            <Image source={item.uri1} style={{height:117,width:117}}></Image>
-            {item.unavailabletext=="On Sale"?
-            <View style={styles.onsalestyle}>
-            <Text style={styles.unavailabletextstyle}>{item.unavailabletext}</Text>
-            </View>:null}
-                <Image source={item.shoppingbagimage} style={styles.shoopingbagstyle}></Image>
-                <Text style={styles.productnamestyle}>{item.productname}</Text>
-                <View style={{flexDirection:'row'}}>
-                <Text style={styles.pricetextstyle}>{item.productprice}</Text>
-                <Text style={styles.crosspricetext}>{item.crossprice}</Text>
-                </View>
-                
-           </View>
-            }></FlatList>
-        </View>
-            <View style={{backgroundColor:'rgba(0, 0, 0, 0.03)',height:41,marginTop:8,flexDirection:'row'}}>
-                <Image source={require('../assets/images/like.png')} style={styles.likebutton}></Image>
-                <Text style={styles.liketext}>56k</Text>
-                <Image source={require('../assets/images/comment.png')} style={styles.likebutton}></Image>
-                <Text style={styles.liketext}>235</Text>
-                <Image source={require('../assets/images/share.png')} style={styles.likebutton}></Image>
-                <Text style={styles.liketext}>123</Text>
-                <Image source={require('../assets/images/more_2.png')} style={styles.more2image}></Image>
-            </View>
-           
-        </View>
+    ))}
 
         </ScrollView>
+        
 
         <TouchableOpacity style={styles.filtertouchable}>
             <Image source={require('../assets/images/filter.png')}></Image>
@@ -231,7 +221,7 @@ const styles = StyleSheet.create({
     },
     innerview:{
         backgroundColor:'white',
-        height:300,
+        //height:300,
         shadowColor:'#000000',
         shadowRadius:3,
         shadowOffset:0.8,
