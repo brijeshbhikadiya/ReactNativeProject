@@ -201,7 +201,7 @@ handleView=(index)=>{
                     return(
                         <TouchableOpacity onPress={() => {
                             this.scrollViewRef.current?.scrollTo({
-                                x:screenWidth*(this.state.currentIndex+1),
+                                x:screenWidth*index
                             })
                             this.handleView(index);
                             }}>
@@ -214,7 +214,7 @@ handleView=(index)=>{
 
             <View style={styles.view6}>
             <TouchableOpacity style={styles.getstarted} onPress={() => {
-                if(this.st.currentIndex<2){
+                if(this.state.currentIndex<2){
             this.scrollViewRef.current.scrollTo({
               x: screenWidth * (this.state.currentIndex+1),
               animated: true,
