@@ -108,7 +108,38 @@ showlike=()=>{
                     <Image source={require('../assets/images/shopping_bag.png')} style={styles.shoppingimage}></Image>
                 </View>
 
-                <View style={{marginHorizontal:13,marginTop:14}}>
+                <View style={styles.view2}>
+                    <View>
+                    <TouchableOpacity style={styles.followbutton}>
+                        <Image source={require('../assets/images/plus.png')} style={{marginRight:6}}></Image>
+                        <Text style={styles.followtext}>Follow</Text>
+                    </TouchableOpacity>
+                    <Image source={require('../assets/images/profile_image.png')} style={styles.profileimage}></Image>
+                    </View>
+                    <View style={{flexGrow:1}}>
+                        <View style={styles.view3}>
+                        <View>
+                            <Text style={styles.text1}>256</Text>
+                            <Text style={styles.text2}>Followers</Text>
+                        </View>
+                        <View>
+                            <Text style={styles.text1}>320</Text>
+                            <Text style={styles.text2}>Followings</Text>
+                        </View>
+                        <View>
+                            <Text style={styles.text1}>15</Text>
+                            <Text style={styles.text2}>Top Sellers</Text>
+                        </View>
+                        </View>
+                        <View>
+                        <TouchableOpacity style={styles.messagebutton}>
+                            <Text style={styles.messagetext}>Message</Text>
+                        </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+
+                {/* <View style={{marginHorizontal:13,marginTop:14}}>
                     <View style={styles.view2}>
                     <TouchableOpacity style={styles.followbutton}>
                         <Image source={require('../assets/images/plus.png')} style={{marginRight:6}}></Image>
@@ -136,7 +167,7 @@ showlike=()=>{
                         </TouchableOpacity>
                     </View>
 
-                </View>
+                </View> */}
 
                 <View style={styles.view5}>
                         <TouchableOpacity onPress={()=>this.handleTabPress('Posts')}>
@@ -247,31 +278,38 @@ const styles = StyleSheet.create({
         marginTop:20,
     },
     view2:{
+        
+        marginHorizontal:13,
+        marginTop:14,
+       // justifyContent:'space-between',
         flexDirection:'row',
-        position:'absolute',
-        top:15,
+        //position:'absolute',
+        //top:15,
         backgroundColor:'rgba(206, 28, 79, 1)',
-        width:364,
-        height:158,
+       // width:364,
+       // height:158,
+       paddingBottom:25,
         borderRadius:10
     },
     view3:{
-        marginLeft:18,
+        //marginLeft:18,
+        //flexGrow:1,
         justifyContent:'space-around',
         flexDirection:'row',
-        height:47,
-        width:240,
+        //height:47,
+        //width:240,
         marginTop:45
     },
     view4:{
-        marginLeft:113,
-        marginTop:115,
-        flexDirection:'row'
+      
+        // marginLeft:10,
+        // marginTop:20,
+       // flexDirection:'row'
     },
     view5:{
         flexDirection:'row',
         justifyContent:'space-evenly',
-        marginTop:38
+        marginTop:20
     },
     onsalestyle:{
         height:19,
@@ -286,8 +324,9 @@ const styles = StyleSheet.create({
     },
     postview:{
         backgroundColor:'white',
-        width:374,
-        height:596,
+        //width:374,
+        flexDirection:'column',
+       // height:596,
         marginHorizontal:8,
         marginTop:20,
         borderRadius:10,
@@ -329,6 +368,11 @@ const styles = StyleSheet.create({
         backgroundColor:'white',
     },
     messagebutton:{
+        // position:'absolute',
+         top:20,
+        // left:10,
+        //justifyContent:'space-around',
+        marginBottom:20,
         width:112,
         height:35,
         backgroundColor:'white',
@@ -386,7 +430,10 @@ const styles = StyleSheet.create({
     },
     mainimagestyle:{
         marginHorizontal:10,
-        marginTop:10
+        marginTop:10,
+        resizeMode:'cover',
+        width:null
+        //flexDirection:'row'
     },
     shoopingbagstyle:{
         position:'absolute',
@@ -439,7 +486,8 @@ const styles = StyleSheet.create({
     text2:{
         color:'rgba(255, 255, 255, 1)',
         fontWeight:'400',
-        fontSize:14
+        fontSize:14,
+        textAlign:'center'
     },
     text4:{
         color:'rgba(8, 2, 4, 1)',
