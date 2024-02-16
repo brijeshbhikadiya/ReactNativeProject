@@ -47,8 +47,7 @@ export default class BrandProfile extends Component {
             arrData:[{
                 uri2:require('../assets/images/main_image.png'),
                 imagedate:"Posted at 10 April, 2022",
-                imagedes:"Beneath the makeup and behind the smile, I am just a girl",
-                imagedes2:"who wishes for the world.Beneathsdsd the..",
+                imagedes:"Beneath the makeup and behind the smile, I am just a girl who wishes for the world.Beneathsdsd the..",
                 imagedes3:"See more",
                 likeimage:require('../assets/images/like.png'),
                 dislikeimage:require('../assets/images/dislike.png'),
@@ -63,8 +62,7 @@ export default class BrandProfile extends Component {
             {
                 uri2:require('../assets/images/main_image2.png'),
                 imagedate:"Posted at 10 April, 2022",
-                imagedes:"Beneath the makeup and behind the smile, I am just a girl",
-                imagedes2:"who wishes for the world.Beneathsdsd the..",
+                imagedes:"Beneath the makeup and behind the smile, I am just a girl who wishes for the world.Beneathsdsd the..",
                 imagedes3:"See more",
                 likeimage:require('../assets/images/like.png'),
                 dislikeimage:require('../assets/images/dislike.png'),
@@ -188,12 +186,12 @@ showlike=()=>{
         {this.state.arrData.map((item,index)=>(
             <View style={styles.postview}>
             <Image source={item.uri2} style={styles.mainimagestyle}></Image>
+            <View style={{flexWrap:'wrap'}}>
             <Text style={styles.posteddatetext}>{item.imagedate}</Text>
-            <View>
-                <Text style={styles.postdes}>{item.imagedes}</Text>
-                <View style={{flexDirection:'row'}}>
-                    <Text style={styles.postdes}>{item.imagedes2}</Text>
-                    <TouchableOpacity style={{marginTop:7,marginLeft:-17}}><Text style={styles.seemoretext}>{item.imagedes3}</Text></TouchableOpacity>
+                <View style={{flexDirection:'row',alignItems:'center'}}>
+                <Text style={styles.postdes}>{item.imagedes}
+                <Text style={styles.seemoretext}>{item.imagedes3}</Text></Text>
+               
                 </View>
             </View>
         <View>
@@ -399,10 +397,18 @@ const styles = StyleSheet.create({
         fontSize:16
     },
     seemoretext:{
+       // marginTop:50,
         color:'rgba(222, 128, 154, 1)',
         fontWeight:'400',
         fontSize:14,
-        lineHeight:22
+        // position:'absolute',
+        // bottom:3
+        // ,right:40
+        //lineHeight:22,
+       // borderWidth:1,
+        //marginTop:20,
+        //paddingBottom:10,
+      // maxWidth:150
     },
     profileimage:{
         marginLeft:24,
@@ -431,7 +437,7 @@ const styles = StyleSheet.create({
     mainimagestyle:{
         marginHorizontal:10,
         marginTop:10,
-        resizeMode:'cover',
+        resizeMode:'stretch',
         width:null
         //flexDirection:'row'
     },
@@ -487,7 +493,9 @@ const styles = StyleSheet.create({
         color:'rgba(255, 255, 255, 1)',
         fontWeight:'400',
         fontSize:14,
-        textAlign:'center'
+        //overflow:'hidden',
+        //width:60,
+        //height:15
     },
     text4:{
         color:'rgba(8, 2, 4, 1)',
@@ -520,7 +528,9 @@ const styles = StyleSheet.create({
         marginLeft:12,
         marginTop:8,
         marginRight:20,
-        lineHeight:22
+        lineHeight:22,
+        //maxWidth:'90%',
+        //flexWrap:'wrap',
     },
     unavailabletextstyle:{
         color:'rgba(255, 255, 255, 1)',

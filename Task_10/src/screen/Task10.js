@@ -120,7 +120,7 @@ export default class Task10 extends Component {
 
         <View style={styles.titlebar}>
             <Image source={require('../assets/images/doctor_image.png')} style={styles.doctorimage}></Image>
-            <View style={{marginLeft:143}}>
+            <View >
                 <Text style={styles.currentlocationtext}>Current Location</Text>
                 <Text style={styles.locationnametext}>Delhi, India</Text>
             </View>
@@ -150,7 +150,7 @@ export default class Task10 extends Component {
         </View>
 
         <View >
-            <Image source={require('../assets/images/orange_background.png')} style={{width:400}}></Image>
+            <Image source={require('../assets/images/orange_background.png')} style={{width:null,resizeMode:'stretch'}}></Image>
             <View style={{flexDirection:'row',position:'absolute',top:34,left:50}}>
                 <Image source={require('../assets/images/profile_image.png')} style={styles.profileimage}></Image>
                 <View style={styles.profileinformationtextview}>
@@ -258,7 +258,7 @@ export default class Task10 extends Component {
             </TouchableOpacity>
         </View>
 
-        <View>
+        <View >
             {this.state.arrData.map((item)=>(
                 <View style={{flexDirection:'row'}}>
                     <View style={{marginTop:10,marginLeft:22,backgroundColor:'white',width:170,height:252,borderRadius:10,shadowColor:'black',shadowOpacity:0.5,shadowRadius:10,elevation:5}}>
@@ -393,7 +393,8 @@ const styles =StyleSheet.create({
     },
     titlebar:{
         flexDirection:'row',
-        marginTop:15
+        marginTop:15,
+        justifyContent:'center'
     },
     searchbar:{
         flexDirection:'row',
@@ -405,8 +406,9 @@ const styles =StyleSheet.create({
         borderColor:'rgba(255, 255, 255, 0.4)',
         marginHorizontal:22,
         borderRadius:10,
-        height:56,
-        width:346,
+        //height:56,
+        //width:346,
+        paddingBottom:5,
         marginTop:15
     },
     filterview:{
@@ -416,7 +418,7 @@ const styles =StyleSheet.create({
         shadowOpacity: 1,
         shadowOffset: {width: 0, height: 0},
         elevation: 5,
-        marginTop:9,
+        marginTop:12,
         marginRight:10,
         borderRadius: 9,
         flexDirection: 'row',
@@ -437,8 +439,10 @@ const styles =StyleSheet.create({
     dateandtimeview:{
         flexDirection:'row',
         backgroundColor:'rgba(255, 255, 255, 1)',
-        height:51,
-        width:297,
+       height:51,
+       width:297,
+    //    width:null,
+    //    resizeMode:'stretch',
         borderRadius:10,
         position:'absolute',
         left:50,
@@ -538,6 +542,7 @@ const styles =StyleSheet.create({
     serchtextinputtext:{
         flex:1,
         marginLeft:45,
+        marginTop:5
     },
     filtertext:{
         color:'rgba(255, 255, 255, 1)',
