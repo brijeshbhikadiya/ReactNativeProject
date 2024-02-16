@@ -6,6 +6,7 @@ export default class BrandProfile extends Component {
     constructor(){
         super()
         this.state={
+            showlike:false,
             selectedTab:'Posts',
             data1:[{
                 uri1:require('../assets/images/product1.png'),
@@ -50,6 +51,7 @@ export default class BrandProfile extends Component {
                 imagedes2:"who wishes for the world.Beneathsdsd the..",
                 imagedes3:"See more",
                 likeimage:require('../assets/images/like.png'),
+                dislikeimage:require('../assets/images/dislike.png'),
                 liket:"56k",
                 commentimage:require('../assets/images/comment.png'),
                 commentt:"235",
@@ -65,6 +67,7 @@ export default class BrandProfile extends Component {
                 imagedes2:"who wishes for the world.Beneathsdsd the..",
                 imagedes3:"See more",
                 likeimage:require('../assets/images/like.png'),
+                dislikeimage:require('../assets/images/dislike.png'),
                 liket:"56k",
                 commentimage:require('../assets/images/comment.png'),
                 commentt:"235",
@@ -77,6 +80,11 @@ export default class BrandProfile extends Component {
     }
 }
 
+showlike=()=>{
+    this.setState({
+        showlike:!this.state.showlike
+    })
+}
   
  handleTabPress=(Tab)=>{
         this.setState({
@@ -146,7 +154,7 @@ export default class BrandProfile extends Component {
        
             <ScrollView>
         
-        {this.state.arrData.map((item)=>(
+        {this.state.arrData.map((item,index)=>(
             <View style={styles.postview}>
             <Image source={item.uri2} style={styles.mainimagestyle}></Image>
             <Text style={styles.posteddatetext}>{item.imagedate}</Text>
@@ -167,7 +175,7 @@ export default class BrandProfile extends Component {
            <View style={styles.flatlistview}>
             <Image source={item.uri1} style={{height:117,width:117}}></Image>
             {
-            item.unavailabletext=="Unavailable"?
+            index==0 && item.unavailabletext=="Unavailable"?
             <View style={styles.unavailabletouchable}>
             <Text style={styles.unavailabletextstyle}>{item.unavailabletext}</Text>
             </View>:
@@ -187,7 +195,11 @@ export default class BrandProfile extends Component {
             }></FlatList>
         </View>
             <View style={{backgroundColor:'rgba(0, 0, 0, 0.03)',height:41,marginTop:8,flexDirection:'row'}}>
-                <Image source={item.likeimage} style={styles.likebutton}></Image>
+                <TouchableOpacity onPress={this.showlike}>
+                     <Image source={this.state.showlike?
+                     item.likeimage:item.dislikeimage} style={styles.likebutton}></Image>
+                </TouchableOpacity>
+                
                 <Text style={styles.liketext}>{item.liket}</Text>
                 <Image source={item.commentimage} style={styles.likebutton}></Image>
                 <Text style={styles.liketext}>{item.commentt}</Text>
