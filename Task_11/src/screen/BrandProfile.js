@@ -116,7 +116,7 @@ showlike=()=>{
                     </TouchableOpacity>
                     <Image source={require('../assets/images/profile_image.png')} style={styles.profileimage}></Image>
                     </View>
-                    <View style={{flexGrow:1}}>
+                    <View style={{flexGrow:1,marginHorizontal:20}}>
                         <View style={styles.view3}>
                         <View>
                             <Text style={styles.text1}>256</Text>
@@ -278,7 +278,7 @@ const styles = StyleSheet.create({
         marginTop:20,
     },
     view2:{
-        
+        //gap:20,
         marginHorizontal:13,
         marginTop:14,
        // justifyContent:'space-between',
@@ -294,7 +294,7 @@ const styles = StyleSheet.create({
     view3:{
         //marginLeft:18,
         //flexGrow:1,
-        justifyContent:'space-around',
+        justifyContent:'space-between',
         flexDirection:'row',
         //height:47,
         //width:240,
