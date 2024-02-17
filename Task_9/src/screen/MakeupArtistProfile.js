@@ -41,6 +41,7 @@ export default class MakeupArtistProfile extends Component {
     return (
       
       <View style={styles.contianer}>
+            <ScrollView>
             <View style={styles.innerview}>
                 <View style={styles.view1}>
                     <Image source={require('../assets/images/back.png')} style={styles.backimage}></Image>
@@ -106,7 +107,7 @@ export default class MakeupArtistProfile extends Component {
                     
                    
             </View>
-            <ScrollView>
+        
             <View style={{height:580,backgroundColor:'white',marginTop:4}}>
             {this.state.arrData.map((item)=>(
                  <View style={styles.innerview2}>
@@ -319,8 +320,7 @@ const styles =StyleSheet.create({
     selectedTab:{
     
     borderBottomWidth: 4,
-    borderTopLeftRadius:10,
-    borderTopRightRadius:10,
+    borderTopLeftRadius:50,
     borderBottomColor: 'pink',
     paddingBottom: 20,
     }

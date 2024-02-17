@@ -180,8 +180,7 @@ showlike=()=>{
                 </View>     
             </View>
 
-       
-            <ScrollView>
+       {this.state.selectedTab==='Posts'?<ScrollView>
         
         {this.state.arrData.map((item,index)=>(
             <View style={styles.postview}>
@@ -241,7 +240,8 @@ showlike=()=>{
     ))}
 
         </ScrollView>
-        
+        :this.state.selectedTab === 'Products'?<View style={{backgroundColor:'color'}}></View>:this.state.selectedTab === 'Gallery'?<View style={{backgroundColor:'color'}}></View>:null}
+            
 
         <TouchableOpacity style={styles.filtertouchable}>
             <Image source={require('../assets/images/filter.png')}></Image>
