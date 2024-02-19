@@ -20,14 +20,14 @@ constructor(){
             backimage:require('../assets/images/S2image_back.png'),
             likei:require('../assets/images/right_image.png'),
             title:'Trusted Institution',
-            des:'Funder includes only transparent and \n accountable charities registered and \n regulated by ACNC (Australian Charities \n and Not-for-profit Commission).',
+            des:'Funder includes only transparent and \n accountable charities registered and \nregulated by ACNC (Australian Charities \n      and Not-for-profit Commission).',
         }, 
         {
             image:require('../assets/images/main_image3.png'),
             backimage:require('../assets/images/S3image_back.png'),
             likei:require('../assets/images/hand_image.png'),
             title:'Start to Help',
-            des:'It is easier now to help people in the midst \n  your busy life by using bagee.in your \n trusted fundraising online apps',
+            des:'It is easier now to help people in the midst \n     your busy life by using bagee.in your \n           trusted fundraising online apps',
         }
     ]
     }
@@ -47,7 +47,7 @@ handleView=(index)=>{
                   this.setState({currentIndex: Math.ceil(indexValue)});
                 }}>
         {this.state.arrData.map((item,index)=>(
-        <ImageBackground source={item.backimage} style={{flex:1}}>
+        <ImageBackground source={item.backimage}>
              <View key={index} 
             style={{display:this.state.currentIndex === index ? 'flex':'flex',
             width: screenWidth,
@@ -79,10 +79,10 @@ handleView=(index)=>{
         </ScrollView>
         <View style={styles.buttonview}>
                 <TouchableOpacity style={styles.logintoachable}>
-                    <Text>Login</Text>
+                    <Text style={styles.logintext}>Login</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.signuptoachable}>
-                    <Text>Signup</Text>
+                    <Text style={styles.signuptext}>Signup</Text>
                 </TouchableOpacity>
             </View>
       </View>
@@ -146,6 +146,7 @@ const styles = StyleSheet.create({
         lineHeight:18.15,
         alignSelf:'center',
         marginTop:12,
+        letterSpacing:0.5
     },
     blueLine:{
         width:24,
@@ -164,6 +165,20 @@ const styles = StyleSheet.create({
         marginTop:40,
         marginHorizontal:5,
         opacity:20
+      },
+      logintext:{
+        color:'rgba(35, 155, 86, 1)',
+        fontWeight:'600',
+        fontSize:16,
+        lineHeight:19.36,
+        letterSpacing:0.57
+      },
+      signuptext:{
+        color:'rgba(219, 255, 57, 1)',
+        fontWeight:'600',
+        fontSize:16,
+        lineHeight:19.36,
+        letterSpacing:0.57
       }
     
 })
