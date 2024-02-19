@@ -5,7 +5,8 @@ export default class Task10 extends Component {
   constructor(){
     super()
     this.state={
-        //showAllProducts: false,
+        showAllHospital:false,
+        showAllProducts: false,
         data1:[{
             uri1:require('../assets/images/hotel_image1.png'),
             imagename:"National Cancel Hospital",
@@ -21,8 +22,90 @@ export default class Task10 extends Component {
             locationname:"Delhi, India",
             hospitalcodetext:"Hospital Code :",
             codetext:"A898"
+        },
+        {
+            uri1:require('../assets/images/hotel_image1.png'),
+            imagename:"The Heart Hopsital",
+            locationimage:require('../assets/images/location.png'),
+            locationname:"Delhi, India",
+            hospitalcodetext:"Hospital Code :",
+            codetext:"A898"
+        },
+        {
+            uri1:require('../assets/images/hotel_image1.png'),
+            imagename:"The Heart Hopsital",
+            locationimage:require('../assets/images/location.png'),
+            locationname:"Delhi, India",
+            hospitalcodetext:"Hospital Code :",
+            codetext:"A898"
+        },
+        {
+            uri1:require('../assets/images/hotel_image1.png'),
+            imagename:"The Heart Hopsital",
+            locationimage:require('../assets/images/location.png'),
+            locationname:"Delhi, India",
+            hospitalcodetext:"Hospital Code :",
+            codetext:"A898"
+        },
+        {
+            uri1:require('../assets/images/hotel_image1.png'),
+            imagename:"The Heart Hopsital",
+            locationimage:require('../assets/images/location.png'),
+            locationname:"Delhi, India",
+            hospitalcodetext:"Hospital Code :",
+            codetext:"A898"
+        },
+        {
+            uri1:require('../assets/images/hotel_image1.png'),
+            imagename:"The Heart Hopsital",
+            locationimage:require('../assets/images/location.png'),
+            locationname:"Delhi, India",
+            hospitalcodetext:"Hospital Code :",
+            codetext:"A898"
         }],
         data2:[{
+            uri1:require('../assets/images/doctor_image1.png'),
+            hospitalcodetext:"Doctor Code : ",
+            codetext:"A898",
+            doctorname:"Dr. Mahesh Shukla",
+            dslogan:"First Priority Medical",
+            locationimage:require('../assets/images/location_3.png'),
+            locationname:"Delhi, India",
+            doctortype:"Neurology, Kidney...",
+            availabletext:"Available",
+            pricetext:"₹ 150"
+
+
+        },
+        {
+            uri1:require('../assets/images/doctor_image1.png'),
+            hospitalcodetext:"Doctor Code : ",
+            codetext:"A898",
+            doctorname:"Dr. Mahesh Shukla",
+            dslogan:"First Priority Medical",
+            locationimage:require('../assets/images/location_3.png'),
+            locationname:"Delhi, India",
+            doctortype:"Neurology, Kidney...",
+            availabletext:"Available",
+            pricetext:"₹ 150"
+
+
+        },
+        {
+            uri1:require('../assets/images/doctor_image1.png'),
+            hospitalcodetext:"Doctor Code : ",
+            codetext:"A898",
+            doctorname:"Dr. Mahesh Shukla",
+            dslogan:"First Priority Medical",
+            locationimage:require('../assets/images/location_3.png'),
+            locationname:"Delhi, India",
+            doctortype:"Neurology, Kidney...",
+            availabletext:"Available",
+            pricetext:"₹ 150"
+
+
+        },
+        {
             uri1:require('../assets/images/doctor_image1.png'),
             hospitalcodetext:"Doctor Code : ",
             codetext:"A898",
@@ -110,9 +193,88 @@ export default class Task10 extends Component {
             uri2:require('../assets/images/product_image2.png'),
             prodcutname2:"Cardio Thoracic",
             productdis2:"Ostocalcium B12 Syrup-\n200ml-Banana",
+        },
+        {
+            uri1:require('../assets/images/product_imge1.png'),
+            prodcutname:"Cardio Thoracic",
+            productdis:"Luden's Throat Drops\nCherry - 25 ct",
+            productprice:"₹ 150.00",
+            productcrosprice:"₹ 170.00",
+            addtext:"Add",
+            uri2:require('../assets/images/product_image2.png'),
+            prodcutname2:"Cardio Thoracic",
+            productdis2:"Ostocalcium B12 Syrup-\n200ml-Banana",
+        },
+        {
+            uri1:require('../assets/images/product_imge1.png'),
+            prodcutname:"Cardio Thoracic",
+            productdis:"Luden's Throat Drops\nCherry - 25 ct",
+            productprice:"₹ 150.00",
+            productcrosprice:"₹ 170.00",
+            addtext:"Add",
+            uri2:require('../assets/images/product_image2.png'),
+            prodcutname2:"Cardio Thoracic",
+            productdis2:"Ostocalcium B12 Syrup-\n200ml-Banana",
+        },
+        {
+            uri1:require('../assets/images/product_imge1.png'),
+            prodcutname:"Cardio Thoracic",
+            productdis:"Luden's Throat Drops\nCherry - 25 ct",
+            productprice:"₹ 150.00",
+            productcrosprice:"₹ 170.00",
+            addtext:"Add",
+            uri2:require('../assets/images/product_image2.png'),
+            prodcutname2:"Cardio Thoracic",
+            productdis2:"Ostocalcium B12 Syrup-\n200ml-Banana",
+        },
+        {
+            uri1:require('../assets/images/product_imge1.png'),
+            prodcutname:"Cardio Thoracic",
+            productdis:"Luden's Throat Drops\nCherry - 25 ct",
+            productprice:"₹ 150.00",
+            productcrosprice:"₹ 170.00",
+            addtext:"Add",
+            uri2:require('../assets/images/product_image2.png'),
+            prodcutname2:"Cardio Thoracic",
+            productdis2:"Ostocalcium B12 Syrup-\n200ml-Banana",
+        },
+        {
+            uri1:require('../assets/images/product_imge1.png'),
+            prodcutname:"Cardio Thoracic",
+            productdis:"Luden's Throat Drops\nCherry - 25 ct",
+            productprice:"₹ 150.00",
+            productcrosprice:"₹ 170.00",
+            addtext:"Add",
+            uri2:require('../assets/images/product_image2.png'),
+            prodcutname2:"Cardio Thoracic",
+            productdis2:"Ostocalcium B12 Syrup-\n200ml-Banana",
+        },
+        {
+            uri1:require('../assets/images/product_imge1.png'),
+            prodcutname:"Cardio Thoracic",
+            productdis:"Luden's Throat Drops\nCherry - 25 ct",
+            productprice:"₹ 150.00",
+            productcrosprice:"₹ 170.00",
+            addtext:"Add",
+            uri2:require('../assets/images/product_image2.png'),
+            prodcutname2:"Cardio Thoracic",
+            productdis2:"Ostocalcium B12 Syrup-\n200ml-Banana",
+        },
+        {
+            uri1:require('../assets/images/product_imge1.png'),
+            prodcutname:"Cardio Thoracic",
+            productdis:"Luden's Throat Drops\nCherry - 25 ct",
+            productprice:"₹ 150.00",
+            productcrosprice:"₹ 170.00",
+            addtext:"Add",
+            uri2:require('../assets/images/product_image2.png'),
+            prodcutname2:"Cardio Thoracic",
+            productdis2:"Ostocalcium B12 Syrup-\n200ml-Banana",
         },]
     }
   }
+
+ 
   render() {
     return (
        
@@ -175,19 +337,20 @@ export default class Task10 extends Component {
 
         <View style={styles.informationview}>
             <Text style={styles.hospitallocationtext}>Hospital near you</Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>this.setState(prevState=>({showAllHospital:!prevState.showAllHospital}))}>
                 <Text style={styles.viewallinfromationtext}>View all hospitals</Text>
             </TouchableOpacity>
         </View>
 
         <View>
+        
         <FlatList
         data={this.state.data1}
-        horizontal={true}
+        horizontal={this.state.showAllHospital ? false : true} 
         showsHorizontalScrollIndicator={false}
         renderItem={({item})=>
-            <View style={{marginLeft:20,marginTop:15}}>
-                <Image source={item.uri1}></Image>
+            <View style={{marginLeft:20,marginTop:15,}}>
+                <Image source={item.uri1} style={{aspectRatio:this.state.showAllHospital ? 23/9 : 16/9,borderWidth:1}}></Image>
                 <View style={{position:'absolute',marginTop:60,marginLeft:15}}>
                     <Text style={styles.imagenametext}>{item.imagename}</Text>
                     <View style={{flexDirection:'row',marginTop:5}}>
@@ -202,6 +365,7 @@ export default class Task10 extends Component {
             </View>
         }>  
         </FlatList>
+        
 
         <View style={styles.informationview}>
             <Text style={styles.hospitallocationtext}>Clinics near you</Text>
@@ -258,7 +422,7 @@ export default class Task10 extends Component {
             </TouchableOpacity>
         </View>
 
-        <View >
+        {/* <View >
             {this.state.arrData.map((item)=>(
                 <View style={{flexDirection:'row'}}>
                     <View style={{marginTop:10,marginLeft:22,backgroundColor:'white',width:170,height:252,borderRadius:10,shadowColor:'black',shadowOpacity:0.5,shadowRadius:10,elevation:5}}>
@@ -296,86 +460,52 @@ export default class Task10 extends Component {
                 </View>
               ))}
             
-        </View>
+        </View> */}
         {/* //jayre show all product per click kariye tayre extra item aaave e code ahiya che logic */}
-{/* 
+
         <View>
-            {this.state.showAllProducts?
-            this.state.arrData.map((item)=>(
-                <View style={{flexDirection:'row'}}>
+         {this.state.arrData.map((item, index) => (
+            (this.state.showAllProducts || index < 5) ? (
+                <View style={{flexDirection:'row'}} key={index}>
                     <View style={{marginTop:10,marginLeft:22,backgroundColor:'white',width:170,height:252,borderRadius:10,shadowColor:'black',shadowOpacity:0.5,shadowRadius:10,elevation:5}}>
                         <Image source={item.uri1} style={{alignSelf:'center',marginTop:27}}></Image>
                         <Text style={styles.pname}>{item.prodcutname}</Text>
                         <Text style={styles.pdesc}>{item.productdis}</Text>
                         <View style={{flexDirection:'row',marginLeft:12,marginTop:10}}>
                             <View>
-                            <Text style={styles.ptext}>{item.productprice}</Text>
-                            <Text style={styles.pclosetext}>{item.productcrosprice}</Text>
+                                <Text style={styles.ptext}>{item.productprice}</Text>
+                                <Text style={styles.pclosetext}>{item.productcrosprice}</Text>
                             </View>
-                            <View >
+                             <View >
                                 <TouchableOpacity style={styles.addtouchable}>
                                     <Text style={styles.addtextstyle}>{item.addtext}</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
-                    </View>
-                    <View style={{marginTop:10,marginLeft:22,backgroundColor:'white',width:170,height:252,borderRadius:10,shadowColor:'black',shadowOpacity:0.5,shadowRadius:10,elevation:5}}>
-                        <Image source={item.uri2} style={{alignSelf:'center',marginTop:27}}></Image>
-                        <Text style={styles.pname}>{item.prodcutname2}</Text>
-                        <Text style={styles.pdesc}>{item.productdis2}</Text>
-                        <View style={{flexDirection:'row',marginLeft:12,marginTop:10}}>
-                            <View>
+                        </View>
+                <View style={{marginTop:10,marginLeft:22,backgroundColor:'white',width:170,height:252,borderRadius:10,shadowColor:'black',shadowOpacity:0.5,shadowRadius:10,elevation:5}}>
+                    <Image source={item.uri2} style={{alignSelf:'center',marginTop:27}}></Image>
+                    <Text style={styles.pname}>{item.prodcutname2}</Text>
+                    <Text style={styles.pdesc}>{item.productdis2}</Text>
+                    <View style={{flexDirection:'row',marginLeft:12,marginTop:10}}>
+                        <View>
                             <Text style={styles.ptext}>{item.productprice}</Text>
                             <Text style={styles.pclosetext}>{item.productcrosprice}</Text>
-                            </View>
-                            <View >
-                                <TouchableOpacity style={styles.addtouchable}>
-                                    <Text style={styles.addtextstyle}>{item.addtext}</Text>
-                                </TouchableOpacity>
-                            </View>
+                        </View>
+                        <View >
+                            <TouchableOpacity style={styles.addtouchable}>
+                                <Text style={styles.addtextstyle}>{item.addtext}</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 </View>
-              )):this.state.arrData.slice(0,3).map((item)=>(<View style={{flexDirection:'row'}}>
-              <View style={{marginTop:10,marginLeft:22,backgroundColor:'white',width:170,height:252,borderRadius:10,shadowColor:'black',shadowOpacity:0.5,shadowRadius:10,elevation:5}}>
-                  <Image source={item.uri1} style={{alignSelf:'center',marginTop:27}}></Image>
-                  <Text style={styles.pname}>{item.prodcutname}</Text>
-                  <Text style={styles.pdesc}>{item.productdis}</Text>
-                  <View style={{flexDirection:'row',marginLeft:12,marginTop:10}}>
-                      <View>
-                      <Text style={styles.ptext}>{item.productprice}</Text>
-                      <Text style={styles.pclosetext}>{item.productcrosprice}</Text>
-                      </View>
-                      <View >
-                          <TouchableOpacity style={styles.addtouchable}>
-                              <Text style={styles.addtextstyle}>{item.addtext}</Text>
-                          </TouchableOpacity>
-                      </View>
-                  </View>
-              </View>
-              <View style={{marginTop:10,marginLeft:22,backgroundColor:'white',width:170,height:252,borderRadius:10,shadowColor:'black',shadowOpacity:0.5,shadowRadius:10,elevation:5}}>
-                  <Image source={item.uri2} style={{alignSelf:'center',marginTop:27}}></Image>
-                  <Text style={styles.pname}>{item.prodcutname2}</Text>
-                  <Text style={styles.pdesc}>{item.productdis2}</Text>
-                  <View style={{flexDirection:'row',marginLeft:12,marginTop:10}}>
-                      <View>
-                      <Text style={styles.ptext}>{item.productprice}</Text>
-                      <Text style={styles.pclosetext}>{item.productcrosprice}</Text>
-                      </View>
-                      <View >
-                          <TouchableOpacity style={styles.addtouchable}>
-                              <Text style={styles.addtextstyle}>{item.addtext}</Text>
-                          </TouchableOpacity>
-                      </View>
-                  </View>
-              </View>
-          </View>))}
-            
-        </View> */}
-
+            </View>
+            ) : null
+        ))}
+    </View>
         {/* onPress={()=> this.setState((prevState)=>({showAllProducts:!prevState.showAllProducts})) */}
 
-        <TouchableOpacity style={styles.viewallproducttouchable}> 
+        <TouchableOpacity style={styles.viewallproducttouchable}  onPress={()=> this.setState({showAllProducts:!this.state.showAllProducts})}> 
             <Text style={{color:'rgba(160, 32, 240, 1)',fontWeight:'500',fontSize:16}}>
            {this.state.showAllProducts?'View less products':'View show products'} 
             </Text>

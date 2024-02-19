@@ -182,15 +182,17 @@ showlike=()=>{
 
        {this.state.selectedTab==='Posts'?<ScrollView>
         
-        {this.state.arrData.map((item,index)=>(
-            <View style={styles.postview}>
+        <FlatList
+        data={this.state.arrData}
+        renderItem={({item,index})=>
+        <View style={styles.postview}>
             <Image source={item.uri2} style={styles.mainimagestyle}></Image>
             <View style={{flexWrap:'wrap'}}>
             <Text style={styles.posteddatetext}>{item.imagedate}</Text>
                 <View style={{flexDirection:'row',alignItems:'center'}}>
-                <Text style={styles.postdes}>{item.imagedes}
-                <Text style={styles.seemoretext}>{item.imagedes3}</Text></Text>
-               
+                    <Text style={styles.postdes}>{item.imagedes}
+                    <Text style={styles.seemoretext}>{item.imagedes3}</Text>
+                    </Text>
                 </View>
             </View>
         <View>
@@ -237,10 +239,10 @@ showlike=()=>{
             </View>
            
         </View>
-    ))}
+     }></FlatList>
 
         </ScrollView>
-        :this.state.selectedTab === 'Products'?<View style={{backgroundColor:'color'}}></View>:this.state.selectedTab === 'Gallery'?<View style={{backgroundColor:'color'}}></View>:null}
+        :this.state.selectedTab === 'Products'?<View style={{backgroundColor:'white'}}></View>:this.state.selectedTab === 'Gallery'?<View style={{backgroundColor:'white'}}></View>:null}
             
 
         <TouchableOpacity style={styles.filtertouchable}>
