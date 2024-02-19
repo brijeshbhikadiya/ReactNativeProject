@@ -1,8 +1,26 @@
 import { Image, ImageBackground, StyleSheet, Text, View,TouchableOpacity, ViewComponent, ScrollView,Dimensions, FlatList} from 'react-native'
 import React, { Component } from 'react'
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 const screenWidth = Dimensions.get('window').width;
 
-export default class OnBording extends Component {
+const Stack = createStackNavigator();
+
+export default class AppNavigator extends Component {
+    render() {
+      return (
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName='OnBording'>
+              <Stack.Screen name="OnBording" component={OnBording}></Stack.Screen>
+              <Stack.Screen name="log" component={Login}></Stack.Screen>
+              <Stack.Screen name="sign" component={SignUp}></Stack.Screen>
+          </Stack.Navigator>
+        </NavigationContainer>
+      )
+    }
+  }
+
+export  class OnBording extends Component {
 constructor(){
     super()
     this.scrollViewRef = React.createRef();

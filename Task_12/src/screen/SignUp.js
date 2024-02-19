@@ -1,11 +1,49 @@
 import { ImageBackground, StyleSheet, Text, View,TouchableOpacity,Image,TextInput } from 'react-native'
 import React, { Component } from 'react'
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 export default class SignUp extends Component {
+ constructor(){
+    super()
+    this.state={
+        email:"",
+        showPassword:false,
+        phonenumber:'',
+        checkbox:false,
+        name:''
+    }
+ }
+
+ togglePassword=()=>{
+    this.setState({showPassword:!this.state.showPassword})
+ }
+
+ handleCheckbox=()=>{
+    this.setState({checkbox:!this.state.checkbox})
+ }
+
+ handlePhonenumber=(text)=>{
+    const numericvalue=text.replace(/[^0-9]/g, '');
+    this.setState({phonenumber:numericvalue})
+ }
+
+
+
+ 
   render() {
+    vEmail=(email)=>{
+        const ex=/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/
+        return ex.test(String(email).toLowerCase())
+    }
+    handleName=(text)=>{
+        const namerx=/^[a-zA-Z ]+$/
+        return namerx.test(String(text))
+     }
+
     return (
       <View style={styles.container}>
-        <ImageBackground source={require('../assets/images/main_image5.png')} style={{flex:1}}>
+        <ImageBackground source={require('../assets/images/main_image5.png')} style={{paddingBottom:20}}>
             <TouchableOpacity>
                 <Image source={require('../assets/images/back_button.png')}></Image>
             </TouchableOpacity>
@@ -14,29 +52,50 @@ export default class SignUp extends Component {
                 <Text style={styles.signuptext}>Signup</Text>
                 <View style={styles.emailview}>
                     <TextInput
+                    onChangeText={(text)=>{this.setState({name: text})}}
                     placeholder='Enter full name'></TextInput>
                 </View>
+                {this.state.name == ""?null:handleName(this.state.name)?null:<Text style={{color:'yellow',marginLeft:10}}>Enter a valid Name..</Text>}
                 <View style={styles.passwordview}>
                     <TextInput
+                    maxLength={10}
+                    keyboardType='number-pad'
+                    onChangeText={this.handlePhonenumber}
+                    value={this.state.phonenumber}
                     placeholder='Phone number'></TextInput>
                 </View>
                 <View style={styles.passwordview}>
                     <TextInput
+                    keyboardType='email-address'
+                    onChangeText={(text)=>this.setState({email:text})}
                     placeholder='Email address '></TextInput>
                 </View>
+                {this.state.email == ""?null:vEmail(this.state.email)?<Text style={{color:'yellow',marginLeft:10}}>Valid Email..</Text>:<Text style={{color:'red',marginLeft:10}}>Invalid Email.</Text>}
                 <View style={styles.passview}>
                     <TextInput
+                    secureTextEntry={!this.state.showPassword}
+                    onChangeText={(text)=>this.setState({password:text})}
                     placeholder='Password'
                     style={{flex:1}}></TextInput>
-                    <Image source={require('../assets/images/eye.png')} style={{marginTop:14,marginRight:10}}></Image>
+                    <TouchableOpacity onPress={this.togglePassword}>
+                    {this.state.showPassword? <Image source={require('../assets/images/eye.png')} style={{marginTop:14,marginRight:10}}></Image>:
+                    <Image source={require('../assets/images/hide_eye_icon.png')} style={{marginTop:14,marginRight:10}}></Image>}</TouchableOpacity>
                 </View>
             </View>
 
             <View style={{flexDirection:'row',marginTop:18,marginHorizontal:40}}>
-                <Image source={require('../assets/images/check_box.png')} style={{marginTop:4}}></Image>
-                <Text style={styles.textdes1}>
-                    By signing up, user agrees to the {'\n'}<Text style={styles.textdes2}>terms & conditions</Text> and <Text style={styles.textdes2}>privacy policy.</Text>
-                </Text>
+                <TouchableOpacity onPress={this.handleCheckbox}>
+                {this.state.checkbox?<Image source={require('../assets/images/checkBox_icon.png')} style={{marginTop:4}}></Image>:<Image source={require('../assets/images/check_box.png')} style={{marginTop:4}}></Image>}
+                </TouchableOpacity>
+                <View>
+                <Text style={styles.textdes1}>By signing up, user agrees to the</Text>
+                    <View style={{flexDirection:'row'}}>
+                    <TouchableOpacity><Text style={styles.textdes2}>terms & conditions</Text></TouchableOpacity>
+                     <Text style={styles.andtext}>and</Text> 
+                     <TouchableOpacity><Text style={styles.textdes3}>privacy policy</Text></TouchableOpacity>
+                    </View>
+                
+                </View>
             </View>
 
             <TouchableOpacity style={styles.loginTouchable}>
@@ -94,16 +153,33 @@ const styles = StyleSheet.create({
         marginLeft:19,
         color:'rgba(255, 255, 255, 1)',
         fontWeight:'400',
-        fontSize:12,
+        fontSize:13,
+        lineHeight:14.52},
+    andtext:{
+        marginHorizontal:3,
+        marginTop:5,
+        color:'rgba(255, 255, 255, 1)',
+        fontWeight:'400',
+        fontSize:13,
         lineHeight:14.52},
     textdes2:{
             marginLeft:19,
             color:'rgba(255, 255, 255, 1)',
             fontWeight:'500',
-            fontSize:12,
+            fontSize:13,
+            marginTop:5,
             lineHeight:14.52,
-        textDecorationLine:'underline'
+            textDecorationLine:'underline'
     },
+    textdes3:{
+        marginLeft:1,
+        color:'rgba(255, 255, 255, 1)',
+        fontWeight:'500',
+        fontSize:12,
+        marginTop:5,
+        lineHeight:14.52,
+        textDecorationLine:'underline'
+},
     loginTouchable:{
         backgroundColor:'rgba(219, 255, 57, 1)',
         justifyContent:'center',
