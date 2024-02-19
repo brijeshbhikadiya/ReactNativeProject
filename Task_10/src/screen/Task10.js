@@ -7,6 +7,7 @@ export default class Task10 extends Component {
     this.state={
         showAllHospital:false,
         showAllProducts: false,
+        showAddBUtton:false,
         data1:[{
             uri1:require('../assets/images/hotel_image1.png'),
             imagename:"National Cancel Hospital",
@@ -146,6 +147,7 @@ export default class Task10 extends Component {
             productprice:"₹ 150.00",
             productcrosprice:"₹ 170.00",
             addtext:"Add",
+            addtext2:"Added",
             uri2:require('../assets/images/product_image2.png'),
             prodcutname2:"Cardio Thoracic",
             productdis2:"Ostocalcium B12 Syrup-\n200ml-Banana",
@@ -157,6 +159,7 @@ export default class Task10 extends Component {
             productprice:"₹ 150.00",
             productcrosprice:"₹ 170.00",
             addtext:"Add",
+            addtext2:"Added",
             uri2:require('../assets/images/product_image2.png'),
             prodcutname2:"Cardio Thoracic",
             productdis2:"Ostocalcium B12 Syrup-\n200ml-Banana",
@@ -168,6 +171,7 @@ export default class Task10 extends Component {
             productprice:"₹ 150.00",
             productcrosprice:"₹ 170.00",
             addtext:"Add",
+            addtext2:"Added",
             uri2:require('../assets/images/product_image2.png'),
             prodcutname2:"Cardio Thoracic",
             productdis2:"Ostocalcium B12 Syrup-\n200ml-Banana",
@@ -179,6 +183,7 @@ export default class Task10 extends Component {
             productprice:"₹ 150.00",
             productcrosprice:"₹ 170.00",
             addtext:"Add",
+            addtext2:"Added",
             uri2:require('../assets/images/product_image2.png'),
             prodcutname2:"Cardio Thoracic",
             productdis2:"Ostocalcium B12 Syrup-\n200ml-Banana",
@@ -190,6 +195,7 @@ export default class Task10 extends Component {
             productprice:"₹ 150.00",
             productcrosprice:"₹ 170.00",
             addtext:"Add",
+            addtext2:"Added",
             uri2:require('../assets/images/product_image2.png'),
             prodcutname2:"Cardio Thoracic",
             productdis2:"Ostocalcium B12 Syrup-\n200ml-Banana",
@@ -201,6 +207,7 @@ export default class Task10 extends Component {
             productprice:"₹ 150.00",
             productcrosprice:"₹ 170.00",
             addtext:"Add",
+            addtext2:"Added",
             uri2:require('../assets/images/product_image2.png'),
             prodcutname2:"Cardio Thoracic",
             productdis2:"Ostocalcium B12 Syrup-\n200ml-Banana",
@@ -212,6 +219,7 @@ export default class Task10 extends Component {
             productprice:"₹ 150.00",
             productcrosprice:"₹ 170.00",
             addtext:"Add",
+            addtext2:"Added",
             uri2:require('../assets/images/product_image2.png'),
             prodcutname2:"Cardio Thoracic",
             productdis2:"Ostocalcium B12 Syrup-\n200ml-Banana",
@@ -223,6 +231,7 @@ export default class Task10 extends Component {
             productprice:"₹ 150.00",
             productcrosprice:"₹ 170.00",
             addtext:"Add",
+            addtext2:"Added",
             uri2:require('../assets/images/product_image2.png'),
             prodcutname2:"Cardio Thoracic",
             productdis2:"Ostocalcium B12 Syrup-\n200ml-Banana",
@@ -234,6 +243,7 @@ export default class Task10 extends Component {
             productprice:"₹ 150.00",
             productcrosprice:"₹ 170.00",
             addtext:"Add",
+            addtext2:"Added",
             uri2:require('../assets/images/product_image2.png'),
             prodcutname2:"Cardio Thoracic",
             productdis2:"Ostocalcium B12 Syrup-\n200ml-Banana",
@@ -245,6 +255,7 @@ export default class Task10 extends Component {
             productprice:"₹ 150.00",
             productcrosprice:"₹ 170.00",
             addtext:"Add",
+            addtext2:"Added",
             uri2:require('../assets/images/product_image2.png'),
             prodcutname2:"Cardio Thoracic",
             productdis2:"Ostocalcium B12 Syrup-\n200ml-Banana",
@@ -256,6 +267,7 @@ export default class Task10 extends Component {
             productprice:"₹ 150.00",
             productcrosprice:"₹ 170.00",
             addtext:"Add",
+            addtext2:"Added",
             uri2:require('../assets/images/product_image2.png'),
             prodcutname2:"Cardio Thoracic",
             productdis2:"Ostocalcium B12 Syrup-\n200ml-Banana",
@@ -267,6 +279,7 @@ export default class Task10 extends Component {
             productprice:"₹ 150.00",
             productcrosprice:"₹ 170.00",
             addtext:"Add",
+            addtext2:"Added",
             uri2:require('../assets/images/product_image2.png'),
             prodcutname2:"Cardio Thoracic",
             productdis2:"Ostocalcium B12 Syrup-\n200ml-Banana",
@@ -477,8 +490,8 @@ export default class Task10 extends Component {
                                 <Text style={styles.pclosetext}>{item.productcrosprice}</Text>
                             </View>
                              <View >
-                                <TouchableOpacity style={styles.addtouchable}>
-                                    <Text style={styles.addtextstyle}>{item.addtext}</Text>
+                                <TouchableOpacity style={styles.addtouchable} onPress={()=>this.setState({showAddBUtton:!this.state.showAddBUtton})} >
+                                {this.state.showAddBUtton?<Text style={styles.addtextstyle}>{item.addtext2}</Text>:<Text style={styles.addtextstyle}>{item.addtext}</Text>}
                                 </TouchableOpacity>
                             </View>
                         </View>
@@ -492,9 +505,9 @@ export default class Task10 extends Component {
                             <Text style={styles.ptext}>{item.productprice}</Text>
                             <Text style={styles.pclosetext}>{item.productcrosprice}</Text>
                         </View>
-                        <View >
-                            <TouchableOpacity style={styles.addtouchable}>
-                                <Text style={styles.addtextstyle}>{item.addtext}</Text>
+                        <View>
+                            <TouchableOpacity style={styles.addtouchable} onPress={()=>this.setState({showAddBUtton:!this.state.showAddBUtton})}>
+                                {this.state.showAddBUtton?<Text style={styles.addtextstyle}>{item.addtext2}</Text>:<Text style={styles.addtextstyle}>{item.addtext}</Text>}
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -829,8 +842,4 @@ const styles =StyleSheet.create({
         fontWeight:'500',
         fontSize:14
     }
-    
-    
-   
-
 })
