@@ -51,7 +51,7 @@ handleView=(index)=>{
         {this.state.arrData.map((item,index)=>(
         <ImageBackground source={item.backimage}>
              <View key={index} 
-            style={{display:this.state.currentIndex === index ? 'flex':'flex',
+            style={{
             width: screenWidth,
             alignSelf: 'center',}}>
             <Image source={item.image} style={styles.mainimage1}></Image>
@@ -83,7 +83,7 @@ handleView=(index)=>{
                 <TouchableOpacity style={styles.logintoachable} onPress={() => this.props.navigation.navigate('Login')}>
                     <Text style={styles.logintext}>Login</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.signuptoachable} onPress={() => this.props.navigation.navigate('Signup')}>
+                <TouchableOpacity style={styles.signuptoachable} onPress={() => this.props.navigation.navigate('SignUp')}>
                     <Text style={styles.signuptext}>Signup</Text>
                 </TouchableOpacity>
             </View>
@@ -134,7 +134,8 @@ const styles = StyleSheet.create({
     },
     imagetitle1:{
         color:'rgba(255, 255, 255, 1)',
-        fontWeight:'700',
+        //fontWeight:'700',
+        fontFamily:'Caveat',
         fontSize:40,
         lineHeight:50.4,
         alignSelf:'center',
@@ -143,7 +144,8 @@ const styles = StyleSheet.create({
     },
     imgaedes1:{
         color:'rgba(255, 255, 255, 1)',
-        fontWeight:'400',
+       // fontWeight:'400',
+       fontFamily:'inter',
         fontSize:15,
         lineHeight:18.15,
         alignSelf:'center',
@@ -171,6 +173,7 @@ const styles = StyleSheet.create({
       logintext:{
         color:'rgba(35, 155, 86, 1)',
         fontWeight:'600',
+        //fontFamily:'inter',
         fontSize:16,
         lineHeight:19.36,
         letterSpacing:0.57

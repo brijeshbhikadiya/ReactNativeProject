@@ -1,7 +1,6 @@
 import { ImageBackground, StyleSheet, Text, View,TouchableOpacity,Image,TextInput } from 'react-native'
 import React, { Component } from 'react'
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { ScrollView } from 'react-native-gesture-handler'
 
 export default class SignUp extends Component {
  constructor(){
@@ -43,10 +42,14 @@ export default class SignUp extends Component {
 
     return (
       <View style={styles.container}>
-        <ImageBackground source={require('../assets/images/main_image5.png')} style={{paddingBottom:20}}>
-            <TouchableOpacity>
+        <ImageBackground source={require('../assets/images/main_image5.png')} style={{paddingBottom:100}}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Onboarding')}>
                 <Image source={require('../assets/images/back_button.png')}></Image>
             </TouchableOpacity>
+
+            <ScrollView>
+
+         
 
             <View style={styles.signupview}>
                 <Text style={styles.signuptext}>Signup</Text>
@@ -55,7 +58,7 @@ export default class SignUp extends Component {
                     onChangeText={(text)=>{this.setState({name: text})}}
                     placeholder='Enter full name'></TextInput>
                 </View>
-                {this.state.name == ""?null:handleName(this.state.name)?null:<Text style={{color:'yellow',marginLeft:10}}>Enter a valid Name..</Text>}
+                 {this.state.name == ""?null:handleName(this.state.name)?null:<Text style={{color:'yellow',marginLeft:10}}>Enter a valid Name..</Text>}
                 <View style={styles.passwordview}>
                     <TextInput
                     maxLength={10}
@@ -108,6 +111,7 @@ export default class SignUp extends Component {
                     <Text style={styles.signuptext2}>Login here</Text>
             </TouchableOpacity>
             </View>
+            </ScrollView>
         </ImageBackground>
       </View>
     )
@@ -143,7 +147,7 @@ const styles = StyleSheet.create({
     },
     signuptext:{
         color:'rgba(255, 255, 255, 1)',
-        fontWeight:'700',
+        //fontWeight:'700',
         fontFamily:'Caveat',
         fontSize:48,
         lineHeight:50,

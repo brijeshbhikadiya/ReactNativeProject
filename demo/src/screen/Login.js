@@ -7,7 +7,7 @@ export default class Login extends Component {
       <View style={styles.container}>
         {/* <ScrollView> */}
         <ImageBackground source={require('../assets/images/S4image_back.png')}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Onboarding')}>
                 <Image source={require('../assets/images/back_button.png')}></Image>
             </TouchableOpacity>
 
@@ -31,7 +31,7 @@ export default class Login extends Component {
 
             <View style={{marginHorizontal:40,marginTop:19}}>
             <Text style={styles.accounttext}>Dont have an account?</Text>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Signup')}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('SignUp')}>
                     <Text style={styles.signuptext}>Signup here</Text>
             </TouchableOpacity>
             </View>
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     },
     logintext:{
         color:'rgba(255, 255, 255, 1)',
-        fontWeight:'700',
+        //fontWeight:'700',
         fontFamily:'Caveat',
         fontSize:48,
         lineHeight:50,
