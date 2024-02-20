@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
         color:'rgba(255, 255, 255, 1)',
         //fontWeight:'700',
         fontFamily:'Caveat',
+       // fontWeight:'bold',
         fontSize:48,
         lineHeight:50,
         letterSpacing:0.1
