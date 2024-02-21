@@ -5,6 +5,9 @@ export default class RescheduleBooking extends Component {
     constructor(){
         super()
         this.state = {
+            currentDate:new Date(2022,6,1),
+            selectedtab:null,
+            month:["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November","December"],
             am:false,
             pm:true,
             data:[{
@@ -97,8 +100,94 @@ export default class RescheduleBooking extends Component {
             }]
         }
     }
+
+    handleselectedTab=(day)=>{
+             this.setState({
+                 selectedtab:day
+             })
+    }
+
+    // {/*handlenextandpreviousmonth*/}
+    handlePreviousmonth=()=>{
+       const prevMonth = new Date(
+        this.state.currentDate.getFullYear(),
+        this.state.currentDate.getMonth()-1,
+        1
+       )
+       this.setState({
+           currentDate:prevMonth
+       })
+    }
+    handleNextmonth=()=>{
+       const nextMonth = new Date(
+        this.state.currentDate.getFullYear(),
+        this.state.currentDate.getMonth()+1,
+        1
+       )
+       this.setState({
+           currentDate:nextMonth
+       })
+    }
+    
   render() {
+
+    const daysOfWeek = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
+    const monthyear = `${this.state.month[this.state.currentDate.getMonth()]} ${this.state.currentDate.getFullYear()}`;
+
+    const dayInmonth =new Date(   //all the days of the month
+        this.state.currentDate.getFullYear(),
+        this.state.currentDate.getMonth() + 1,
+        0,
+    ).getDate();
+
+
+    const firstDayOfMonth = new Date( //current month  
+        this.state.currentDate.getFullYear(),
+        this.state.currentDate.getMonth(),
+        1,
+    ).getDay();
+
+
+    const daysInPreviousMonth = new Date(  //previous month
+        this.state.currentDate.getFullYear(),
+        this.state.currentDate.getMonth(),
+        0,
+    ).getDate();
+
+
+    const days =Array.from({
+        length:dayInmonth+firstDayOfMonth+(6-new Date(
+        this.state.currentDate.getFullYear(),
+        this.state.currentDate.getMonth()+1,
+        0,
+    ).getDay())},(item,index) => {
+        if(index < firstDayOfMonth){
+            return {
+                day:daysInPreviousMonth - (firstDayOfMonth - index)+1,
+                month:this.state.currentDate.getMonth()=== 0 ? 11:this.state.currentDate.getMonth()-1,
+                ispreviousMonth:true,
+            }
+        }else if(index < dayInmonth + firstDayOfMonth ){
+            return {
+                day:index - firstDayOfMonth +1,
+                month:this.state.currentDate.getMonth(),
+                iscurrrentmonth:true
+            }
+        }
+        else{
+            return {
+                day:index - (dayInmonth + firstDayOfMonth) + 1,
+                month:this.state.currentDate.getMonth()===11?0:this.state.currentDate.getMonth()+1,
+                isnextMonth:true}
+        }
+    });
+
+    
+
+
+
     return (
+        
       <View style={styles.contianer}>
         <ScrollView>
 
@@ -108,6 +197,7 @@ export default class RescheduleBooking extends Component {
 
             <Text style={styles.schedulemovedtotext}>You're requesting your booking is moved to</Text>
 
+            {/* time and date view */}
             <View style={styles.timeanddateview}>
                 <TouchableOpacity>
                     <Image source={require('../assets/images/calender.png')}></Image>
@@ -115,18 +205,62 @@ export default class RescheduleBooking extends Component {
                 <Text style={styles.timeanddatetext}>Thurs, 7 July, 10:42am</Text>
             </View>
 
-            <View style={{backgroundColor:'rgba(244, 244, 244, 1)',width:390,height:424}}>
+            {/* calender view */}
+            <View style={{backgroundColor:'rgba(244, 244, 244, 1)',width:390,height:440}}>
+
+                {/* calenderfirstview */}
+                <View style={styles.calenderfirstrowview}>
+                    <Text style={styles.calendermonthtext}>{monthyear}</Text>
+                    <View style={{flexDirection:'row'}}>
+                        <TouchableOpacity onPress={this.handlePreviousmonth}>
+                            <Image source={require('../assets/images/calenderleft.png')} ></Image>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{marginLeft:11}} onPress={this.handleNextmonth}>
+                            <Image source={require('../assets/images/calenderright.png')} ></Image>
+                        </TouchableOpacity>
+                    </View>
+                    
+                </View>
+
+                {/* monthheader */}
+                <View style={styles.monthheader}>
+                    {daysOfWeek.map((day)=>(
+                        <Text key={day} style={styles.daytext}>{day}</Text>
+                    ))}
+                </View>
+
+                {/* dateview */}
+                <View style={styles.dayview}>
+                    {days.map((item,index)=>(
+                        <TouchableOpacity 
+                        key={index}
+                        onPress={()=>this.handleselectedTab(item.day)}
+                        style={[
+                            styles.daybutton,item.day === this.state.selectedtab ? styles.selectedtoucahble:null
+                            ]}>
+                            <Text
+                            style={[
+                                styles.datetext,item.ispreviousMonth||item.isnextMonth?styles.prevmonthtext:null,
+                                item.day === this.state.selectedtab ? styles.selectedtext : null]}>{item.day}</Text>
+                        </TouchableOpacity>
+                    ))}
+                </View>
 
             </View>
 
+            {/* ampm toggle view */}
             <View>
                 <View style={{flexDirection:'row',marginTop:20,marginHorizontal:16,justifyContent:'space-between'}}>
                     <Text style={styles.starttimetext}>Which start time suits best?</Text>
                     <View style={{flexDirection:'row',backgroundColor:'rgba(244, 244, 244, 1)',borderRadius:4,paddingVertical:2}}>
-                        <TouchableOpacity style={this.state.am?styles.amviewafter:null} onPress={()=>this.setState({am:true,pm:false})}>
+                        <TouchableOpacity style={
+                            this.state.am?styles.amviewafter:null} 
+                            onPress={()=>this.setState({am:true,pm:false})}>
                             <Text style={this.state.am?styles.amtextbefore:styles.amtextafter}>AM</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={this.state.pm?styles.pmviewafter:null} onPress={()=>this.setState({am:false,pm:true})} >
+                        <TouchableOpacity 
+                            style={this.state.pm?styles.pmviewafter:null} 
+                            onPress={()=>this.setState({am:false,pm:true})} >
                             <Text style={this.state.pm?styles.pmtextafter:styles.pmtextbefore}>PM</Text>
                         </TouchableOpacity>
                     </View>
@@ -136,7 +270,7 @@ export default class RescheduleBooking extends Component {
                 </View>
             </View>
 
-
+            {/* flatlistview */}
             {this.state.pm==true? 
             
             <FlatList
@@ -169,6 +303,7 @@ export default class RescheduleBooking extends Component {
 
             </FlatList>}
            
+            {/* sendrequesttouchableview */}
             <TouchableOpacity style={styles.sendrequesttouchable}>
                 <Text style={styles.sendrequesttext}>Send Reschedule Request</Text>
             </TouchableOpacity>
@@ -212,7 +347,7 @@ const styles = StyleSheet.create({
         paddingVertical:4,
         paddingHorizontal:6,
         borderRadius:4,
-        marginLeft:9,
+       // marginLeft:9,
         marginRight:2,
         shadowColor:'black',
         shadowOpacity:0.8,
@@ -244,9 +379,59 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center'
     },
+    calenderfirstrowview:{
+        marginHorizontal:16,
+        marginTop:17,
+        flexDirection:'row',
+        justifyContent:'space-between'
+    },
+    monthheader:{
+        marginLeft:23.5,
+        marginRight:24.5,
+        marginTop:20,
+        flexDirection:'row',
+        justifyContent:'space-between'
+    },
+    emptyday:{
+        height:40,
+        width:40
+    },
+    dayview:{
+        marginHorizontal:4,
+        marginLeft:15,
+        marginTop:11,
+        flexDirection:'row',
+        flexWrap:'wrap'
+
+    },
+    daybutton:{
+        backgroundColor:'rgba(255, 255, 255, 1)',
+        borderRadius:8,
+        height:40,
+        width:40,
+        justifyContent:'center',
+        alignItems:'center',
+        shadowColor:'black',
+        shadowOpacity:0.8,
+        shadowOffset:{width:6,height:6},
+        shadowRadius:100,
+        elevation:2,
+        marginVertical:5,
+        marginRight:13,
+        marginTop:10
+    },
     backimage:{
         marginTop:21,
         marginLeft:16
+    },
+    prevmonthtext:{
+        color:'rgba(154, 154, 154, 1)'
+    },
+    datetext:{
+        color:'rgba(8, 2, 4, 1)',
+        fontWeight:'700',
+        fontSize:14,
+        lineHeight:22
     },
     reschedulebookingtext:{
         color:'rgba(8, 2, 4, 1)',
@@ -341,6 +526,19 @@ const styles = StyleSheet.create({
         fontSize:20,
         lineHeight:26.86
     },
+    calendermonthtext:{
+        marginTop:2,
+        color:'rgba(206, 28, 79, 1)',
+        fontWeight:'600',
+        fontSize:20,
+        lineHeight:24
+    },
+    daytext:{
+        color:'rgba(138, 138, 138, 1)',
+        fontWeight:'500',
+        fontSize:13,
+        lineHeight:22
+    },
     sendrequesttouchable:{
         backgroundColor:'rgba(243, 167, 93, 1)',
         borderRadius:100,
@@ -351,6 +549,15 @@ const styles = StyleSheet.create({
         alignItems:'center',
         marginBottom:38,
         marginTop:38
+    },
+    selectedtoucahble:{
+        backgroundColor:'rgba(206, 28, 79, 1)'
+    },
+    selectedtext:{
+        color:'rgba(255, 255, 255, 1)',
+        fontWeight:'700',
+        fontSize:14,
+        lineHeight:22
     }
     
 })
