@@ -42,14 +42,13 @@ export default class SignUp extends Component {
 
     return (
       <View style={styles.container}>
+        <ScrollView>
         <ImageBackground source={require('../assets/images/main_image5.png')} style={{paddingBottom:100}}>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Onboarding')}>
-                <Image source={require('../assets/images/back_button.png')}></Image>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Onboarding')}  style={styles.leftarrowview}>
+            <Image source={require('../assets/images/arrowleft.png')} style={styles.leftarrowimage}></Image>
             </TouchableOpacity>
 
             <ScrollView>
-
-         
 
             <View style={styles.signupview}>
                 <Text style={styles.signuptext}>Signup</Text>
@@ -113,6 +112,7 @@ export default class SignUp extends Component {
             </View>
             </ScrollView>
         </ImageBackground>
+        </ScrollView>
       </View>
     )
   }
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
         flex:1
     },
     signupview:{
-        marginTop:60,
+        marginTop:130,
         marginHorizontal:40
     },
     emailview:{
@@ -213,5 +213,18 @@ const styles = StyleSheet.create({
         fontSize:14,
         lineHeight:19.67,
         alignSelf:'center'
+    },
+    leftarrowview:{
+        backgroundColor:'rgba(255, 255, 255, 0.24)',
+        borderRadius:100,
+        height:44,
+        width:44,
+        marginTop:30,
+        marginLeft:25
+
+    },
+    leftarrowimage:{
+        position:'absolute',
+        margin:9
     },
 })

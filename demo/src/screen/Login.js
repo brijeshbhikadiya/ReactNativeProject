@@ -1,20 +1,43 @@
-import { ImageBackground, StyleSheet, Text, TouchableOpacity, View ,Image, TextInput, ScrollView} from 'react-native'
+import { ImageBackground, StyleSheet, Text, TouchableOpacity, View ,Image, TextInput, ScrollView, Alert} from 'react-native'
 import React, { Component } from 'react'
 
 export default class Login extends Component {
+    constructor(){
+        super()
+        this.state={
+            email:"",
+        }
+     }
+
+     vEmail=()=>{
+        const{email}=this.state;
+        const ex=/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/
+        return ex.test(String(email).toLowerCase())
+    }
+
+    handleLogin = () =>{
+        const isValidEmail = this.vEmail();
+        if(!isValidEmail)
+        {
+            Alert.alert('Invalid EMail','Please enter a valid email');
+            return;
+        }
+    }
+    
   render() {
     return (
       <View style={styles.container}>
-        {/* <ScrollView> */}
-        <ImageBackground source={require('../assets/images/S4image_back.png')}>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Onboarding')}>
-                <Image source={require('../assets/images/back_button.png')}></Image>
+     <ScrollView> 
+        <ImageBackground source={require('../assets/images/S4image_back.png')} style={{paddingBottom:100}}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Onboarding')} style={styles.leftarrowview}>
+                <Image source={require('../assets/images/arrowleft.png')} style={styles.leftarrowimage}></Image>
             </TouchableOpacity>
 
             <View style={styles.loginview}>
                 <Text style={styles.logintext}>Login</Text>
                 <View style={styles.emailview}>
                     <TextInput
+                    onChangeText={(email)=>this.setState({email})}
                     placeholder='Phone or email '></TextInput>
                 </View>
                 <View style={styles.passwordview}>
@@ -24,7 +47,7 @@ export default class Login extends Component {
                 <TouchableOpacity style={styles.forgotpasswordTouchable}>
                     <Text style={styles.forgotpasswordtext}>Forgot password?</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.loginTouchable}>
+                <TouchableOpacity style={styles.loginTouchable} onPress={this.handleLogin}>
                     <Text style={styles.logintext2}>Login</Text>
                 </TouchableOpacity>
             </View>
@@ -37,7 +60,7 @@ export default class Login extends Component {
             </View>
             
         </ImageBackground>
-        {/* </ScrollView> */}
+         </ScrollView> 
       </View>
     )
   }
@@ -50,7 +73,7 @@ const styles = StyleSheet.create({
     },
     loginview:{
         marginHorizontal:40,
-        marginTop:220
+        marginTop:270
     },
     emailview:{
         backgroundColor:'rgba(255, 255, 255, 1)',
@@ -63,6 +86,19 @@ const styles = StyleSheet.create({
         borderRadius:10,
         marginTop:16,
         paddingLeft:20
+    },
+    leftarrowview:{
+        backgroundColor:'rgba(255, 255, 255, 0.24)',
+        borderRadius:100,
+        height:44,
+        width:44,
+        marginTop:30,
+        marginLeft:25
+
+    },
+    leftarrowimage:{
+        position:'absolute',
+        margin:9
     },
     forgotpasswordTouchable:{
         backgroundColor:'rgba(30, 119, 68, 1)',

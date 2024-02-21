@@ -19,14 +19,14 @@ constructor(){
         },
         {
             image:require('../assets/images/main_image2.png'),
-            backimage:require('../assets/images/S2image_back.png'),
+            backimage:require('../assets/images/image_back3.png'),
             likei:require('../assets/images/right_image.png'),
             title:'Trusted Institution',
             des:'Funder includes only transparent and \n accountable charities registered and \nregulated by ACNC (Australian Charities \n      and Not-for-profit Commission).',
         }, 
         {
             image:require('../assets/images/main_image3.png'),
-            backimage:require('../assets/images/S3image_back.png'),
+            backimage:require('../assets/images/image_back2.png'),
             likei:require('../assets/images/hand_image.png'),
             title:'Start to Help',
             des:'It is easier now to help people in the midst \n     your busy life by using bagee.in your \n           trusted fundraising online apps',
