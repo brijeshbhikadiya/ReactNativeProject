@@ -7,6 +7,7 @@ export default class RescheduleBooking extends Component {
         this.state = {
             currentDate:new Date(2022,6,1),
             selectedtab:null,
+            selectedDayOfWeek:null,
             month:["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November","December"],
             am:false,
             pm:true,
@@ -101,11 +102,21 @@ export default class RescheduleBooking extends Component {
         }
     }
 
-    handleselectedTab=(day)=>{
-             this.setState({
-                 selectedtab:day
-             })
+    //if i press perticular date so change the text of day
+    getDayOfWeek=(year, month, day)=>{
+        const date = new Date(year, month, day);
+        const daysOfWeek = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
+        return daysOfWeek[date.getDay()];
     }
+
+    // handletab
+    handleselectedTab=(day)=>{
+        const dayofweek =this.getDayOfWeek(this.state.currentDate.getFullYear(),this.state.currentDate.getMonth(),day);
+             this.setState({
+                 selectedtab:day,
+                 selectedDayOfWeek:dayofweek
+             })
+        }
 
     // {/*handlenextandpreviousmonth*/}
     handlePreviousmonth=()=>{
@@ -141,14 +152,14 @@ export default class RescheduleBooking extends Component {
     ).getDate();
 
 
-    const firstDayOfMonth = new Date( //current month  
+    const firstDayOfMonth = new Date( //current month na first index  
         this.state.currentDate.getFullYear(),
         this.state.currentDate.getMonth(),
         1,
     ).getDay();
 
 
-    const daysInPreviousMonth = new Date(  //previous month
+    const daysInPreviousMonth = new Date(  //previous month na month
         this.state.currentDate.getFullYear(),
         this.state.currentDate.getMonth(),
         0,
@@ -161,9 +172,13 @@ export default class RescheduleBooking extends Component {
         this.state.currentDate.getMonth()+1,
         0,
     ).getDay())},(item,index) => {
+        // console.log("index",index);
+        // console.log("firstdayofmonth",firstDayOfMonth);
+        // console.log("daysinpreviousmonth",daysInPreviousMonth);
+        // console.log("dayinmonth",dayInmonth);
         if(index < firstDayOfMonth){
             return {
-                day:daysInPreviousMonth - (firstDayOfMonth - index)+1,
+                day:daysInPreviousMonth - (firstDayOfMonth - index)+1, //
                 month:this.state.currentDate.getMonth()=== 0 ? 11:this.state.currentDate.getMonth()-1,
                 ispreviousMonth:true,
             }
@@ -181,10 +196,6 @@ export default class RescheduleBooking extends Component {
                 isnextMonth:true}
         }
     });
-
-    
-
-
 
     return (
         
@@ -219,13 +230,13 @@ export default class RescheduleBooking extends Component {
                             <Image source={require('../assets/images/calenderright.png')} ></Image>
                         </TouchableOpacity>
                     </View>
-                    
                 </View>
 
                 {/* monthheader */}
                 <View style={styles.monthheader}>
                     {daysOfWeek.map((day)=>(
-                        <Text key={day} style={styles.daytext}>{day}</Text>
+                        <Text key={day} style={[styles.daytext,
+                        day===this.state.selectedDayOfWeek?styles.selecteddaytext:null]}>{day}</Text>
                     ))}
                 </View>
 
@@ -234,14 +245,17 @@ export default class RescheduleBooking extends Component {
                     {days.map((item,index)=>(
                         <TouchableOpacity 
                         key={index}
-                        onPress={()=>this.handleselectedTab(item.day)}
+                        onPress={()=> {if(item.month === this.state.currentDate.getMonth())
+                            this.handleselectedTab(item.day)
+                        }}
                         style={[
-                            styles.daybutton,item.day === this.state.selectedtab ? styles.selectedtoucahble:null
+                            styles.daybutton,item.day === this.state.selectedtab ? styles.selectedtoucahble:styles.selectednottouchable
                             ]}>
                             <Text
                             style={[
                                 styles.datetext,item.ispreviousMonth||item.isnextMonth?styles.prevmonthtext:null,
-                                item.day === this.state.selectedtab ? styles.selectedtext : null]}>{item.day}</Text>
+                                item.day === this.state.selectedtab ? styles.selectedtext : null,
+                                ((item.day === 19 || item.day === 21 || item.day ===22 || item.day ===24)&& item.month===this.state.currentDate.getMonth())?styles.canceltext:null]}>{item.day}</Text>
                         </TouchableOpacity>
                     ))}
                 </View>
@@ -553,10 +567,27 @@ const styles = StyleSheet.create({
     selectedtoucahble:{
         backgroundColor:'rgba(206, 28, 79, 1)'
     },
+    selectednottouchable:{
+        borderColor:'rgba(206, 28, 79, 1)',
+        backgroundColor:'white'
+    },
     selectedtext:{
         color:'rgba(255, 255, 255, 1)',
         fontWeight:'700',
         fontSize:14,
+        lineHeight:22
+    },
+    canceltext:{
+        color:'rgba(199, 199, 199, 1)',
+        fontWeight:'700',
+        fontSize:14,
+        lineHeight:22,
+        textDecorationLine:'line-through'
+    },
+    selecteddaytext:{
+        color:'rgba(222, 128, 154, 1)',
+        fontWeight:'500',
+        fontSize:13,
         lineHeight:22
     }
     
