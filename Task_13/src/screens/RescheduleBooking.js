@@ -168,6 +168,7 @@ export default class RescheduleBooking extends Component {
     
   render() {
 
+    const daysOfWeek1 = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Satur'];
     const daysOfWeek = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
     const monthyear = `${this.state.month[this.state.currentDate.getMonth()]} ${this.state.currentDate.getFullYear()}`;
 
@@ -178,6 +179,11 @@ export default class RescheduleBooking extends Component {
         this.state.currentDate.getMonth() + 1,
         0,
     ).getDate();
+
+    const currentmonth = `${this.state.month[this.state.currentDate.getMonth()]}`;
+    const hour = `${this.state.currentDate.getHours()}`;
+    const minute = `${this.state.currentDate.getMinutes()}`;
+
 
 
     const firstDayOfMonth = new Date( //current month na first index  
@@ -226,6 +232,7 @@ export default class RescheduleBooking extends Component {
         }
     });
     console.log(days);
+    
 
     return (
         
@@ -243,7 +250,7 @@ export default class RescheduleBooking extends Component {
                 <TouchableOpacity>
                     <Image source={require('../assets/images/calender.png')}></Image>
                 </TouchableOpacity>
-                {this.state.selectedtab || this.state.selectedtime?<Text style={styles.timeanddatetext}>{this.state.selectedDateText}{this.state.selectedtime}</Text>:<Text style={styles.timeanddatetext}>Thurs, 22 Feb,12:00 pm - 12:29 pm</Text>}
+                {this.state.selectedtab || this.state.selectedtime?<Text style={styles.timeanddatetext}>{this.state.selectedDateText}{this.state.selectedtime}</Text>:<Text style={styles.timeanddatetext}>{`${daysOfWeek1[new Date().getDay()]},`}{this.state.currentDate.getDate()} {`${currentmonth} ${hour}:${minute}`}</Text>}
             </View>
 
             {/* calender view */}
