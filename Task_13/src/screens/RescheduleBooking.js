@@ -129,18 +129,12 @@ export default class RescheduleBooking extends Component {
         const dayofweek =this.getDayOfWeek(this.state.currentDate.getFullYear(),this.state.currentDate.getMonth(),day);
         const dayofweek2 =this.getDayOfWeek2(this.state.currentDate.getFullYear(),this.state.currentDate.getMonth(),day);
         const monthyear = `${this.state.month[this.state.currentDate.getMonth()]}`;
-          
-        // const selecteddate = new Date(this.state.currentDate.getFullYear(),this.state.currentDate.getMonth(),day);
-        // const currntdate2 = new Date();
-        // const issameMonthandYear = selecteddate.getMonth() === currntdate2.getMonth() && selecteddate.getFullYear()===currntdate2.getFullYear();
-        
-            // if(issameMonthandYear){
-                this.setState({
-                    selectedtab:day,
-                    selectedDayOfWeek:dayofweek,
-                    selectedDateText :`${dayofweek2},${day} ${monthyear},`
-                })
-            // }   
+                
+        this.setState({
+                selectedtab:day,
+                selectedDayOfWeek:dayofweek,
+                selectedDateText :`${dayofweek2},${day} ${monthyear},`
+            })
     }
 
     // {/*handlenextandpreviousmonth*/}
@@ -154,6 +148,7 @@ export default class RescheduleBooking extends Component {
            currentDate:prevMonth
        })
     }
+    
     handleNextmonth=()=>{
        const nextMonth = new Date(
         this.state.currentDate.getFullYear(),
@@ -180,6 +175,7 @@ export default class RescheduleBooking extends Component {
         0,
     ).getDate();
 
+    //this line usefull for when i run the app then so the current date and time and montha and day.
     const currentmonth = `${this.state.month[this.state.currentDate.getMonth()]}`;
     const hour = `${this.state.currentDate.getHours()}`;
     const minute = `${this.state.currentDate.getMinutes()}`;
@@ -231,7 +227,7 @@ export default class RescheduleBooking extends Component {
                 isnextMonth:true}
         }
     });
-    console.log(days);
+   // console.log(days);
     
 
     return (
@@ -346,6 +342,7 @@ export default class RescheduleBooking extends Component {
             </FlatList>
             :
             <FlatList
+            scrollEnabled={false}
             data={this.state.data2}
             renderItem={({item,index})=>
                 <View style={{marginHorizontal:16,marginTop:20,justifyContent:'space-between',flexDirection:'row'}}>
