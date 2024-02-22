@@ -5,7 +5,8 @@ export default class RescheduleBooking extends Component {
     constructor(){
         super()
         this.state = {
-            currentDate:new Date(2022,6,1),
+            currentDate:new Date(),
+            selectedtime:null,
             selectedtab:null,
             selectedDayOfWeek:null,
             month:["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November","December"],
@@ -109,14 +110,37 @@ export default class RescheduleBooking extends Component {
         return daysOfWeek[date.getDay()];
     }
 
+    //text show karva mate alg function create karyu
+    getDayOfWeek2=(year, month, day)=>{
+        const date = new Date(year, month, day);
+        const daysOfWeek = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Satur'];
+        return daysOfWeek[date.getDay()];
+    }
+
+    handleselectedtime = (time) =>{
+        this.setState({
+            selectedtime:time
+        })
+    }
+    
     // handletab
     handleselectedTab=(day)=>{
         const dayofweek =this.getDayOfWeek(this.state.currentDate.getFullYear(),this.state.currentDate.getMonth(),day);
-             this.setState({
-                 selectedtab:day,
-                 selectedDayOfWeek:dayofweek
-             })
-        }
+        const dayofweek2 =this.getDayOfWeek2(this.state.currentDate.getFullYear(),this.state.currentDate.getMonth(),day);
+        const monthyear = `${this.state.month[this.state.currentDate.getMonth()]}`;
+          
+        // const selecteddate = new Date(this.state.currentDate.getFullYear(),this.state.currentDate.getMonth(),day);
+        // const currntdate2 = new Date();
+        // const issameMonthandYear = selecteddate.getMonth() === currntdate2.getMonth() && selecteddate.getFullYear()===currntdate2.getFullYear();
+        
+            // if(issameMonthandYear){
+                this.setState({
+                    selectedtab:day,
+                    selectedDayOfWeek:dayofweek,
+                    selectedDateText :`${dayofweek2},${day} ${monthyear},`
+                })
+            // }   
+    }
 
     // {/*handlenextandpreviousmonth*/}
     handlePreviousmonth=()=>{
@@ -213,7 +237,7 @@ export default class RescheduleBooking extends Component {
                 <TouchableOpacity>
                     <Image source={require('../assets/images/calender.png')}></Image>
                 </TouchableOpacity>
-                <Text style={styles.timeanddatetext}>Thurs, 7 July, 10:42am</Text>
+                {this.state.selectedtab || this.state.selectedtime?<Text style={styles.timeanddatetext}>{this.state.selectedDateText}{this.state.selectedtime}</Text>:<Text style={styles.timeanddatetext}>{this.state.currentDate.getMonth()}</Text>}
             </View>
 
             {/* calender view */}
@@ -245,11 +269,14 @@ export default class RescheduleBooking extends Component {
                     {days.map((item,index)=>(
                         <TouchableOpacity 
                         key={index}
-                        onPress={()=> {if(item.month === this.state.currentDate.getMonth())
+                        onPress={()=> 
                             this.handleselectedTab(item.day)
-                        }}
+                        }
                         style={[
-                            styles.daybutton,item.day === this.state.selectedtab ? styles.selectedtoucahble:styles.selectednottouchable
+                            styles.daybutton,
+                            item.day === this.state.selectedtab ? styles.selectedtoucahble:styles.selectednottouchable,
+                            //item.day  === 30  && item.month ===this.state.currentDate.getMonth()-1?{borderColor:'rgba(222, 128, 154, 1)',borderWidth:1}:null
+                            item.day == this.state.currentDate.getDate()?{borderColor:'rgba(222, 128, 154, 1)',borderWidth:1}:null
                             ]}>
                             <Text
                             style={[
@@ -291,10 +318,10 @@ export default class RescheduleBooking extends Component {
             data={this.state.data}
             renderItem={({item,index})=>
                 <View style={{marginHorizontal:16,marginTop:20,justifyContent:'space-between',flexDirection:'row'}}>
-                    <TouchableOpacity style={index==0?styles.time1view:styles.time2view}>
+                    <TouchableOpacity style={index==0?styles.time1view:styles.time2view} onPress={()=>this.handleselectedtime(item.time1)}>
                         <Text style={index==0?styles.timetext1:styles.timetext2}>{item.time1}</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={index==0?styles.time1view:styles.time2view}>
+                    <TouchableOpacity style={index==0?styles.time1view:styles.time2view} onPress={()=>this.handleselectedtime(item.time2)}>
                         <Text style={index==0?styles.timetext1:styles.timetext2}>{item.time2}</Text>
                     </TouchableOpacity>
                 </View>
@@ -306,10 +333,10 @@ export default class RescheduleBooking extends Component {
             data={this.state.data2}
             renderItem={({item,index})=>
                 <View style={{marginHorizontal:16,marginTop:20,justifyContent:'space-between',flexDirection:'row'}}>
-                    <TouchableOpacity style={index==0?styles.time1view:styles.time2view}>
+                    <TouchableOpacity style={index==0?styles.time1view:styles.time2view} onPress={()=>this.handleselectedtime(item.time1)}>
                         <Text style={index==0?styles.timetext1:styles.timetext2}>{item.time1}</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={index==0?styles.time1view:styles.time2view}>
+                    <TouchableOpacity style={index==0?styles.time1view:styles.time2view} onPress={()=>this.handleselectedtime(item.time2)}>
                         <Text style={index==0?styles.timetext1:styles.timetext2}>{item.time2}</Text>
                     </TouchableOpacity>
                 </View>
@@ -432,7 +459,7 @@ const styles = StyleSheet.create({
         elevation:2,
         marginVertical:5,
         marginRight:13,
-        marginTop:10
+        marginTop:10,
     },
     backimage:{
         marginTop:21,
