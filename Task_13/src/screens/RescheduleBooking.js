@@ -469,7 +469,7 @@ const styles = StyleSheet.create({
         shadowOpacity:0.8,
         shadowOffset:{width:6,height:6},
         shadowRadius:100,
-        elevation:2,
+        elevation:4,
         marginVertical:5,
         marginRight:13,
         marginTop:10,
