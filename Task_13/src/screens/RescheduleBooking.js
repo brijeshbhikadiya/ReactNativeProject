@@ -12,94 +12,96 @@ export default class RescheduleBooking extends Component {
             month:["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November","December"],
             am:false,
             pm:true,
-            data:[{
-                time1:"12:00 pm - 12:29 pm",
-                time2:"12:30 pm - 12:59 pm"
-            },
-            {
-                time1:"1:00 pm - 1:29 pm",
-                time2:"1:30 pm - 1:59 pm"
-            },
-            {
-                time1:"12:00 pm - 2:29 pm",
-                time2:"2:30 pm - 2:59 pm"
-            },
-            {
-                time1:"3:00 pm - 3:30 pm",
-                time2:"3:30 pm - 3:59 pm"
-            },
-            {
-                time1:"5:00 pm - 5:29 pm",
-                time2:"5:30 pm - 5:59 pm"
-            },
-            {
-                time1:"6:00 pm - 6:29 pm",
-                time2:"6:30 pm - 6:59 pm"
-            },
-            {
-                time1:"7:00 pm - 7:29 pm",
-                time2:"7:30 pm - 7:59 pm"
-            },
-            {
-                time1:"8:00 pm - 8:29 pm",
-                time2:"8:30 pm - 8:59 pm"
-            },
-            {
-                time1:"9:00 pm - 9:29 pm",
-                time2:"9:30 pm - 9:59 pm"
-            },
-            {
-                time1:"10:00 pm - 10:29 pm",
-                time2:"10:30 pm - 10:59 pm"
-            },
-            {
-                time1:"11:00 pm - 11:29 pm",
-                time2:"11:30 pm - 11:59 pm"
-            }],
-            data2:[{
-                time1:"12:00 am - 12:29 am",
-                time2:"12:30 am - 12:59 am"
-            },
-            {
-                time1:"1:00 am - 1:29 am",
-                time2:"1:30 am - 1:59 am"
-            },
-            {
-                time1:"12:00 am - 2:29 am",
-                time2:"2:30 am - 2:59 am"
-            },
-            {
-                time1:"3:00 am - 3:30 am",
-                time2:"3:30 am - 3:59 am"
-            },
-            {
-                time1:"5:00 am - 5:29 am",
-                time2:"5:30 am - 5:59 am"
-            },
-            {
-                time1:"6:00 am - 6:29 am",
-                time2:"6:30 am - 6:59 am"
-            },
-            {
-                time1:"7:00 am - 7:29 am",
-                time2:"7:30 am - 7:59 am"
-            },
-            {
-                time1:"8:00 am - 8:29 am",
-                time2:"8:30 am - 8:59 am"
-            },
-            {
-                time1:"9:00 am - 9:29 am",
-                time2:"9:30 am - 9:59 am"
-            },
-            {
-                time1:"10:00 am - 10:29 am",
-                time2:"10:30 am - 10:59 am"
-            },
-            {
-                time1:"11:00 am - 11:29 am",
-                time2:"11:30 am - 11:59 am"
-            }]
+            data:this.generateTimeSlots(false),
+            data2:this.generateTimeSlots(true)
+            // data:[{
+            //     time1:"12:00 pm - 12:29 pm",
+            //     time2:"12:30 pm - 12:59 pm"
+            // },
+            // {
+            //     time1:"1:00 pm - 1:29 pm",
+            //     time2:"1:30 pm - 1:59 pm"
+            // },
+            // {
+            //     time1:"12:00 pm - 2:29 pm",
+            //     time2:"2:30 pm - 2:59 pm"
+            // },
+            // {
+            //     time1:"3:00 pm - 3:30 pm",
+            //     time2:"3:30 pm - 3:59 pm"
+            // },
+            // {
+            //     time1:"5:00 pm - 5:29 pm",
+            //     time2:"5:30 pm - 5:59 pm"
+            // },
+            // {
+            //     time1:"6:00 pm - 6:29 pm",
+            //     time2:"6:30 pm - 6:59 pm"
+            // },
+            // {
+            //     time1:"7:00 pm - 7:29 pm",
+            //     time2:"7:30 pm - 7:59 pm"
+            // },
+            // {
+            //     time1:"8:00 pm - 8:29 pm",
+            //     time2:"8:30 pm - 8:59 pm"
+            // },
+            // {
+            //     time1:"9:00 pm - 9:29 pm",
+            //     time2:"9:30 pm - 9:59 pm"
+            // },
+            // {
+            //     time1:"10:00 pm - 10:29 pm",
+            //     time2:"10:30 pm - 10:59 pm"
+            // },
+            // {
+            //     time1:"11:00 pm - 11:29 pm",
+            //     time2:"11:30 pm - 11:59 pm"
+            // }],
+            // data2:[{
+            //     time1:"12:00 am - 12:29 am",
+            //     time2:"12:30 am - 12:59 am"
+            // },
+            // {
+            //     time1:"1:00 am - 1:29 am",
+            //     time2:"1:30 am - 1:59 am"
+            // },
+            // {
+            //     time1:"12:00 am - 2:29 am",
+            //     time2:"2:30 am - 2:59 am"
+            // },
+            // {
+            //     time1:"3:00 am - 3:30 am",
+            //     time2:"3:30 am - 3:59 am"
+            // },
+            // {
+            //     time1:"5:00 am - 5:29 am",
+            //     time2:"5:30 am - 5:59 am"
+            // },
+            // {
+            //     time1:"6:00 am - 6:29 am",
+            //     time2:"6:30 am - 6:59 am"
+            // },
+            // {
+            //     time1:"7:00 am - 7:29 am",
+            //     time2:"7:30 am - 7:59 am"
+            // },
+            // {
+            //     time1:"8:00 am - 8:29 am",
+            //     time2:"8:30 am - 8:59 am"
+            // },
+            // {
+            //     time1:"9:00 am - 9:29 am",
+            //     time2:"9:30 am - 9:59 am"
+            // },
+            // {
+            //     time1:"10:00 am - 10:29 am",
+            //     time2:"10:30 am - 10:59 am"
+            // },
+            // {
+            //     time1:"11:00 am - 11:29 am",
+            //     time2:"11:30 am - 11:59 am"
+            // }]
         }
     }
 
@@ -123,12 +125,38 @@ export default class RescheduleBooking extends Component {
             selectedtime:time
         })
     }
+
+    generateTimeSlots(isPM){
+        const timeSlots = [];
+        const startTime = isPM?0:12;
+       // console.log(startTime);
+        const endTime = isPM?11:23;
+       // console.log(endTime);
+        for(let hour = startTime; hour <= endTime; hour++){
+            const dispplayhour  = hour>12 ? hour-12 :hour;
+           // console.log(dispplayhour);
+            for(let minute = 0; minute <= 10; minute+=30){
+                const isLastSlot = hour === endTime && minute === 30;
+               // console.log(isLastSlot);
+                const nexthour = isLastSlot ?dispplayhour % 12 +1:dispplayhour;
+                //console.log(nexthour);
+                const slot ={
+                    time1:`${dispplayhour.toString()}:${minute.toString().padStart(2,'0')} ${hour>=12?'pm':'am'} - ${dispplayhour.toString()}:${(minute+29).toString()} ${hour>=12?'pm':'am'} `,
+                    time2:`${dispplayhour.toString()}:${(minute+30).toString()} ${hour>=12?'pm':'am'} - ${nexthour.toString()} :${isLastSlot?'59':(minute+59).toString()} ${hour>=12?'pm':'am'}`,
+                };
+               // console.log(slot);
+                timeSlots.push(slot);
+        }
+    }
+    return timeSlots;
+}
     
     // handletab
     handleselectedTab=(day)=>{
         const dayofweek = this.getDayOfWeek(this.state.currentDate.getFullYear(),this.state.currentDate.getMonth(),day);
         const dayofweek2 = this.getDayOfWeek2(this.state.currentDate.getFullYear(),this.state.currentDate.getMonth(),day);
         const monthyear = `${this.state.month[this.state.currentDate.getMonth()]}`;
+        //console.log(monthyear);
                 
         this.setState({
                 selectedtab:day,
@@ -187,8 +215,7 @@ export default class RescheduleBooking extends Component {
         this.state.currentDate.getMonth(),
         1,
     ).getDay();
-    console.log(firstDayOfMonth);
-
+    //console.log(firstDayOfMonth);
 
     const daysInPreviousMonth = new Date(  //previous month na month
         this.state.currentDate.getFullYear(),
@@ -196,6 +223,8 @@ export default class RescheduleBooking extends Component {
         0,
     ).getDate();
 
+
+    const ampm = this.state.am==true? this.state.data2 : this.state.data;
 
     const days =Array.from({
         length:dayInmonth+firstDayOfMonth+(6-new Date(
@@ -227,7 +256,7 @@ export default class RescheduleBooking extends Component {
                 isnextMonth:true}
         }
     });
-   console.log(days);
+//    console.log(days);
     
 
     return (
@@ -323,10 +352,9 @@ export default class RescheduleBooking extends Component {
             </View>
 
             {/* flatlistview */}
-            {this.state.pm==true? 
             
             <FlatList
-            data={this.state.data}
+            data={ampm} //ampm no aek j variable banavyo and aema j both condition check karvididhi.
             scrollEnabled={false}
             renderItem={({item,index})=>
                 <View style={{marginHorizontal:16,marginTop:20,justifyContent:'space-between',flexDirection:'row'}}>
@@ -340,22 +368,6 @@ export default class RescheduleBooking extends Component {
             }>
 
             </FlatList>
-            :
-            <FlatList
-            scrollEnabled={false}
-            data={this.state.data2}
-            renderItem={({item,index})=>
-                <View style={{marginHorizontal:16,marginTop:20,justifyContent:'space-between',flexDirection:'row'}}>
-                    <TouchableOpacity style={index==0?styles.time1view:styles.time2view} onPress={()=>this.handleselectedtime(item.time1)}>
-                        <Text style={index==0?styles.timetext1:styles.timetext2}>{item.time1}</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={index==0?styles.time1view:styles.time2view} onPress={()=>this.handleselectedtime(item.time2)}>
-                        <Text style={index==0?styles.timetext1:styles.timetext2}>{item.time2}</Text>
-                    </TouchableOpacity>
-                </View>
-            }>
-
-            </FlatList>}
            
             {/* sendrequesttouchableview */}
             <TouchableOpacity style={styles.sendrequesttouchable}>
