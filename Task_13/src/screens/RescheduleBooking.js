@@ -226,12 +226,14 @@ export default class RescheduleBooking extends Component {
 
     const ampm = this.state.am==true? this.state.data2 : this.state.data;
 
-    const days =Array.from({
-        length:dayInmonth+firstDayOfMonth+(6-new Date(
-        this.state.currentDate.getFullYear(),
-        this.state.currentDate.getMonth()+1,
-        0,
-    ).getDay())},(item,index) => {
+    const days =Array.from(
+        {
+            length:dayInmonth+firstDayOfMonth+(6-new Date(
+            this.state.currentDate.getFullYear(),
+            this.state.currentDate.getMonth()+1,
+            0,).
+            getDay())
+        },(item,index) => {
         // console.log("index",index);
         // console.log("firstdayofmonth",firstDayOfMonth);
         // console.log("daysinpreviousmonth",daysInPreviousMonth);
