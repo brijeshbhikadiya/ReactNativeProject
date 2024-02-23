@@ -126,8 +126,8 @@ export default class RescheduleBooking extends Component {
     
     // handletab
     handleselectedTab=(day)=>{
-        const dayofweek =this.getDayOfWeek(this.state.currentDate.getFullYear(),this.state.currentDate.getMonth(),day);
-        const dayofweek2 =this.getDayOfWeek2(this.state.currentDate.getFullYear(),this.state.currentDate.getMonth(),day);
+        const dayofweek = this.getDayOfWeek(this.state.currentDate.getFullYear(),this.state.currentDate.getMonth(),day);
+        const dayofweek2 = this.getDayOfWeek2(this.state.currentDate.getFullYear(),this.state.currentDate.getMonth(),day);
         const monthyear = `${this.state.month[this.state.currentDate.getMonth()]}`;
                 
         this.setState({
@@ -175,7 +175,7 @@ export default class RescheduleBooking extends Component {
         0,
     ).getDate();
 
-    //this line usefull for when i run the app then so the current date and time and montha and day.
+    //this line usefull for when i run the app then see the current date and time and montha and day.
     const currentmonth = `${this.state.month[this.state.currentDate.getMonth()]}`;
     const hour = `${this.state.currentDate.getHours()}`;
     const minute = `${this.state.currentDate.getMinutes()}`;
@@ -227,7 +227,7 @@ export default class RescheduleBooking extends Component {
                 isnextMonth:true}
         }
     });
-   // console.log(days);
+   console.log(days);
     
 
     return (
