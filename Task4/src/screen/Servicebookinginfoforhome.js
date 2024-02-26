@@ -38,7 +38,10 @@ export default class serviceBookingInfo extends Component {
             <View style={{height:175,marginTop:10,backgroundColor:'white'}}>
              <View style={styles.viewMakeUpArtist}> 
             <Image source={require('./../assets/images/rec.png')} height={59} width={59} style={styles.girlImage}></Image>
-            <Image source={require('./../assets/images/fbutton.png')} height={59} width={59} style={styles.ChatImage}></Image>
+            <TouchableOpacity style={styles.ChatImage}>
+            <Image source={require('./../assets/images/fbutton.png')} height={59} width={59} ></Image>
+            </TouchableOpacity>
+          
             <View style={{flexDirection:'column'}}>
             <Text style={styles.makeupArtistText}>Makeup artist</Text>
             <Text style={styles.dynaMarkTxt}>Dyna Mark</Text>
@@ -148,7 +151,7 @@ export default class serviceBookingInfo extends Component {
           </View>
           </View>
 
-          <View style={{flexDirection:'row',marginTop:5,flex:1}}>
+          <View style={{flexDirection:'row',flex:1}}>
           <View style={styles.motherInnerView}>
             <Text style={styles.motherAgeText}>Mother of the bride</Text>
             <Text style={styles.ageText}>Age : 41 - 50</Text>
@@ -335,7 +338,7 @@ const styles=StyleSheet.create({
       flexDirection:'column',
       marginLeft:20,
       //marginRight:15.77,
-      marginTop:4,
+      //marginTop:4,
     },
     scaleBrideView:{
         flexDirection:'row',
@@ -646,9 +649,9 @@ const styles=StyleSheet.create({
     color:'#DE809A',
     fontWeight:'700',
     //fontSize:13,
-    height:22,
-    lineHeight:13,
-    marginTop:13,
+   // height:22,
+    //lineHeight:13,
+    marginTop:10,
     
 
   },
@@ -677,7 +680,7 @@ const styles=StyleSheet.create({
     color:'#4F4F4F',
     fontSize:14,
     fontWeight:'700',
-    lineHeight:13,
+    //lineHeight:13,
     height:24,
     marginRight:16,
     marginTop:6,
@@ -770,7 +773,7 @@ const styles=StyleSheet.create({
     color:'#4F4F4F',
     fontSize:14,
     fontWeight:'700',
-    lineHeight:13,
+    //lineHeight:13,
     height:24,
     marginRight:16,
     marginTop:6,

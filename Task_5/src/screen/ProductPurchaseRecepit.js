@@ -197,6 +197,7 @@ const styles = StyleSheet.create({
       flex:1,
       //backgroundColor:'#FFFFFF',
       marginTop:24,
+      marginBottom:50,
       marginHorizontal:14,
       //borderTopLeftRadius:20,
       //borderTopRightRadius:20,

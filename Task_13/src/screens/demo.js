@@ -7,7 +7,7 @@ export default class demo extends Component {
         super()
         this.state={
             currentdate2:new Date(),
-            month:["January", "February", "March", "April", "May", "June","July","August", "September", "October", "November", "December"],
+            month:["January", "February","March", "April", "May", "June","July","August", "September", "October", "November", "December"],
 
         }
     }

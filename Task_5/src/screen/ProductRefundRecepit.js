@@ -184,6 +184,7 @@ const styles = StyleSheet.create({
     container:{
         //flex:1,
         //backgroundColor:'yellow',
+        //marginBottom:50
     },
       outercontainer:{
         flexDirection:'row',
@@ -253,6 +254,7 @@ const styles = StyleSheet.create({
         //position:'absolute',
         //backgroundColor:'#FFFFFF',
         marginTop:24,
+        marginBottom:50,
         marginHorizontal:14,
         ////borderTopLeftRadius:20,
         //borderTopRightRadius:20,
