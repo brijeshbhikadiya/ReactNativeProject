@@ -1,88 +1,94 @@
 import React, { Component } from 'react';
-import { Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { View, Text, TouchableOpacity, Animated } from 'react-native';
 
-export default class Checkout extends Component {
-    constructor() {
-        super();
-        this.state = {
-            screen1: true,
-            screen2: false,
-            screen3: false
-        };
-        this.scrollView = React.createRef();
-    }
-
-    handleScreen = () => {
-        if (this.state.screen1) {
-            this.scrollView.current.scrollTo({ x: 1 * screenWidth, animated: true });
-            this.setState({
-                screen1: false,
-                screen2: true,
-                screen3: false
-            });
-        } else if (this.state.screen2) {
-            this.scrollView.current.scrollTo({ x: 2 * screenWidth, animated: true });
-            this.setState({
-                screen1: false,
-                screen2: false,
-                screen3: true
-            });
-        } else if (this.state.screen3) {
-            // No need to scroll further as there are only 3 steps
-        }
+class Progress extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedStep: 0,
+      progress1: new Animated.Value(0),
+      progress2: new Animated.Value(0),
+      progress3: new Animated.Value(0)
     };
+  }
 
-    render() {
-        return (
-            <View style={styles.container}>
-                <ScrollView
-                    horizontal
-                    pagingEnabled
-                    ref={this.scrollView}
-                    showsHorizontalScrollIndicator={false}>
-                    <View style={[styles.stepView, { backgroundColor: this.state.screen1 ? 'lightblue' : 'lightgray' }]}>
-                        <Text style={styles.stepText}>Step 1</Text>
-                    </View>
-                    <View style={[styles.stepView, { backgroundColor: this.state.screen2 ? 'lightblue' : 'lightgray' }]}>
-                        <Text style={styles.stepText}>Step 2</Text>
-                    </View>
-                    <View style={[styles.stepView, { backgroundColor: this.state.screen3 ? 'lightblue' : 'lightgray' }]}>
-                        <Text style={styles.stepText}>Step 3</Text>
-                    </View>
-                </ScrollView>
+  start1 = () => {
+    Animated.timing(this.state.progress1, {
+      toValue: 100,
+      duration: 3000,
+      useNativeDriver: false,
+    }).start();
+  };
 
-                <View style={styles.buttonContainer}>
-                    <Text style={styles.button} onPress={this.handleScreen}>Next Step</Text>
-                </View>
-            </View>
-        );
-    }
+  start2 = () => {
+    Animated.timing(this.state.progress2, {
+      toValue: 100,
+      duration: 3000,
+      useNativeDriver: false,
+    }).start();
+  };
+
+  start3 = () => {
+    Animated.timing(this.state.progress3, {
+      toValue: 100,
+      duration: 3000,
+      useNativeDriver: false,
+    }).start();
+  };
+
+  render() {
+    const { selectedStep, progress1, progress2, progress3 } = this.state;
+    return (
+      <View style={{ flex: 1 }}>
+        <View style={{ width: '100%', alignItems: 'center', padding: 50 ,flexDirection:'row'}}>
+          <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: selectedStep > 0 ? 'green' : '#f2f2f2', justifyContent: 'center', alignItems: 'center' }}>
+            <Text style={{ color: '#fff' }}>1</Text>
+          </View>
+          
+          
+          
+          <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: selectedStep > 1 ? 'green' : '#f2f2f2', justifyContent: 'center', alignItems: 'center' }}>
+            <Text style={{ color: '#fff' }}>2</Text>
+          </View>
+          <View style={{ height: 6, width: 100, backgroundColor: '#f2f2f2' }}></View>
+          <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: selectedStep > 2 ? 'green' : '#f2f2f2', justifyContent: 'center', alignItems: 'center' }}>
+            <Text style={{ color: '#fff' }}>3</Text>
+          </View>
+          <View style={{ height: 6, width: 100, backgroundColor: '#f2f2f2' }}></View>
+          <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: selectedStep > 3 ? 'green' : '#f2f2f2', justifyContent: 'center', alignItems: 'center' }}>
+            <Text style={{ color: '#fff' }}>4</Text>
+          </View>
+        </View>
+        <View style={{ height: '100%', marginTop:10,marginLeft:30,padding: 50, position: 'absolute', top: 0 ,flexDirection:'row'}}>
+          <Animated.View style={{ height: 6,width: progress1, backgroundColor: 'green' }}></Animated.View>
+          <Animated.View style={{ height: 6, width: progress2, backgroundColor: 'green' }}></Animated.View>
+          <Animated.View style={{ height: 6, width: progress3, backgroundColor: 'green' }}></Animated.View>
+        </View>
+        <TouchableOpacity
+          style={{ marginTop: 100, height: 50, width: 200, backgroundColor: 'orange', justifyContent: 'center', alignItems: 'center', borderRadius: 10, alignSelf: 'center' }}
+          onPress={() => {
+            if (selectedStep == 1) {
+              this.start1();
+            }
+            if (selectedStep == 2) {
+              this.start2();
+            }
+            if (selectedStep == 3) {
+              this.start3();
+            }
+            if (selectedStep == 0) {
+              this.setState({ selectedStep: selectedStep + 1 });
+            } else {
+              setTimeout(() => {
+                this.setState({ selectedStep: selectedStep + 1 });
+              }, 3000);
+            }
+          }}>
+          <Text>Next Step</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
 }
 
-const screenWidth = Dimensions.get('window').width;
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'white',
-    },
-    stepView: {
-        width: screenWidth,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    stepText: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: 'black',
-    },
-    buttonContainer: {
-        alignItems: 'center',
-        marginTop: 20,
-    },
-    button: {
-        fontSize: 20,
-        color: 'blue',
-        textDecorationLine: 'underline',
-    },
-});
+export default Progress;
