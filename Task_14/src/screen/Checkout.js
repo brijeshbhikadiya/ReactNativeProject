@@ -12,7 +12,6 @@ import {
   Alert,
 } from 'react-native';
 import React, {Component} from 'react';
-const screenWidth = Dimensions.get('window').width;
 
 export default class Checkout extends Component {
   constructor() {
@@ -22,6 +21,7 @@ export default class Checkout extends Component {
       progress1: new Animated.Value(0),
       progress2: new Animated.Value(0),
       progress3: new Animated.Value(0),
+      date:'',
       currentIndex: 0,
       checkbox:false,
       expiry: '',
@@ -38,8 +38,9 @@ export default class Checkout extends Component {
       screen2: false,
       screen3: false,
     };
-    this.scrollView = React.createRef();
   }
+
+  //For Animation Uses
   start1 = () => {
     Animated.timing(this.state.progress1, {
       toValue: 28,
@@ -56,10 +57,11 @@ export default class Checkout extends Component {
     }).start();
   };
 
+  //Handle Function For Validation
+
   handleCheckBox = () => {
     this.setState({checkbox:!this.state.checkbox});
   }
-
   handlePhonenumber = text => {
     const numericvalue = text.replace(/[^0-9]/g, '');
     this.setState({phonenumber: numericvalue});
@@ -68,7 +70,6 @@ export default class Checkout extends Component {
     const numericvalue = text.replace(/[^0-9]/g, '');
     this.setState({postcode: numericvalue});
   };
-
   handleCardNo = text => {
     const numericvalue = text.replace(/[^0-9]/g, '');
     this.setState({cardno: numericvalue});
@@ -78,25 +79,47 @@ export default class Checkout extends Component {
     this.setState({cvv: numericvalue});
   };
 
-  handleView = index => {
-    this.setState({
-      currentIndex: index,
-    });
-  };
+  //This Function Is Use For Handle All 3 Screen
 
   handleScreen = () => {
+    //This is called When Scrren1 is true
     if (this.state.screen1) {
-      if (
-        !this.state.fname.trim() ||
-        !this.state.lname.trim() ||
-        !this.state.email.trim() ||
-        !this.state.country.trim() ||
-        !this.state.phonenumber.trim() ||
-        !this.state.postcode.trim()
-      ) {
-        Alert.alert('Alert', 'Please fill all the required fields');
+      if (!this.state.fname.trim()) {
+        Alert.alert('Alert', 'Please Enter First Name');
         return;
       }
+      if (!this.state.lname.trim() ) {
+        Alert.alert('Alert', 'Please Enter Last Name');
+        return;
+      }
+      if (!this.state.email.trim() ) {
+        Alert.alert('Alert', 'Please Enter the Email');
+        return;
+      }
+      if (!this.state.country.trim()) {
+        Alert.alert('Alert', 'Please Enter a Country');
+        return;
+      }
+      if (!this.state.phonenumber.trim() ) {
+        Alert.alert('Alert', 'Please Enter a Phone Number');
+        return;
+      }
+      if ( !this.state.postcode.trim()) {
+        Alert.alert('Alert', 'Please Enter a Post Code');
+        return;
+      }
+      const emailRegex = /\S+@\S+\.\S+/;
+      if (!emailRegex.test(this.state.email)) {
+        Alert.alert('Please enter a valid email address.');
+        return;
+      }
+      const phoneLength = this.state.phonenumber.length;
+      if (phoneLength < 10 || phoneLength > 10 || !/^\d+$/.test(this.state.phonenumber)) {
+        Alert.alert('Phone number should be 10 digits long and contain only numbers.');
+        return;
+      }
+
+      //This condition is For Handle The Animation
       if (this.state.selectedStep == 1) {
         this.start1();
       }
@@ -115,15 +138,27 @@ export default class Checkout extends Component {
         screen2: true,
         screen3: false,
       });
+
+      //This is callrd when the Second Screen Is True
     } else if (this.state.screen2) {
-      if (
-        !this.state.cardno.trim() ||
-        !this.state.cardname.trim() ||
-        !this.state.cvv.trim()
-      ) {
-        Alert.alert('Alert', 'Please fill all the required fields');
+      if (!this.state.cardno.trim() ) {
+        Alert.alert('Alert', 'Please Enter CardNo');
         return;
       }
+      if (!this.state.date.trim()) {
+        Alert.alert('Alert', 'Please Enter Expiry Date');
+        return;
+      }
+      if (!this.state.cvv.trim() ) {
+        Alert.alert('Alert', 'Please Enter Cvv Number');
+        return;
+      }
+      if (!this.state.cardname.trim()) {
+        Alert.alert('Alert', 'Please Enter a CardName');
+        return;
+      }
+
+      //This is For Handle The Animation Part
       if (this.state.selectedStep == 1) {
         this.start1();
       }
@@ -150,8 +185,14 @@ export default class Checkout extends Component {
       });
     }
   };
+
   render() {
     const {selectedStep, progress1, progress2, progress3} = this.state;
+
+    vDate = date =>{
+      const re = /\b(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})\b/;
+      return re.test(String(date));
+    }
 
     vEmail = email => {
       const ex = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
@@ -174,15 +215,17 @@ export default class Checkout extends Component {
       const namerx = /^[a-zA-Z ]+$/;
       return namerx.test(String(text));
     };
+
     return (
       <View style={styles.container}>
+        {/* //Titlebar View */}
         <View style={styles.titlebar}>
           <Image
             source={require('../assets/images/back.png')}
             style={styles.backimage}></Image>
           <Text style={styles.reservationtext}>Reservation</Text>
         </View>
-
+        {/* animationview  */}
         <View style={styles.animationview}>
           <View style={styles.firstroundview}>
             <Text style={{color: '#fff'}}>1</Text>
@@ -214,6 +257,7 @@ export default class Checkout extends Component {
             <Text style={{color: '#fff'}}>3</Text>
           </View>
         </View>
+        
         <View
           style={{
             height: '100%',
@@ -294,9 +338,7 @@ export default class Checkout extends Component {
                   style={styles.textinputtext}></TextInput>
               </View>
               {this.state.email == '' ? null : vEmail(this.state.email) ? (
-                <Text style={{color: 'green', marginLeft: 20}}>
-                  Valid Email
-                </Text>
+                null
               ) : (
                 <Text style={{color: 'red', marginLeft: 20}}>
                   Invalid input
@@ -369,9 +411,21 @@ export default class Checkout extends Component {
                 <View style={styles.expiryview}>
                   <TextInput
                     style={styles.expirytextinput}
+                    maxLength={7}
+                    onChangeText={text => {
+                      this.setState({date: text});
+                    }}
                     placeholder="Expiry"
                     placeholderTextColor={'rgba(153, 153, 153, 1)'}></TextInput>
+                    {this.state.date == '' ? null : vDate(this.state.date) ? (
+               null
+              ) : (
+                <Text style={{color: 'red', marginLeft: 10}}>
+                  Invalid Date
+                </Text>
+              )}
                 </View>
+                
                 <View style={styles.cvview}>
                   <TextInput
                     style={styles.expirytextinput}
@@ -573,10 +627,10 @@ const styles = StyleSheet.create({
     marginLeft: 19,
   },
   hotelimage: {
-    width: 350,
+    //width: 350,
     //alignSelf:'center',
-    // width:null,
-    //resizeMode:'stretch'
+    width:null,
+    resizeMode:'stretch'
   },
   savethistext: {
     color: 'rgba(153, 153, 153, 1)',
