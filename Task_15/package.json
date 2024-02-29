@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "react": "18.2.0",
-    "react-native": "0.73.5"
+    "react-native": "0.73.5",
+    "react-native-phone-number-input": "^2.1.0",
+    "react-native-svg": "^15.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
