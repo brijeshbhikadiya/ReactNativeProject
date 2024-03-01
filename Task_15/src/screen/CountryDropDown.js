@@ -60,6 +60,7 @@ onSelectCountry = (country) => {
     const filterCountries=allcountries.filter((country)=>
       country.callingCode.includes(searchQuery)
     );
+    
     return (
       <View>
         <View style={styles.phonenumberview}>

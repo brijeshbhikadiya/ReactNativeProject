@@ -37,7 +37,7 @@ class CircularProgress extends Component {
       this.progressInterval = setInterval(() => {
         this.setState(prevState => {
           const newProgress = prevState.progress + 1;
-          console.log(newProgress);
+          //console.log(newProgress);
           if (newProgress >= 100) {
             // update progress from 0 to 100
             clearInterval(this.progressInterval);
@@ -79,12 +79,12 @@ class CircularProgress extends Component {
   render() {
     const {size, strokeWidth, progressColor, bgColor} = this.props;
     const radius = (size - strokeWidth) / 2;
-    console.log(radius);
+    //console.log(radius);
     const circumference = radius * 2 * Math.PI;
-    console.log(circumference);
+    //console.log(circumference);
     const progressOffset =
       circumference - (this.state.progress / 100) * circumference;
-    console.log(progressOffset);
+    //console.log(progressOffset);
     const imagesource = this.state.animationInProgress
       ? require('../assets/images/innerloading.png')
       : require('../assets/images/innerloadingblue.png');
@@ -199,6 +199,15 @@ export default class ForgotPassowrdPhonenumber extends Component {
     }
   };
 
+  // handleScreen2 = () => {
+  //   if(this.state.screen2){
+  //     if(!this.state.input1.trim()){
+  //       Alert.alert('Alert', 'please enter your Otp');
+  //       return;
+  //     }
+  //   }
+  // }
+
   handleInputChange = (text, currentInputRef, prevInputRef, nextInputRef) => {
     if (text.length === 0 && prevInputRef) {
       prevInputRef.current.focus();
@@ -282,7 +291,7 @@ export default class ForgotPassowrdPhonenumber extends Component {
               <View style={styles.modalContainer}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                   <TextInput
-                    placeholder="country Code"
+                    placeholder="Search country"
                     value={searchQuery}
                     onChangeText={this.handleSearch}
                     style={styles.serachInput}></TextInput>
