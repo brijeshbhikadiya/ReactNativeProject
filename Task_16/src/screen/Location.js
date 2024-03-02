@@ -6,76 +6,53 @@ export default class HomeScreen extends Component {
     constructor(){
         super();
         this.state={
-            teamData:[{
-                profileImage:require('../assets/images/Team1.png'),
-                teamName:"Team 1",
-                playerCount:"10 Players",
+            teamData:[
+            {
+                profileImage:require('../assets/images/Venue5.png'),
+                teamName:"Football Venue",
+                playerCount:"San Francisco",
                 deleteImage:require('../assets/images/Delete.png')
             },
             {
-                profileImage:require('../assets/images/Team2.png'),
-                teamName:"Team 2",
-                playerCount:"11 Players",
+                profileImage:require('../assets/images/Venue6.png'),
+                teamName:"Fooball Space",
+                playerCount:"San Francisco",
                 deleteImage:require('../assets/images/Delete.png')
             },
             {
-                profileImage:require('../assets/images/Team3.png'),
-                teamName:"Team 3",
-                playerCount:"5 Players",
+                profileImage:require('../assets/images/Venue1.png'),
+                teamName:"Football Venue",
+                playerCount:"San Francisco",
                 deleteImage:require('../assets/images/Delete.png')
             },
             {
-                profileImage:require('../assets/images/Team4.png'),
-                teamName:"Team 4",
-                playerCount:"6 Players",
+                profileImage:require('../assets/images/Venue1.png'),
+                teamName:"Venue 1",
+                playerCount:"San Francisco",
                 deleteImage:require('../assets/images/Delete.png')
             },
             {
-                profileImage:require('../assets/images/Team5.png'),
-                teamName:"Team 5",
-                playerCount:"9 Players",
+                profileImage:require('../assets/images/Venue1.png'),
+                teamName:"Venue 2",
+                playerCount:"San Francisco",
                 deleteImage:require('../assets/images/Delete.png')
             },
             {
-                profileImage:require('../assets/images/Team6.png'),
-                teamName:"Team 6",
-                playerCount:"12 Players",
+                profileImage:require('../assets/images/Venue1.png'),
+                teamName:"Venue 3",
+                playerCount:"San Francisco",
                 deleteImage:require('../assets/images/Delete.png')
             },
             {
-                profileImage:require('../assets/images/Team7.png'),
-                teamName:"Team 7",
-                playerCount:"15 Players",
+                profileImage:require('../assets/images/Venue1.png'),
+                teamName:"Venue 4",
+                playerCount:"San Francisco",
                 deleteImage:require('../assets/images/Delete.png')
             },
             {
-                profileImage:require('../assets/images/Team7.png'),
-                teamName:"Team 7",
-                playerCount:"15 Players",
-                deleteImage:require('../assets/images/Delete.png')
-            },
-            {
-                profileImage:require('../assets/images/Team7.png'),
-                teamName:"Team 7",
-                playerCount:"15 Players",
-                deleteImage:require('../assets/images/Delete.png')
-            },
-            {
-                profileImage:require('../assets/images/Team7.png'),
-                teamName:"Team 7",
-                playerCount:"15 Players",
-                deleteImage:require('../assets/images/Delete.png')
-            },
-            {
-                profileImage:require('../assets/images/Team7.png'),
-                teamName:"Team 7",
-                playerCount:"15 Players",
-                deleteImage:require('../assets/images/Delete.png')
-            },
-            {
-                profileImage:require('../assets/images/Team7.png'),
-                teamName:"Team 7",
-                playerCount:"15 Players",
+                profileImage:require('../assets/images/Venue1.png'),
+                teamName:"Venue 5",
+                playerCount:"San Francisco",
                 deleteImage:require('../assets/images/Delete.png')
             }
         ],
@@ -138,7 +115,7 @@ export default class HomeScreen extends Component {
             }
             ></FlatList>
         </View>
-       
+        
         </ScrollView>
         <Image source={require('../assets/images/Plus.png')} style={{alignSelf:'center',marginTop:-30,marginBottom:20}}></Image>
       </View>
@@ -209,9 +186,9 @@ const styles = StyleSheet.create({
         lineHeight:17.05
     },
     TeamCountText:{
-        color:'rgba(255, 171, 64, 1)',
+        color:'rgba(0, 0, 0, 0.5)',
         fontWeight:'400',
-        fontSize:11,
-        lineHeight:13.4
+        fontSize:13,
+        //lineHeight:3
     }
 })
