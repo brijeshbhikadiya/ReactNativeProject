@@ -90,7 +90,7 @@ render() {
       {/* <View style={styles.LineView}></View> */}
 
       <View style={styles.InnerContainer}>
-          {this.state.itemCount==1 || this.state.itemCount==0?<Text style={styles.TeamsCountText}>Team ({`${this.state.itemCount}`})</Text>:<Text style={styles.TeamsCountText}>Teams ({`${this.state.itemCount}`})</Text>}
+          {this.state.itemCount==1 || this.state.itemCount==0?<Text style={styles.TeamsCountText}>Player ({`${this.state.itemCount}`})</Text>:<Text style={styles.TeamsCountText}>Players ({`${this.state.itemCount}`})</Text>}
           <FlatList
           scrollEnabled={false}
           data={this.state.teamData}

@@ -26,31 +26,31 @@ export default class HomeScreen extends Component {
                 deleteImage:require('../assets/images/Delete.png')
             },
             {
-                profileImage:require('../assets/images/Venue1.png'),
+                profileImage:require('../assets/images/Venue2.png'),
                 teamName:"Venue 1",
                 playerCount:"San Francisco",
                 deleteImage:require('../assets/images/Delete.png')
             },
             {
-                profileImage:require('../assets/images/Venue1.png'),
+                profileImage:require('../assets/images/Venue3.png'),
                 teamName:"Venue 2",
                 playerCount:"San Francisco",
                 deleteImage:require('../assets/images/Delete.png')
             },
             {
-                profileImage:require('../assets/images/Venue1.png'),
+                profileImage:require('../assets/images/Venue4.png'),
                 teamName:"Venue 3",
                 playerCount:"San Francisco",
                 deleteImage:require('../assets/images/Delete.png')
             },
             {
-                profileImage:require('../assets/images/Venue1.png'),
+                profileImage:require('../assets/images/Venue5.png'),
                 teamName:"Venue 4",
                 playerCount:"San Francisco",
                 deleteImage:require('../assets/images/Delete.png')
             },
             {
-                profileImage:require('../assets/images/Venue1.png'),
+                profileImage:require('../assets/images/Venue6.png'),
                 teamName:"Venue 5",
                 playerCount:"San Francisco",
                 deleteImage:require('../assets/images/Delete.png')
@@ -97,7 +97,7 @@ export default class HomeScreen extends Component {
         {/* <View style={styles.LineView}></View> */}
 
         <View style={styles.InnerContainer}>
-            {this.state.itemCount==1 || this.state.itemCount==0?<Text style={styles.TeamsCountText}>Team ({`${this.state.itemCount}`})</Text>:<Text style={styles.TeamsCountText}>Teams ({`${this.state.itemCount}`})</Text>}
+            {this.state.itemCount==1 || this.state.itemCount==0?<Text style={styles.TeamsCountText}>Venue ({`${this.state.itemCount}`})</Text>:<Text style={styles.TeamsCountText}>Venues ({`${this.state.itemCount}`})</Text>}
             <FlatList
             scrollEnabled={false}
             data={this.state.teamData}
