@@ -1,9 +1,15 @@
-import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View,Dimensions } from 'react-native'
 import React, { Component } from 'react'
+import { Header } from 'react-native/Libraries/NewAppScreen';
+
+let CurrentSlide = 0;
+let IntervalTime = 3000;
 
 export default class HomeScreen extends Component {
+   
   constructor(){
     super();
+    this.flatList = React.createRef();
     this.state={
         categories:[{
             CategoriesImage1:require('../assets/images/Aircon.png'),
@@ -26,17 +32,68 @@ export default class HomeScreen extends Component {
         },
         {
             AdvertismentImage:require('../assets/images/ads1.jpeg')
+        },
+        {
+            AdvertismentImage:require('../assets/images/ads1.jpeg')
+        },
+        {
+            AdvertismentImage:require('../assets/images/ads1.jpeg')
+        },
+        {
+            AdvertismentImage:require('../assets/images/ads1.jpeg')
+        },
+        {
+            AdvertismentImage:require('../assets/images/ads1.jpeg')
         }
     ]
     }
   }
+
+  _goToNextPage = () => {
+    if (CurrentSlide >= this.state.Advertisement.length-1) CurrentSlide = 0;
+
+    this.flatList.current.scrollToIndex({
+      index: ++CurrentSlide,
+      animated: true,
+    });
+  };
+
+  _startAutoPlay = () => {
+    this._timerId = setInterval(this._goToNextPage, IntervalTime);
+  };
+
+  _stopAutoPlay = () => {
+    if (this._timerId) {
+      clearInterval(this._timerId);
+      this._timerId = null;
+    }
+  };
+
+  _keyExtractor(item, index) {
+    // console.log(item);
+    return index.toString();
+  }
+
+
+  componentDidMount() {
+    this._stopAutoPlay();
+    this._startAutoPlay();
+  }
+
+  componentWillUnmount() {
+    this._stopAutoPlay();
+  }
+  
   render() {
+
     return (
-      <View style={styles.Container}>
-        
+      <View style={styles.Container}>      
         {/* HeaderView */}
-        <View style={styles.HeaderView}>
-            <Image source={require('../assets/images/More.png')} style={styles.MoreImage}></Image>
+        {/* <View style={styles.HeaderView}>
+            <TouchableOpacity style={styles.MoreImage}>
+                <Image source={require('../assets/images/More.png')} ></Image>
+            </TouchableOpacity>
+
             <View>
                 <Text style={styles.UserName}>Hy James!</Text>
                 <View style={styles.HeaderInnerView}>
@@ -44,15 +101,19 @@ export default class HomeScreen extends Component {
                     <Text style={styles.UserLocationName}>Bukit Batok, Singapore</Text>
                 </View>
             </View>
-        </View>
+        </View> */}
 
         <FlatList
         data={this.state.Advertisement}
         horizontal
+        keyExtractor={this._keyExtractor.bind(this)}
         showsHorizontalScrollIndicator={false}
         renderItem={({item})=>
         <Image source={item.AdvertismentImage} style={styles.AdvertismentImage}></Image>
-        }></FlatList>
+        }
+        flatListRef={React.createRef()}
+        ref={this.flatList}
+        ></FlatList>
         
 
         <View style={styles.CategoriesView}>
@@ -71,15 +132,15 @@ export default class HomeScreen extends Component {
                 <View style={styles.CategoriesFlatListView}>
                     <TouchableOpacity style={styles.CategoriesItemView}>
                         <Image source={item.CategoriesImage1} style={{alignSelf:'center'}}></Image>
-                        <Text style={styles.CategoriesItemText}>{item.CategoriesName1}</Text>
+                        <Text style={styles.CategoriesItemText} ellipsizeMode='clip' numberOfLines={1}>{item.CategoriesName1}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.CategoriesItemView}>
                         <Image source={item.CategoriesImage2} style={{alignSelf:'center'}}></Image>
-                        <Text style={styles.CategoriesItemText}>{item.CategoriesName2}</Text>
+                        <Text style={styles.CategoriesItemText}  ellipsizeMode='clip' numberOfLines={1}>{item.CategoriesName2}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.CategoriesItemView}>
                         <Image source={item.CategoriesImage3} style={{alignSelf:'center'}}></Image>
-                        <Text style={styles.CategoriesItemText}>{item.CategoriesName3}</Text>
+                        <Text style={styles.CategoriesItemText}  ellipsizeMode='clip' numberOfLines={1}>{item.CategoriesName3}</Text>
                     </TouchableOpacity>
                 </View>
             }></FlatList>
@@ -145,7 +206,8 @@ const styles = StyleSheet.create({
     },
     AdvertismentImage:{
        marginHorizontal:15,
-       marginTop:15
+       marginTop:15,
+       borderRadius:15
     },
     
     //Name

@@ -12,46 +12,82 @@ import {
   Alert,
 } from 'react-native';
 import React, {Component} from 'react';
+import LinearGradient from 'react-native-linear-gradient';
 
 export default class Checkout extends Component {
   constructor() {
     super();
-    this.state = {
-      selectedStep: 1,
-      progress1: new Animated.Value(0),
-      progress2: new Animated.Value(0),
-      progress3: new Animated.Value(0),
-      date:'',
-      currentIndex: 0,
-      checkbox:false,
-      expiry: '',
-      cardname: '',
-      email: '',
-      cardno: '',
-      fname: '',
-      lname: '',
-      cvv: '',
-      country: '',
-      phonenumber: '',
-      postcode: '',
-      screen1: true,
-      screen2: false,
-      screen3: false,
-    };
+    (this.fillAnimation = new Animated.Value(0)),
+      (this.fillAnimation2 = new Animated.Value(0)),
+      (this.slideAnimation1 = new Animated.Value(0)),
+      (this.slideAnimation2 = new Animated.Value(0)),
+      (this.state = {
+        selectedStep: 1,
+        // progress1: new Animated.Value(0),
+        // progress2: new Animated.Value(0),
+        // progress3: new Animated.Value(0),
+
+        date: '',
+        currentIndex: 0,
+        checkbox: false,
+        expiry: '',
+        cardname: '',
+        email: '',
+        cardno: '',
+        fname: '',
+        lname: '',
+        cvv: '',
+        country: '',
+        phonenumber: '',
+        postcode: '',
+        screen1: true,
+        screen2: false,
+        screen3: false,
+      });
   }
 
   //For Animation Uses
-  start1 = () => {
-    Animated.timing(this.state.progress1, {
-      toValue: 28,
-      duration: 1000,
+  // start1 = () => {
+  //   Animated.timing(this.state.progress1, {
+  //     toValue: 28,
+  //     duration: 1000,
+  //     useNativeDriver: false,
+  //   }).start();
+  // };
+
+  // start2 = () => {
+  //   Animated.timing(this.state.progress2, {
+  //     toValue: 28,
+  //     duration: 1000,
+  //     useNativeDriver: false,
+  //   }).start();
+  // };
+
+  roundStart1 = () => {
+    Animated.timing(this.fillAnimation, {
+      toValue: 1,
+      duration: 3000,
       useNativeDriver: false,
     }).start();
   };
 
-  start2 = () => {
-    Animated.timing(this.state.progress2, {
-      toValue: 28,
+  roundStart2 = () => {
+    Animated.timing(this.fillAnimation2, {
+      toValue: 1,
+      duration: 3000,
+      useNativeDriver: false,
+    }).start();
+  };
+  borderStart1 = () => {
+    Animated.timing(this.slideAnimation1, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: false,
+    }).start();
+  };
+  borderStart2 = () => {
+    Animated.timing(this.slideAnimation2, {
+      toValue: 1,
       duration: 1000,
       useNativeDriver: false,
     }).start();
@@ -60,8 +96,8 @@ export default class Checkout extends Component {
   //Handle Function For Validation
 
   handleCheckBox = () => {
-    this.setState({checkbox:!this.state.checkbox});
-  }
+    this.setState({checkbox: !this.state.checkbox});
+  };
   handlePhonenumber = text => {
     const numericvalue = text.replace(/[^0-9]/g, '');
     this.setState({phonenumber: numericvalue});
@@ -88,11 +124,11 @@ export default class Checkout extends Component {
         Alert.alert('Alert', 'Please Enter First Name');
         return;
       }
-      if (!this.state.lname.trim() ) {
+      if (!this.state.lname.trim()) {
         Alert.alert('Alert', 'Please Enter Last Name');
         return;
       }
-      if (!this.state.email.trim() ) {
+      if (!this.state.email.trim()) {
         Alert.alert('Alert', 'Please Enter the Email');
         return;
       }
@@ -100,11 +136,11 @@ export default class Checkout extends Component {
         Alert.alert('Alert', 'Please Enter a Country');
         return;
       }
-      if (!this.state.phonenumber.trim() ) {
+      if (!this.state.phonenumber.trim()) {
         Alert.alert('Alert', 'Please Enter a Phone Number');
         return;
       }
-      if ( !this.state.postcode.trim()) {
+      if (!this.state.postcode.trim()) {
         Alert.alert('Alert', 'Please Enter a Post Code');
         return;
       }
@@ -114,17 +150,25 @@ export default class Checkout extends Component {
         return;
       }
       const phoneLength = this.state.phonenumber.length;
-      if (phoneLength < 10 || phoneLength > 10 || !/^\d+$/.test(this.state.phonenumber)) {
-        Alert.alert('Phone number should be 10 digits long and contain only numbers.');
+      if (
+        phoneLength < 10 ||
+        phoneLength > 10 ||
+        !/^\d+$/.test(this.state.phonenumber)
+      ) {
+        Alert.alert(
+          'Phone number should be 10 digits long and contain only numbers.',
+        );
         return;
       }
 
       //This condition is For Handle The Animation
       if (this.state.selectedStep == 1) {
-        this.start1();
+        this.roundStart1();
+        this.borderStart1();
       }
       if (this.state.selectedStep == 2) {
-        this.start2();
+        this.roundStart2();
+        this.borderStart2();
       }
       if (this.state.selectedStep == 0) {
         this.setState({selectedStep: this.state.selectedStep + 1});
@@ -141,7 +185,7 @@ export default class Checkout extends Component {
 
       //This is callrd when the Second Screen Is True
     } else if (this.state.screen2) {
-      if (!this.state.cardno.trim() ) {
+      if (!this.state.cardno.trim()) {
         Alert.alert('Alert', 'Please Enter CardNo');
         return;
       }
@@ -149,7 +193,7 @@ export default class Checkout extends Component {
         Alert.alert('Alert', 'Please Enter Expiry Date');
         return;
       }
-      if (!this.state.cvv.trim() ) {
+      if (!this.state.cvv.trim()) {
         Alert.alert('Alert', 'Please Enter Cvv Number');
         return;
       }
@@ -160,10 +204,12 @@ export default class Checkout extends Component {
 
       //This is For Handle The Animation Part
       if (this.state.selectedStep == 1) {
-        this.start1();
+        this.borderStart1();
+        this.roundStart1();
       }
       if (this.state.selectedStep == 2) {
-        this.start2();
+        this.borderStart2();
+        this.roundStart2();
       }
       if (this.state.selectedStep == 0) {
         this.setState({selectedStep: this.state.selectedStep + 1});
@@ -189,10 +235,10 @@ export default class Checkout extends Component {
   render() {
     const {selectedStep, progress1, progress2, progress3} = this.state;
 
-    vDate = date =>{
+    vDate = date => {
       const re = /\b(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})\b/;
       return re.test(String(date));
-    }
+    };
 
     vEmail = email => {
       const ex = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
@@ -230,9 +276,9 @@ export default class Checkout extends Component {
           <View style={styles.firstroundview}>
             <Text style={{color: '#fff'}}>1</Text>
           </View>
-          <View
-            style={{height: 3, width: 25, backgroundColor: '#f2f2f2'}}></View>
-          <View
+          {/* <View
+            style={{height: 3, width: 25, backgroundColor: '#f2f2f2'}}></View>  */}
+          {/* <View
             style={{
               width: 36,
               height: 36,
@@ -256,42 +302,82 @@ export default class Checkout extends Component {
             }}>
             <Text style={{color: '#fff'}}>3</Text>
           </View>
+        </View> */}
+
+          <View style={{width: 25, height: 5, backgroundColor: '#DFDEDE'}}>
+            <Animated.View
+              style={[
+                styles.slideFill,
+                {
+                  width: this.slideAnimation1.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: ['0%', '100%'],
+                  }),
+                },
+              ]}>
+              <LinearGradient
+                colors={['#F8A170', '#FFCD61']}
+                start={{x: 0, y: 0.6}}
+                end={{x: 1, y: 0}}
+                style={{borderRadius: 5}}
+              />
+            </Animated.View>
+          </View>
+
+          <View style={styles.outerRoundView}>
+            <View style={styles.innerRoundView}>
+              <Animated.View
+                style={[
+                  styles.fill,
+                  {
+                    width: this.fillAnimation.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: ['0%', '100%'],
+                    }),
+                  },
+                  {backgroundColor: selectedStep > 1 ? 'orange' : '#DEDEDE'},
+                ]}
+              />
+              <Text style={{color: selectedStep > 1 ? 'white' : 'grey'}}>
+                2
+              </Text>
+            </View>
+          </View>
+
+          <View style={{width: 25, height: 5, backgroundColor: '#DFDEDE'}}>
+            <Animated.View
+              style={[
+                styles.slideFill,
+                {
+                  width: this.slideAnimation2.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: ['0%', '100%'],
+                  }),
+                },
+              ]}></Animated.View>
+          </View>
+
+          <View style={styles.outerRoundView}>
+            <View style={styles.innerRoundView}>
+              <Animated.View
+                style={[
+                  styles.fill,
+                  {
+                    width: this.fillAnimation2.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: ['0%', '100%'],
+                    }),
+                  },
+                  {backgroundColor: selectedStep > 2 ? 'orange' : '#DEDEDE'},
+                ]}
+              />
+              <Text style={{color: selectedStep > 2 ? 'white' : 'grey'}}>
+                3
+              </Text>
+            </View>
+          </View>
         </View>
-        
-        <View
-          style={{
-            height: '100%',
-            marginTop: 10,
-            marginLeft: 30,
-            padding: 50,
-            position: 'absolute',
-            top: 0,
-            flexDirection: 'row',
-          }}>
-          <Animated.View
-            style={{
-              height: 3,
-              width: progress1,
-              marginLeft: 74,
-              marginTop: 53,
-              backgroundColor: 'orange',
-            }}></Animated.View>
-          <Animated.View
-            style={{
-              height: 3,
-              width: progress2,
-              marginLeft: 33,
-              marginTop: 53,
-              backgroundColor: 'orange',
-            }}></Animated.View>
-          <Animated.View
-            style={{
-              height: 3,
-              width: progress3,
-              backgroundColor: 'orange',
-            }}></Animated.View>
-        </View>
-      
+
         {this.state.screen1 ? (
           <ScrollView>
             <View>
@@ -337,9 +423,9 @@ export default class Checkout extends Component {
                   placeholderTextColor={'rgba(153, 153, 153, 1)'}
                   style={styles.textinputtext}></TextInput>
               </View>
-              {this.state.email == '' ? null : vEmail(this.state.email) ? (
-                null
-              ) : (
+              {this.state.email == '' ? null : vEmail(
+                  this.state.email,
+                ) ? null : (
                 <Text style={{color: 'red', marginLeft: 20}}>
                   Invalid input
                 </Text>
@@ -384,11 +470,18 @@ export default class Checkout extends Component {
                   placeholderTextColor={'rgba(153, 153, 153, 1)'}
                   style={styles.textinputtext}></TextInput>
               </View>
-              <TouchableOpacity
+              <LinearGradient
+                colors={['#F8A170', '#FFCD61']}
+                start={{x: 0, y: 0.6}}
+                end={{x: 1, y: 0}}
                 style={styles.gotopaymentbutton}
+              >
+              <TouchableOpacity
+                
                 onPress={this.handleScreen}>
                 <Text style={styles.gotopaymenttext}>Go to Payment</Text>
               </TouchableOpacity>
+              </LinearGradient>
             </View>
           </ScrollView>
         ) : this.state.screen2 ? (
@@ -417,15 +510,15 @@ export default class Checkout extends Component {
                     }}
                     placeholder="Expiry"
                     placeholderTextColor={'rgba(153, 153, 153, 1)'}></TextInput>
-                    {this.state.date == '' ? null : vDate(this.state.date) ? (
-               null
-              ) : (
-                <Text style={{color: 'red', marginLeft: 10}}>
-                  Invalid Date
-                </Text>
-              )}
+                  {this.state.date == '' ? null : vDate(
+                      this.state.date,
+                    ) ? null : (
+                    <Text style={{color: 'red', marginLeft: 10}}>
+                      Invalid Date
+                    </Text>
+                  )}
                 </View>
-                
+
                 <View style={styles.cvview}>
                   <TextInput
                     style={styles.expirytextinput}
@@ -459,22 +552,30 @@ export default class Checkout extends Component {
                   marginHorizontal: 24,
                   marginTop: 21,
                 }}>
-                  <TouchableOpacity onPress={this.handleCheckBox}>
-                    {this.state.checkbox?
-                  <Image
-                  source={require('../assets/images/checkbox.png')}></Image>:
-                  <Image
-                  source={require('../assets/images/uncheck.png')}></Image>}
-                  </TouchableOpacity>
-                
+                <TouchableOpacity onPress={this.handleCheckBox}>
+                  {this.state.checkbox ? (
+                    <Image
+                      source={require('../assets/images/checkbox.png')}></Image>
+                  ) : (
+                    <Image
+                      source={require('../assets/images/uncheck.png')}></Image>
+                  )}
+                </TouchableOpacity>
+
                 <Text style={styles.savethistext}>Save this credit card</Text>
               </View>
-
-              <TouchableOpacity
+              
+              <LinearGradient
+                colors={['#F8A170', '#FFCD61']}
+                start={{x: 0, y: 0.6}}
+                end={{x: 1, y: 0}}
                 style={styles.gotopaymentbutton}
+              >
+              <TouchableOpacity
                 onPress={this.handleScreen}>
                 <Text style={styles.gotopaymenttext}>Go to Confirmation</Text>
               </TouchableOpacity>
+              </LinearGradient>
             </View>
           </ScrollView>
         ) : (
@@ -512,13 +613,21 @@ export default class Checkout extends Component {
                   source={require('../assets/images/Pricing.png')}
                   style={{marginTop: 10}}></Image>
               </View>
+              
+              <LinearGradient
+                colors={['#F8A170', '#FFCD61']}
+                start={{x: 0, y: 0.6}}
+                end={{x: 1, y: 0}}
+                style={styles.gotopaymentbutton}
+              >
               <TouchableOpacity
                 style={styles.confirmbutton}
                 onPress={() => {
                   this.handleScreen;
                 }}>
-                <Text style={styles.gotopaymenttext}>Complete</Text>
+                <Text>Complete</Text>
               </TouchableOpacity>
+              </LinearGradient>
             </View>
           </ScrollView>
         )}
@@ -535,8 +644,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   animationview: {
-    width: '100%',
+    //width: '100%',
     alignItems: 'center',
+    alignSelf: 'center',
     flexDirection: 'row',
     marginHorizontal: 120,
     marginTop: 46,
@@ -629,8 +739,8 @@ const styles = StyleSheet.create({
   hotelimage: {
     //width: 350,
     //alignSelf:'center',
-    width:null,
-    resizeMode:'stretch'
+    width: null,
+    resizeMode: 'stretch',
   },
   savethistext: {
     color: 'rgba(153, 153, 153, 1)',
@@ -695,5 +805,42 @@ const styles = StyleSheet.create({
     fontFamily: 'NunitoSans',
     fontWeight: 'bold',
     lineHeight: 24.55,
+  },
+  outerRoundView: {
+    height: 36,
+    width: 36,
+    borderRadius: 100,
+    overflow: 'hidden',
+    backgroundColor: '#DEDEDE',
+    position: 'relative',
+  },
+  innerRoundView: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  fill: {
+    backgroundColor: 'orange',
+    height: '100%',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+  },
+  borderView: {
+    width: 30,
+    height: 10,
+    backgroundColor: '#DFDEDE',
+    // overflow: 'hidden',
+  },
+  slideFill: {
+    backgroundColor: 'orange',
+    height: '100%',
+    position: 'absolute',
+    top: 0,
+    left: 0,
   },
 });

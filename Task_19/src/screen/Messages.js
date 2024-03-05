@@ -5,107 +5,116 @@ export default class Messages extends Component {
   constructor(){
     super();
     this.state={
-      YesterdayMessage:[{
-        MessagerImage:require('../assets/images/Message7.png'),
-        MessagerName:"Darrell Steward",
-        MessagesType:"Hello",
-        MessagesTime:"2h ago"
-      },
-      {
-        MessagerImage:require('../assets/images/Message7.png'),
-        MessagerName:"Darrell Steward",
-        MessagesType:"Hello",
-        MessagesTime:"2h ago"
-      },
-      {
-        MessagerImage:require('../assets/images/Message7.png'),
-        MessagerName:"Darrell Steward",
-        MessagesType:"Hello",
-        MessagesTime:"2h ago"
-      }],
-      TodayMessages:[{
-        MessagerImage:require('../assets/images/Message1.png'),
-        MessagerName:"Jane Teo",
-        MessagesType:"Hello",
-        MessagesTime:"2h ago"
-      },
-      {
-        MessagerImage:require('../assets/images/Message2.png'),
-        MessagerName:"Timothy Tan",
-        MessagesType:"Okay",
-        MessagesTime:"2h ago"
-      },
-      {
-        MessagerImage:require('../assets/images/Message3.png'),
-        MessagerName:"Toh Jia Yi",
-        MessagesType:"Good Morning",
-        MessagesTime:"2h ago"
-      },
-      {
-        MessagerImage:require('../assets/images/Message4.png'),
-        MessagerName:"Lauren Toh",
-        MessagesType:"I will inform you!",
-        MessagesTime:"2h ago"
-      },
-      {
-        MessagerImage:require('../assets/images/Message5.png'),
-        MessagerName:"Lim Jia Jun",
-        MessagesType:"Hello!",
-        MessagesTime:"2h ago"
-      },
-      {
-        MessagerImage:require('../assets/images/Message6.png'),
-        MessagerName:"Teresa Lee",
-        MessagesType:"Hello",
-        MessagesTime:"2h ago"
-      }]
+      MessagesArray:{
+        YesterdayMessage:[{
+          MessagerImage:require('../assets/images/Message7.png'),
+          MessagerName:"Darrell Steward",
+          MessagesType:"Hello",
+          MessagesTime:"2h ago"
+        },
+        {
+          MessagerImage:require('../assets/images/Message7.png'),
+          MessagerName:"Darrell Steward",
+          MessagesType:"Hello",
+          MessagesTime:"2h ago"
+        },
+        {
+          MessagerImage:require('../assets/images/Message7.png'),
+          MessagerName:"Darrell Steward",
+          MessagesType:"Hello",
+          MessagesTime:"2h ago"
+        }],
+        TodayMessages:[{
+          MessagerImage:require('../assets/images/Message1.png'),
+          MessagerName:"Jane Teo",
+          MessagesType:"Hello",
+          MessagesTime:"2h ago"
+        },
+        {
+          MessagerImage:require('../assets/images/Message2.png'),
+          MessagerName:"Timothy Tan",
+          MessagesType:"Okay",
+          MessagesTime:"2h ago"
+        },
+        {
+          MessagerImage:require('../assets/images/Message3.png'),
+          MessagerName:"Toh Jia Yi",
+          MessagesType:"Good Morning",
+          MessagesTime:"2h ago"
+        },
+        {
+          MessagerImage:require('../assets/images/Message4.png'),
+          MessagerName:"Lauren Toh",
+          MessagesType:"I will inform you!",
+          MessagesTime:"2h ago"
+        },
+        {
+          MessagerImage:require('../assets/images/Message5.png'),
+          MessagerName:"Lim Jia Jun",
+          MessagesType:"Hello!",
+          MessagesTime:"2h ago"
+        },
+        {
+          MessagerImage:require('../assets/images/Message6.png'),
+          MessagerName:"Teresa Lee",
+          MessagesType:"Hello",
+          MessagesTime:"2h ago"
+        }]
+      }
+      
     }
   }
   render() {
     return (
       <View style={styles.Container}>
-         <View style={styles.HeaderView}>
-            <Image source={require('../assets/images/More.png')} style={styles.MoreImage}></Image>
+         {/* <View style={styles.HeaderView}>
+          <TouchableOpacity style={styles.MoreImage}>
+            <Image source={require('../assets/images/More.png')} ></Image>
+            </TouchableOpacity>
             <Text style={styles.TitleName}>Messages</Text>
-        </View>
+        </View> */}
 
         <View style={styles.Line}></View>
 
         <ScrollView>
 
-        <Text style={styles.TodayText}>Today</Text>
+          <Text style={styles.TodayText}>Today</Text>
 
-        <FlatList
-        data={this.state.TodayMessages}
-        scrollEnabled={false}
-        renderItem={({item})=>
-          <TouchableOpacity style={styles.MessageFlatListView}>
-            <Image source={item.MessagerImage}></Image>
-            <View style={styles.MessageView}>
-              <Text style={styles.MessagerNameText}>{item.MessagerName}</Text>
-              <Text style={styles.MessagerTypeText}>{item.MessagesType}</Text>
-            </View>
-            <Text style={styles.MessagerTimeText}>{item.MessagesTime}</Text>
-          </TouchableOpacity>
-          
-        }></FlatList>
+          <FlatList
+          data={this.state.MessagesArray.TodayMessages}
+          scrollEnabled={false}
+          renderItem={({item})=>
+            <TouchableOpacity style={styles.MessageFlatListView}>
+              <Image source={item.MessagerImage}></Image>
+              <View style={styles.MessageView}>
+                <Text style={styles.MessagerNameText}>{item.MessagerName}</Text>
+                <Text style={styles.MessagerTypeText}>{item.MessagesType}</Text>
+              </View>
+              <Text style={styles.MessagerTimeText}>{item.MessagesTime}</Text>
+            </TouchableOpacity>
+            
+          }></FlatList>
+  
+        <Text style={styles.YesterdayMessageText}>Yersterday</Text>
+  
+          <FlatList
+          data={this.state.MessagesArray.YesterdayMessage}
+          scrollEnabled={false}
+          renderItem={({item})=>
+            <TouchableOpacity style={styles.MessageFlatListView}>
+              <Image source={item.MessagerImage}></Image>
+              <View style={styles.MessageView}>
+                <Text style={styles.MessagerNameText}>{item.MessagerName}</Text>
+                <Text style={styles.MessagerTypeText}>{item.MessagesType}</Text>
+              </View>
+              <Text style={styles.MessagerTimeText}>{item.MessagesTime}</Text>
+            </TouchableOpacity>
+            
+          }></FlatList>
 
-      <Text style={styles.YesterdayMessageText}>Yersterday</Text>
+         
 
-        <FlatList
-        data={this.state.YesterdayMessage}
-        scrollEnabled={false}
-        renderItem={({item})=>
-          <TouchableOpacity style={styles.MessageFlatListView}>
-            <Image source={item.MessagerImage}></Image>
-            <View style={styles.MessageView}>
-              <Text style={styles.MessagerNameText}>{item.MessagerName}</Text>
-              <Text style={styles.MessagerTypeText}>{item.MessagesType}</Text>
-            </View>
-            <Text style={styles.MessagerTimeText}>{item.MessagesTime}</Text>
-          </TouchableOpacity>
-          
-        }></FlatList>
+       
         </ScrollView>
       </View>
     )

@@ -9,4 +9,4 @@ import Checkout from './src/screen/Checkout';
 import Checkout2 from './src/screen/Checkout2';
 import Checkout3 from './src/screen/Checkout3';
 
-AppRegistry.registerComponent(appName, () => Checkout3);
+AppRegistry.registerComponent(appName, () => Checkout);

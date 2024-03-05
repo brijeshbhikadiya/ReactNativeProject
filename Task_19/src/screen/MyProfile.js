@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View,Image, TouchableOpacity, FlatList,ScrollView} from 'react-native'
+import { StyleSheet, Text, View,Image, TouchableOpacity, FlatList,ScrollView,Alert,Share} from 'react-native'
 import React, { Component } from 'react'
 import { Switch } from 'react-native-switch';
 
@@ -63,11 +63,30 @@ export default class MyProfile extends Component {
     })
   }
   render() {
+    const onShare = async () => {
+      try {
+        const result = await Share.share({
+          message:
+            'My Profile',
+        });
+        if (result.action === Share.sharedAction) {
+          if (result.activityType) {
+            // shared with activity type of result.activityType
+          } else {
+            // shared
+          }
+        } else if (result.action === Share.dismissedAction) {
+          // dismissed
+        }
+      } catch (error) {
+        Alert.alert(error.message);
+      }
+    };
     return (
       <View style={styles.Container}>
-         <View style={styles.HeaderView}>
+         {/* <View style={styles.HeaderView}>
             <Image source={require('../assets/images/More.png')} style={styles.MoreImage}></Image>
-         </View>
+         </View> */}
         <ScrollView>
          <View style={styles.ProfileView}>
           <Image source={require('../assets/images/MainProfile.png')}></Image>
@@ -110,7 +129,7 @@ export default class MyProfile extends Component {
               inActiveText=''
               backgroundActive={'rgba(56, 207, 117, 1)'}
               innerCircleStyle={{marginRight:10,borderWidth:null,marginVertical:5}}
-              circleSize={25} // denominator for logic when sliding to TRUE position. Higher number = more space from RIGHT of the circle to END of the slider
+              circleSize={25} 
               switchRightPx={10}
               barHeight={30}
          ></Switch>
@@ -127,7 +146,7 @@ export default class MyProfile extends Component {
           scrollEnabled={false}
           data={this.state.AboutHelp}
           renderItem={({item})=>
-            <TouchableOpacity style={styles.AccountFlatlistView}>
+            <TouchableOpacity style={styles.AccountFlatlistView} onPress={item.AboutHelpText=="Share App"?onShare:null}>
               <Image source={item.AboutHelpImage}></Image>
               <Text style={styles.AccountTextStyle}>{item.AboutHelpText}</Text>
             </TouchableOpacity>
@@ -162,7 +181,7 @@ const styles = StyleSheet.create({
   ProfileView:{
     marginHorizontal:20,
     flexDirection:'row',
-    marginTop:45
+    marginTop:20
   },
   ProfileInnerView:{
     marginLeft:14,
