@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View ,Image, FlatList, ScrollView} from 'react-native'
+import { StyleSheet, Text, View ,Image, FlatList, ScrollView, TouchableOpacity} from 'react-native'
 import React, { Component } from 'react'
 
 export default class Messages extends Component {
@@ -79,14 +79,14 @@ export default class Messages extends Component {
         data={this.state.TodayMessages}
         scrollEnabled={false}
         renderItem={({item})=>
-          <View style={styles.MessageFlatListView}>
+          <TouchableOpacity style={styles.MessageFlatListView}>
             <Image source={item.MessagerImage}></Image>
             <View style={styles.MessageView}>
               <Text style={styles.MessagerNameText}>{item.MessagerName}</Text>
               <Text style={styles.MessagerTypeText}>{item.MessagesType}</Text>
             </View>
             <Text style={styles.MessagerTimeText}>{item.MessagesTime}</Text>
-          </View>
+          </TouchableOpacity>
           
         }></FlatList>
 
@@ -96,14 +96,14 @@ export default class Messages extends Component {
         data={this.state.YesterdayMessage}
         scrollEnabled={false}
         renderItem={({item})=>
-          <View style={styles.MessageFlatListView}>
+          <TouchableOpacity style={styles.MessageFlatListView}>
             <Image source={item.MessagerImage}></Image>
             <View style={styles.MessageView}>
               <Text style={styles.MessagerNameText}>{item.MessagerName}</Text>
               <Text style={styles.MessagerTypeText}>{item.MessagesType}</Text>
             </View>
             <Text style={styles.MessagerTimeText}>{item.MessagesTime}</Text>
-          </View>
+          </TouchableOpacity>
           
         }></FlatList>
         </ScrollView>

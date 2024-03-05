@@ -139,10 +139,9 @@ export default class MyBooking extends Component {
           </View>
         </View>
 
-        {this.state.Past ? (
           <View style={styles.FlatlistPastView}>
             <FlatList
-              data={this.state.PastArry}
+              data={this.state.Past?this.state.PastArry:this.state.UpcomingArray}
               renderItem={({item}) => (
                 <View style={styles.ProfileView}>
                   <View
@@ -154,17 +153,19 @@ export default class MyBooking extends Component {
                     }}>
                     <Image source={item.ProfileImage}></Image>
                     <View style={styles.ProfileNameView}>
-                      <Text style={styles.ProfileNameText}>
+                      <Text style={item.ProfileName=="Assigning Service provider!"?styles.ReplacementEmptyTextStyle:styles.ProfileNameText}>
                         {item.ProfileName}
                       </Text>
-                      <Text style={styles.ProfileStatusText}>
+                      <Text style={item.ProfileStatus=="On Going!"?styles.ProfileStatusBlueText:styles.ProfileStatusText}>
                         {item.ProfileStatus}
                       </Text>
                     </View>
+                    <TouchableOpacity style={{position:'absolute',right:0}}>{item.ProfileName=="Assigning Service provider!"?null:<Image source={item.MessageImage}></Image>}</TouchableOpacity>
                   </View>
                   <View style={{flexDirection: 'row', marginTop: 15}}>
                     <Image source={item.CalenderImage}></Image>
                     <Text style={styles.TimeTextStyles}>{item.TimeText}</Text>
+                  
                   </View>
                   <View
                     style={{
@@ -185,67 +186,6 @@ export default class MyBooking extends Component {
                 </View>
               )}></FlatList>
           </View>
-        ) : (
-          <View style={styles.FlatlistPastView}>
-            <FlatList
-              data={this.state.UpcomingArray}
-              renderItem={({item, index}) => (
-                <View style={styles.ProfileView}>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      borderBottomWidth: 1,
-                      borderBottomColor: 'rgba(0, 0, 0, 0.06)',
-                      paddingBottom: 17,
-                    }}>
-                    <Image source={item.ProfileImage}></Image>
-                    <View style={styles.ProfileNameView}>
-                      <Text
-                        style={
-                          index == 3
-                            ? styles.ReplacementEmptyTextStyle
-                            : styles.ProfileNameText
-                        }>
-                        {item.ProfileName}
-                      </Text>
-                      <Text
-                        style={
-                          index == 0
-                            ? styles.ProfileStatusBlueText
-                            : styles.ProfileStatusText
-                        }>
-                        {item.ProfileStatus}
-                      </Text>
-                    </View>
-                    <TouchableOpacity
-                      style={{position: 'absolute', right: 0, top: 10}}>
-                      <Image source={index!=3?item.MessageImage:null}></Image>
-                    </TouchableOpacity>
-                  </View>
-                  <View style={{flexDirection: 'row', marginTop: 15}}>
-                    <Image source={item.CalenderImage}></Image>
-                    <Text style={styles.TimeTextStyles}>{item.TimeText}</Text>
-                  </View>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      justifyContent: 'space-between',
-                      marginTop: 9,
-                    }}>
-                    <Text style={styles.ReplacementTextStyle}>
-                      {item.ReplacementText}
-                    </Text>
-                    <TouchableOpacity>
-                      <Image source={item.RightArrow}></Image>
-                    </TouchableOpacity>
-                  </View>
-                  <Text style={styles.BookingTextStyle}>
-                    {item.BookingText}
-                  </Text>
-                </View>
-              )}></FlatList>
-          </View>
-        )}
       </View>
     );
   }

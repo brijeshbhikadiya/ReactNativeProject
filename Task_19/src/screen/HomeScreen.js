@@ -25,7 +25,7 @@ export default class HomeScreen extends Component {
             AdvertismentImage:require('../assets/images/ads1.jpeg')
         },
         {
-            AdvertismentImage:require('../assets/images/ads2.png')
+            AdvertismentImage:require('../assets/images/ads1.jpeg')
         }
     ]
     }
@@ -49,6 +49,7 @@ export default class HomeScreen extends Component {
         <FlatList
         data={this.state.Advertisement}
         horizontal
+        showsHorizontalScrollIndicator={false}
         renderItem={({item})=>
         <Image source={item.AdvertismentImage} style={styles.AdvertismentImage}></Image>
         }></FlatList>
@@ -143,7 +144,8 @@ const styles = StyleSheet.create({
         left:20
     },
     AdvertismentImage:{
-        resizeMode:'cover'
+       marginHorizontal:15,
+       marginTop:15
     },
     
     //Name
