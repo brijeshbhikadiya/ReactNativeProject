@@ -78,6 +78,7 @@ export default class Checkout extends Component {
       useNativeDriver: false,
     }).start();
   };
+
   borderStart1 = () => {
     Animated.timing(this.slideAnimation1, {
       toValue: 1,
@@ -85,6 +86,7 @@ export default class Checkout extends Component {
       useNativeDriver: false,
     }).start();
   };
+
   borderStart2 = () => {
     Animated.timing(this.slideAnimation2, {
       toValue: 1,
@@ -172,10 +174,12 @@ export default class Checkout extends Component {
       }
       if (this.state.selectedStep == 0) {
         this.setState({selectedStep: this.state.selectedStep + 1});
+        console.log(this.state.selectedStep)
       } else {
         setTimeout(() => {
           this.setState({selectedStep: this.state.selectedStep + 1});
         }, 1000);
+        console.log(this.state.selectedStep)
       }
       this.setState({
         screen1: false,
@@ -213,10 +217,13 @@ export default class Checkout extends Component {
       }
       if (this.state.selectedStep == 0) {
         this.setState({selectedStep: this.state.selectedStep + 1});
+        console.log(this.state.selectedStep)
       } else {
         setTimeout(() => {
           this.setState({selectedStep: this.state.selectedStep + 1});
+         
         }, 1000);
+        console.log(this.state.selectedStep)
       }
       this.setState({
         screen1: false,
@@ -621,11 +628,11 @@ export default class Checkout extends Component {
                 style={styles.gotopaymentbutton}
               >
               <TouchableOpacity
-                style={styles.confirmbutton}
+                // style={styles.confirmbutton}
                 onPress={() => {
                   this.handleScreen;
                 }}>
-                <Text>Complete</Text>
+                <Text style={styles.gotopaymenttext}>Complete</Text>
               </TouchableOpacity>
               </LinearGradient>
             </View>

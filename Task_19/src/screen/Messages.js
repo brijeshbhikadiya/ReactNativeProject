@@ -74,7 +74,7 @@ export default class Messages extends Component {
             <Text style={styles.TitleName}>Messages</Text>
         </View> */}
 
-        <View style={styles.Line}></View>
+        {/* <View style={styles.Line}></View> */}
 
         <ScrollView>
 
