@@ -15,6 +15,7 @@ import FunctionalComponentTask from './src/screen/FunctionalComponentTask';
 import Child2SUseContextComponent from './src/screen/Child2SUseContextComponent';
 import UseReducerMain from './src/screen/UseReducerMain';
 import UseMemo from './src/screen/UseMemo';
+import UseCallBack from './src/screen/UseCallBack';
 
 
-AppRegistry.registerComponent(appName, () => FunctionalComponentTask);
+AppRegistry.registerComponent(appName, () => UseCallBack);

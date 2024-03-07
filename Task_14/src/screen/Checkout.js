@@ -240,6 +240,9 @@ export default class Checkout extends Component {
   };
 
   render() {
+
+    const Gradient = ['#F8A170', '#FFCD61'];
+    const Grey =['#DEDEDE','#DEDEDE'];
     const {selectedStep, progress1, progress2, progress3} = this.state;
 
     vDate = date => {
@@ -268,6 +271,7 @@ export default class Checkout extends Component {
       const namerx = /^[a-zA-Z ]+$/;
       return namerx.test(String(text));
     };
+    
 
     return (
       <View style={styles.container}>
@@ -280,9 +284,18 @@ export default class Checkout extends Component {
         </View>
         {/* animationview  */}
         <View style={styles.animationview}>
-          <View style={styles.firstroundview}>
+          
+        <LinearGradient
+                colors={['#F8A170', '#FFCD61']}
+                start={{x: 0, y: 0.6}}
+                end={{x: 1, y: 0}}
+                style={styles.firstroundview}
+              >
+          <View>
             <Text style={{color: '#fff'}}>1</Text>
-          </View>
+            </View>
+          </LinearGradient>
+          
           {/* <View
             style={{height: 3, width: 25, backgroundColor: '#f2f2f2'}}></View>  */}
           {/* <View
@@ -326,7 +339,7 @@ export default class Checkout extends Component {
                 colors={['#F8A170', '#FFCD61']}
                 start={{x: 0, y: 0.6}}
                 end={{x: 1, y: 0}}
-                style={{borderRadius: 5}}
+                style={{height:'100%',width:'100%'}}
               />
             </Animated.View>
           </View>
@@ -341,10 +354,16 @@ export default class Checkout extends Component {
                       inputRange: [0, 1],
                       outputRange: ['0%', '100%'],
                     }),
-                  },
-                  {backgroundColor: selectedStep > 1 ? 'orange' : '#DEDEDE'},
+                  }
                 ]}
+              >
+                  <LinearGradient
+                colors={selectedStep>1?Gradient:Grey}
+                start={{x: 0, y: 0.6}}
+                end={{x: 1, y: 0}}
+                style={{height:'100%',width:'100%'}}
               />
+              </Animated.View>
               <Text style={{color: selectedStep > 1 ? 'white' : 'grey'}}>
                 2
               </Text>
@@ -375,9 +394,16 @@ export default class Checkout extends Component {
                       outputRange: ['0%', '100%'],
                     }),
                   },
-                  {backgroundColor: selectedStep > 2 ? 'orange' : '#DEDEDE'},
+                 
                 ]}
+              >
+                <LinearGradient
+                colors={selectedStep>2?Gradient:Grey}
+                start={{x: 0, y: 0.6}}
+                end={{x: 1, y: 0}}
+                style={{height:'100%',width:'100%'}}
               />
+              </Animated.View>
               <Text style={{color: selectedStep > 2 ? 'white' : 'grey'}}>
                 3
               </Text>
@@ -663,7 +689,7 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 100,
-    backgroundColor: 'orange',
+   // backgroundColor: 'orange',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -831,7 +857,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   fill: {
-    backgroundColor: 'orange',
+    //backgroundColor: 'orange',
     height: '100%',
     position: 'absolute',
     top: 0,
