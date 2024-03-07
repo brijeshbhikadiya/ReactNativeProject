@@ -10,6 +10,11 @@ import FunctionalComponentUseState from './src/screen/FunctionalComponentUseStat
 import FunctionComponentUseEffect from './src/screen/FunctionComponentUseEffect';
 import FunctionComponentUseEffectWithUnmount from './src/screen/FunctionComponentUseEffectWithUnmount';
 import FunctionalComponentUseEfectWIthDidUpdate from './src/screen/FunctionalComponentUseEfectWIthDidUpdate';
+import FunctionalComponentUseContext from './src/screen/FunctionalComponentUseContext';
+import FunctionalComponentTask from './src/screen/FunctionalComponentTask';
+import Child2SUseContextComponent from './src/screen/Child2SUseContextComponent';
+import UseReducerMain from './src/screen/UseReducerMain';
+import UseMemo from './src/screen/UseMemo';
 
 
-AppRegistry.registerComponent(appName, () => FunctionalComponentUseEfectWIthDidUpdate);
+AppRegistry.registerComponent(appName, () => FunctionalComponentTask);
