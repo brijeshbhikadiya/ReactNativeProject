@@ -82,7 +82,7 @@ export default class Checkout extends Component {
   borderStart1 = () => {
     Animated.timing(this.slideAnimation1, {
       toValue: 1,
-      duration: 1000,
+      duration: 500,
       useNativeDriver: false,
     }).start();
   };
@@ -90,7 +90,7 @@ export default class Checkout extends Component {
   borderStart2 = () => {
     Animated.timing(this.slideAnimation2, {
       toValue: 1,
-      duration: 1000,
+      duration: 500,
       useNativeDriver: false,
     }).start();
   };
@@ -178,7 +178,7 @@ export default class Checkout extends Component {
       } else {
         setTimeout(() => {
           this.setState({selectedStep: this.state.selectedStep + 1});
-        }, 1000);
+        }, 500);
         console.log(this.state.selectedStep)
       }
       this.setState({
@@ -222,7 +222,7 @@ export default class Checkout extends Component {
         setTimeout(() => {
           this.setState({selectedStep: this.state.selectedStep + 1});
          
-        }, 1000);
+        }, 500);
         console.log(this.state.selectedStep)
       }
       this.setState({
@@ -380,7 +380,14 @@ export default class Checkout extends Component {
                     outputRange: ['0%', '100%'],
                   }),
                 },
-              ]}></Animated.View>
+              ]}>
+                <LinearGradient
+                colors={['#F8A170', '#FFCD61']}
+                start={{x: 0, y: 0.6}}
+                end={{x: 1, y: 0}}
+                style={{height:'100%',width:'100%'}}
+              />
+              </Animated.View>
           </View>
 
           <View style={styles.outerRoundView}>
