@@ -10,17 +10,47 @@ import {
   ScrollView,
 } from 'react-native';
 import React, {Component} from 'react';
+import ImagePicker from 'react-native-image-picker';
+import { launchImageLibrary } from 'react-native-image-picker';
 
 export default class CreateNewTurnaments extends Component {
   constructor() {
     super();
     this.state = {
+      selectedItems: [],
+      selectedSports: "Select Sport",
+      modalVisible: false,
+      isFormatVisible:false,
       teamSelect: true,
       individualSelect: false,
       Upcoming: true,
       Past: false,
       isVisible: false,
+      selectedImage: null,
       isPopVisible: false,
+      searchQuery:'',
+
+      SelectFormatData:[{
+        LeagueImage:require('../assets/images/League.png'),
+        LeagueName:"League",
+        RightArrowImage:require('../assets/images/RightArrow.png'),
+      },
+      {
+        LeagueImage:require('../assets/images/League.png'),
+        LeagueName:"ICIC League",
+        RightArrowImage:require('../assets/images/RightArrow.png'),
+      },
+      {
+        LeagueImage:require('../assets/images/Knockout.png'),
+        LeagueName:"Knockout",
+        RightArrowImage:require('../assets/images/RightArrow.png'),
+      },
+      {
+        LeagueImage:require('../assets/images/Group.png'),
+        LeagueName:"Group",
+        RightArrowImage:require('../assets/images/RightArrow.png'),
+      }
+    ],
       SportsData: [
         {
           SportsName: 'American Football',
@@ -98,6 +128,63 @@ export default class CreateNewTurnaments extends Component {
     };
   }
 
+
+  removeItem = (index) => {
+    const { selectedItems } = this.state;
+    selectedItems.splice(index, 1);
+    this.setState({ selectedItems: [...selectedItems] });
+  };
+
+  selectFormat = (selectedItem) => {
+    const { selectedItems } = this.state;
+  const index = selectedItems.findIndex((item) => item.LeagueName === selectedItem.LeagueName);
+
+  if (index === -1) {
+    // Item not in selectedItems, add it
+    this.setState({ selectedItems: [...selectedItems, selectedItem] });
+  } else {
+    // Item already in selectedItems, remove it
+    selectedItems.splice(index, 1);
+    this.setState({ selectedItems: [...selectedItems] });
+  }
+
+  this.setState({isFormatVisible:false}) // Close the modal after selecting an item
+
+  }
+
+  onSelectSports = (Sports) => {
+    this.setState({ selectedSports: Sports });
+    this.setState({isVisible:false})
+  };
+
+  openImagePicker = () => {
+    const options = {
+      mediaType: 'photo',
+      includeBase64: false,
+      skipBack:true,
+      maxHeight: 2000,
+      maxWidth: 2000,
+    };
+
+    launchImageLibrary(options, (response) => {
+      console.log('Response',response)
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('Image picker error: ', response.error);
+      } else {
+        let imageUri = response.uri || response.assets?.[0]?.uri;
+        this.setState({
+          selectedImage: imageUri
+        });
+      }
+    });
+  };
+
+  handleSearch=(text)=>{
+    this.setState({searchQuery:text})
+  };
+
   togglePopup = () => {
     this.setState({
       isPopVisible: !this.state.isPopVisible,
@@ -106,7 +193,7 @@ export default class CreateNewTurnaments extends Component {
   toggleSelection = type => {
     if (type === 'teams') {
       this.setState({teamSelect: true, individualSelect: false});
-    } else if (type === 'individual') {
+    } else if (type === 'individuals') {
       this.setState({teamSelect: false, individualSelect: true});
     }
   };
@@ -114,6 +201,10 @@ export default class CreateNewTurnaments extends Component {
     this.setState({modalVisible: visible});
   }
   render() {
+    const {searchQuery,selectedSports,modalVisible} = this.state;
+    const filterCountries=this.state.SportsData.filter((Sports)=>
+      Sports.SportsName.includes(searchQuery)
+    );
     return (
       <View style={styles.Container}>
         <Modal
@@ -121,7 +212,9 @@ export default class CreateNewTurnaments extends Component {
           animationType="slide"
           transparent={true}
           onRequestClose={this.togglePopup}>
-          <View
+          <TouchableOpacity
+          onPress={()=>this.setState({isPopVisible:false})}
+          activeOpacity={1}
             style={{
               backgroundColor: 'rgba(0,0,0,0.5)',
               flex: 1,
@@ -135,7 +228,7 @@ export default class CreateNewTurnaments extends Component {
                 Your tournament is successfully added to the tournament console.
               </Text>
             </View>
-          </View>
+          </TouchableOpacity>
         </Modal>
 
         <Modal
@@ -164,6 +257,8 @@ export default class CreateNewTurnaments extends Component {
                 <Image
                   source={require('../assets/images/SearchGrey.png')}></Image>
                 <TextInput
+                onChangeText={this.handleSearch}
+                value={searchQuery}
                   placeholder="Search Sports..."
                   placeholderTextColor={'rgba(6, 5, 16, 0.3)'}
                   style={{marginTop: -14, marginLeft: 5}}></TextInput>
@@ -172,9 +267,10 @@ export default class CreateNewTurnaments extends Component {
               <View style={styles.LineView}></View>
 
               <FlatList
-                data={this.state.SportsData}
+
+                data={filterCountries}
                 renderItem={({item}) => (
-                  <TouchableOpacity style={styles.FlatListDataView}>
+                  <TouchableOpacity style={styles.FlatListDataView} key={item.SportsName} onPress={() => this.onSelectSports(item.SportsName)}>
                     <Text style={styles.SportsText}>{item.SportsName}</Text>
                     <Image
                       source={item.RightArrow}
@@ -185,19 +281,70 @@ export default class CreateNewTurnaments extends Component {
           </View>
         </Modal>
 
+        <Modal
+          animationType={'fade'}
+          transparent={true}
+          visible={this.state.isFormatVisible}
+          onRequestClose={() => {
+            console.log('Modal has been closed.');
+          }}>
+          {/*All views of Modal*/}
+          <View style={{flex: 1, backgroundColor: 'rgba(0,0,0,0.5)'}}>
+            <View style={styles.ModelContainer}>
+              <View style={styles.ModelTitlerBar}>
+                <TouchableOpacity
+                  onPress={() => {
+                    this.setState({isFormatVisible: false});
+                  }}
+                  style={styles.ArrowLeft}>
+                  <Image
+                    source={require('../assets/images/ArrowLeft.png')}></Image>
+                </TouchableOpacity>
+                <Text style={styles.SelectSportTextModel}>Select Format</Text>
+                <TouchableOpacity
+                  style={styles.ThreeDoatsStyle}>
+                  <Image
+                    source={require('../assets/images/ThreeDoats.png')}></Image>
+                </TouchableOpacity>
+              </View>
+
+              <View style={styles.LineView}></View>
+
+
+            {this.state.SelectFormatData.map((item,index)=>(
+                  <View style={styles.TournamentInnerView}>
+                  <TouchableOpacity style={{flexDirection:'row',borderWidth:1,borderColor:'rgba(240, 240, 240, 1)',borderRadius:100,paddingVertical:16,paddingLeft:20,marginBottom:8}}  onPress={() => this.selectFormat(item)}>
+                      <Image source={item.LeagueImage}></Image>
+                      <Text style={item.LeagueName=="Knockout"?styles.knocourtNameStyle:styles.LeagueNameStyle}>{item.LeagueName}</Text>
+                      <Image source={item.RightArrowImage} style={{position:'absolute',right:16.25,top:15}}></Image>
+                  </TouchableOpacity>
+                  </View>
+            ))}
+            </View>
+          </View>
+        </Modal>
+        
+
         <ScrollView>
           <View style={{backgroundColor: 'white', paddingBottom: 21}}>
             <View style={styles.TitlerBar}>
+              <TouchableOpacity  style={styles.LeftArrow}  onPress={() => this.props.navigation.navigate('Turnaments')}>
               <Image
                 source={require('../assets/images/ArrowLeft.png')}
-                style={styles.LeftArrow}></Image>
+               ></Image>
+              </TouchableOpacity>
+             
               <Text style={styles.TurnamentInfoText}>Tournament Info</Text>
             </View>
 
-            <TouchableOpacity>
-              <Image
+            <TouchableOpacity onPress={this.openImagePicker}>
+              {this.state.selectedImage?(
+                 <Image source={{uri:this.state.selectedImage}} style={{alignSelf:'center',marginTop:20,width:80,height:80,borderRadius:100}}/>
+              ):(
+                <Image
                 source={require('../assets/images/ProfileImage.png')}
                 style={{marginTop: 33, alignSelf: 'center'}}></Image>
+              )}
             </TouchableOpacity>
           </View>
 
@@ -215,7 +362,7 @@ export default class CreateNewTurnaments extends Component {
           <View style={styles.SportsView}>
             <View>
               <Text style={styles.NameText}>Sport</Text>
-              <Text style={styles.SelectSportText}>Select Sport</Text>
+              <Text style={styles.SelectSportText}>{this.state.selectedSports}</Text>
             </View>
             <TouchableOpacity
               style={styles.DownArrowImage}
@@ -252,7 +399,7 @@ export default class CreateNewTurnaments extends Component {
                   </Text>
                   <TouchableOpacity
                     style={styles.individualRoundView}
-                    onPress={() => this.toggleSelection('individual')}>
+                    onPress={() => this.toggleSelection('individuals')}>
                     {this.state.individualSelect && (
                       <Image
                         source={require('../assets/images/TeamRadio.png')}
@@ -265,17 +412,31 @@ export default class CreateNewTurnaments extends Component {
                         ? styles.individualText
                         : styles.teamText
                     }>
-                    Individual
+                    Individuals
                   </Text>
                 </View>
               </TouchableOpacity>
             </View>
           </View>
           <View style={styles.SelectFormatView}>
-            <Text style={styles.NameText}>Select Format</Text>
-            <TouchableOpacity style={styles.PlusBlueImage}>
-              <Image source={require('../assets/images/PlusBlue.png')}></Image>
+            <View style={{flexDirection:'row'}}>
+              <Text style={styles.NameText}>Select Format</Text>
+              <TouchableOpacity style={styles.PlusBlueImage}  onPress={() => {
+                  this.setState({isFormatVisible: true});
+                }}>
+                <Image source={require('../assets/images/PlusBlue.png')}></Image>
+              </TouchableOpacity>
+            </View>
+            {this.state.selectedItems.map((item, index) => (
+          <View key={index}  style={{flexDirection:'row',borderWidth:1,borderColor:'rgba(240, 240, 240, 1)',borderRadius:100,paddingVertical:16,paddingLeft:20,marginBottom:8,marginTop:12}}>
+            <Image source={item.LeagueImage}  />
+            <Text style={item.LeagueName=="Knockout"?styles.knocourtNameStyle:styles.LeagueNameStyle}>{item.LeagueName}</Text>
+            <TouchableOpacity onPress={() => this.removeItem(index)} style={{position:'absolute',right:16.25,top:15}}>
+              <Image source={require('../assets/images/Close.png')}/>
             </TouchableOpacity>
+          </View>
+        ))}
+           
           </View>
 
           <View style={styles.PrivacyView}>
@@ -314,7 +475,7 @@ export default class CreateNewTurnaments extends Component {
             </View>
           </View>
 
-          <TouchableOpacity onPress={this.togglePopup}>
+          <TouchableOpacity onPress={this.togglePopup} >
             <Image
               source={require('../assets/images/Save.png')}
               style={{
@@ -398,7 +559,7 @@ const styles = StyleSheet.create({
     shadowColor: 'black',
     shadowOpacity: 0.5,
     elevation: 2,
-    flexDirection: 'row',
+    //flexDirection: 'row',
   },
   PrivacyView: {
     justifyContent: 'space-between',
@@ -484,6 +645,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     elevation: 2,
   },
+  TournamentInnerView:{
+    marginLeft:15.5,
+    marginRight:16.5,
+    marginTop:17
+},
   LineView: {
     borderWidth: 1,
     marginTop: 18,
@@ -504,8 +670,12 @@ const styles = StyleSheet.create({
   },
   PlusBlueImage: {
     position: 'absolute',
-    right: 18,
-    top: 19,
+    right: 0,
+    
+  },
+  ThreeDoatsStyle:{
+    position:'absolute',
+    right:20
   },
   TurnamentInfoText: {
     color: 'rgba(0, 0, 0, 1)',
@@ -633,7 +803,6 @@ const styles = StyleSheet.create({
   teamText: {
     fontSize: 14,
     lineHeight: 18,
-    letterSpacing: 0.38,
     fontWeight: '500',
     marginLeft: 3,
     marginTop: 4,
@@ -683,4 +852,21 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 2,
   },
+  LeagueNameStyle:{
+    color:'rgba(31, 53, 71, 1)',
+    fontWeight:'600',
+    fontSize:14,
+    marginTop:1,
+    lineHeight:14,
+    marginLeft:10,
+},
+knocourtNameStyle:{
+  marginTop:5,
+  color:'rgba(31, 53, 71, 1)',
+  fontWeight:'600',
+  fontSize:14,
+  lineHeight:14,
+  marginLeft:10,
+}
+
 });

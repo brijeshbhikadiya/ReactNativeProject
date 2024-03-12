@@ -6,67 +6,48 @@ import {NavigationContainer} from '@react-navigation/native';
 import Players from './Players';
 import Location from './Location';
 import Turnaments from './Turnaments';
-import { createStackNavigator } from '@react-navigation/stack';
+import {createStackNavigator} from '@react-navigation/stack';
 import CreateNewTurnaments from './CreateNewTurnaments';
-
 
 const Tab = createMaterialTopTabNavigator();
 const Stack = createStackNavigator();
 
-
-const TabNavigationFun = () =>(
+const TabNavigationFun = () => (
   <Tab.Navigator
-  initialRouteName="Turnaments"
-  screenOptions={({route}) => ({
-    tabBarIcon: ({focused, color, size}) => {
-      let iconName;
+    initialRouteName="Turnaments"
+    screenOptions={({route}) => ({
+      tabBarIcon: ({focused, color, size}) => {
+        let iconName;
 
-      if (route.name === 'Players') {
-        iconName = focused
-          ? require('../assets/images/PlayerYellow.png')
-          : require('../assets/images/Player.png');
-      } else if (route.name === 'HomeScreen') {
-        iconName = focused
-          ? require('../assets/images/TeamPlayerYellow.png')
-          : require('../assets/images/TeamPlayer.png');
-      } else if (route.name === 'Location') {
-        iconName = focused
-          ? require('../assets/images/LocationYellow.png')
-          : require('../assets/images/Location.png');
-      } else {
-        iconName = focused
-          ? require('../assets/images/TrophyYellow.png')
-          : require('../assets/images/Trophy.png');
-      }
+        if (route.name === 'Players') {
+          iconName = focused
+            ? require('../assets/images/PlayerYellow.png')
+            : require('../assets/images/Player.png');
+        } else if (route.name === 'HomeScreen') {
+          iconName = focused
+            ? require('../assets/images/TeamPlayerYellow.png')
+            : require('../assets/images/TeamPlayer.png');
+        } else if (route.name === 'Location') {
+          iconName = focused
+            ? require('../assets/images/LocationYellow.png')
+            : require('../assets/images/Location.png');
+        } else {
+          iconName = focused
+            ? require('../assets/images/TrophyYellow.png')
+            : require('../assets/images/Trophy.png');
+        }
 
-      return <Image source={iconName} style={{marginTop: 15}} />;
-    },
-    tabBarLabel:'',
-    headerTitle: '',
-  })}>
-  <Tab.Screen
-    name="Turnaments"
-    component={Turnaments}
-    
-  />
-  <Tab.Screen
-    name="HomeScreen"
-    component={HomeScreen}
-   
-  />
-  <Tab.Screen
-    name="Players"
-    component={Players}
-    
-  />
-  <Tab.Screen
-    name="Location"
-    component={Location}
-    
-  />
-</Tab.Navigator>
-
-)
+        return <Image source={iconName} style={{marginTop: 15}} />;
+      },
+      tabBarLabel: '',
+      headerTitle: '',
+    })}>
+    <Tab.Screen name="Turnaments" component={Turnaments} />
+    <Tab.Screen name="HomeScreen" component={HomeScreen} />
+    <Tab.Screen name="Players" component={Players} />
+    <Tab.Screen name="Location" component={Location} />
+  </Tab.Navigator>
+);
 
 export default class New extends Component {
   render() {
@@ -83,30 +64,35 @@ export default class New extends Component {
         </View>
 
         <View style={styles.LineView}></View> */}
-      
 
         <NavigationContainer>
-          <Stack.Navigator initialRouteName='Turnaments'>
-            <Stack.Screen name="TabNavigationFun" component={TabNavigationFun}
-            options={{
-              headerTitle:()=>
-                <View style={styles.TitleBarView}>
-                      <Image
-                        source={require('../assets/images/More.png')}
-                        style={styles.MoreImage}></Image>
-                      <Image source={require('../assets/images/TournamentPic.png')}></Image>
-                      <Image
-                        source={require('../assets/images/Search.png')}
-                        style={styles.SearchImage}></Image>
+          <Stack.Navigator initialRouteName="Turnaments">
+            <Stack.Screen
+              name="TabNavigationFun"
+              component={TabNavigationFun}
+              options={{
+                headerTitle: () => (
+                  <View style={styles.TitleBarView}>
+                    <Image
+                      source={require('../assets/images/More.png')}
+                      style={styles.MoreImage}></Image>
+                    <Image
+                      source={require('../assets/images/TournamentPic.png')}></Image>
+                    <Image
+                      source={require('../assets/images/Search.png')}
+                      style={styles.SearchImage}></Image>
                   </View>
+                ),
 
-                    // <View style={styles.LineView}></View> 
-            }}/>
-            <Stack.Screen name="CreateNewTurnaments" component={CreateNewTurnaments} options={{headerShown:false}}></Stack.Screen>
+                // <View style={styles.LineView}></View>
+              }}
+            />
+            <Stack.Screen
+              name="CreateNewTurnaments"
+              component={CreateNewTurnaments}
+              options={{headerShown: false}}></Stack.Screen>
           </Stack.Navigator>
         </NavigationContainer>
-       
-       
       </View>
     );
   }
@@ -124,7 +110,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     marginTop: 20,
-    width:390,
+    width: 390,
   },
   FlatlistView: {
     flexDirection: 'row',
