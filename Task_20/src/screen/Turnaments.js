@@ -14,73 +14,116 @@ import {
 import React, {Component} from 'react';
 
 export default class Turnaments extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       isVisible: false,
+      isFollow:true,
       teamData: [
         {
           TournamentImage: require('../assets/images/Turnament1.png'),
           TournamentName: 'Tournament',
           TournamentType: 'Football',
-          LeagueImage: require('../assets/images/League.png'),
-          LeagueName: 'League',
-          KnockoutImage: require('../assets/images/Knockout.png'),
-          KnockoutName: 'Knockout',
           delete: true,
-          GroupImage: require('../assets/images/Group.png'),
-          GroupName: 'Group',
+          isFollow:true,
           ShareImage: require('../assets/images/Share.png'),
           DeleteFillImage: require('../assets/images/DeleteFill.png'),
-          RightArrowImage: require('../assets/images/RightArrow.png'),
+          SelectFormatData: [
+            {
+              LeagueImage: require('../assets/images/League.png'),
+              LeagueName: 'League',
+              RightArrowImage: require('../assets/images/RightArrow.png'),
+            },
+            {
+              LeagueImage: require('../assets/images/Knockout.png'),
+              LeagueName: 'Knockout',
+              RightArrowImage: require('../assets/images/RightArrow.png'),
+            },
+            {
+              LeagueImage: require('../assets/images/Group.png'),
+              LeagueName: 'Group',
+              RightArrowImage: require('../assets/images/RightArrow.png'),
+            },
+          ],
         },
         {
           TournamentImage: require('../assets/images/Tournament2.png'),
           TournamentName: 'Football World Cup',
           TournamentType: 'Football',
-          LeagueImage: require('../assets/images/League.png'),
-          LeagueName: 'League',
-          KnockoutImage: require('../assets/images/Knockout.png'),
-          KnockoutName: 'Knockout',
-          GroupImage: require('../assets/images/Group.png'),
-          GroupName: 'Group',
-          RightArrowImage: require('../assets/images/RightArrow.png'),
+          isFollow:false,
           ShareImage: require('../assets/images/Share.png'),
           RemoveImage: require('../assets/images/Remove.png'),
           FollowingText: 'Following',
           delete: false,
+          SelectFormatData: [
+            {
+              LeagueImage: require('../assets/images/League.png'),
+              LeagueName: 'League',
+              RightArrowImage: require('../assets/images/RightArrow.png'),
+            },
+            {
+              LeagueImage: require('../assets/images/Knockout.png'),
+              LeagueName: 'Knockout',
+              RightArrowImage: require('../assets/images/RightArrow.png'),
+            },
+            {
+              LeagueImage: require('../assets/images/Group.png'),
+              LeagueName: 'Group',
+              RightArrowImage: require('../assets/images/RightArrow.png'),
+            },
+          ],
         },
         {
           TournamentImage: require('../assets/images/Tournament3.png'),
           TournamentName: 'Rugby World Cup ',
           TournamentType: 'Rugby',
-          LeagueImage: require('../assets/images/League.png'),
-          LeagueName: 'League',
-          KnockoutImage: require('../assets/images/Knockout.png'),
-          KnockoutName: 'Knockout',
-          GroupImage: require('../assets/images/Group.png'),
-          GroupName: 'Group',
-          RightArrowImage: require('../assets/images/RightArrow.png'),
           ShareImage: require('../assets/images/Share.png'),
           RemoveImage: require('../assets/images/Remove.png'),
-          RightArrowImage: require('../assets/images/RightArrow.png'),
+          isFollow:false,
           delete: false,
+          SelectFormatData: [
+            {
+              LeagueImage: require('../assets/images/League.png'),
+              LeagueName: 'League',
+              RightArrowImage: require('../assets/images/RightArrow.png'),
+            },
+            {
+              LeagueImage: require('../assets/images/Knockout.png'),
+              LeagueName: 'Knockout',
+              RightArrowImage: require('../assets/images/RightArrow.png'),
+            },
+            {
+              LeagueImage: require('../assets/images/Group.png'),
+              LeagueName: 'Group',
+              RightArrowImage: require('../assets/images/RightArrow.png'),
+            },
+          ],
         },
         {
           TournamentImage: require('../assets/images/Turnament1.png'),
           TournamentName: 'Team 1',
           TournamentType: '10 Players',
-          LeagueImage: require('../assets/images/League.png'),
-          LeagueName: 'League',
-          KnockoutImage: require('../assets/images/Knockout.png'),
-          KnockoutName: 'Knockout',
-          GroupImage: require('../assets/images/Group.png'),
-          GroupName: 'Group',
-          RightArrowImage: require('../assets/images/RightArrow.png'),
           ShareImage: require('../assets/images/Share.png'),
           RemoveImage: require('../assets/images/Remove.png'),
-          RightArrowImage: require('../assets/images/RightArrow.png'),
+          isFollow:false,
           delete: false,
+          SelectFormatData: [
+            {
+              LeagueImage: require('../assets/images/League.png'),
+              LeagueName: 'League',
+              RightArrowImage: require('../assets/images/RightArrow.png'),
+            },
+            {
+              LeagueImage: require('../assets/images/Knockout.png'),
+              LeagueName: 'Knockout',
+              RightArrowImage: require('../assets/images/RightArrow.png'),
+            },
+            {
+              LeagueImage: require('../assets/images/Group.png'),
+              LeagueName: 'Group',
+              RightArrowImage: require('../assets/images/RightArrow.png'),
+            },
+          ],
         },
       ],
       PopUpData: [
@@ -99,10 +142,28 @@ export default class Turnaments extends Component {
     };
   }
 
+  componentDidUpdate = (prevState) => {
+    const data = this.props.route.params || '';
+    console.log(data);
+    // if (!this.state.teamData.some(item => item.TournamentName === data.TournamentName)) {
+    //     const updatedTeamData = [...this.state.teamData, data];
+    //     this.setState({ teamData: updatedTeamData });
+    // }
+    if(data!=undefined && !this.state.teamData.includes(data)&& prevState.route.params!=data) {
+      this.state.teamData.push(data);
+    } 
+    
+};
+
   componentDidMount = () => {
     this.updateItemCount();
   };
 
+  isModelVisible = visible => {
+    this.setState({
+      isVisible: !visible,
+    });
+  };
   handleDelete = index => {
     Alert.alert(
       'Confirmation',
@@ -218,6 +279,7 @@ export default class Turnaments extends Component {
                 Tournaments ({`${this.state.itemCount}`})
               </Text>
             )}
+
             <FlatList
               data={this.state.teamData}
               scrollEnabled={false}
@@ -237,79 +299,39 @@ export default class Turnaments extends Component {
                     </View>
                   </View>
                   <View style={styles.LineView}></View>
-                  <View style={styles.TournamentInnerView}>
-                    <TouchableOpacity
-                      style={{
-                        flexDirection: 'row',
-                        borderWidth: 1,
-                        borderColor: 'rgba(240, 240, 240, 1)',
-                        borderRadius: 100,
-                        paddingVertical: 13,
-                        paddingLeft: 20,
-                        marginBottom: 8,
-                      }}>
-                      <Image source={item.LeagueImage}></Image>
-                      <Text style={styles.LeagueNameStyle}>
-                        {item.LeagueName}
-                      </Text>
-                      <Image
-                        source={item.RightArrowImage}
+
+                  {item.SelectFormatData?.map((itemOpt, index) => (
+                    <View style={styles.TournamentInnerView}>
+                      <TouchableOpacity
                         style={{
-                          position: 'absolute',
-                          right: 16.25,
-                          top: 15,
-                        }}></Image>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      style={{
-                        flexDirection: 'row',
-                        borderWidth: 1,
-                        borderColor: 'rgba(240, 240, 240, 1)',
-                        borderRadius: 100,
-                        paddingVertical: 13,
-                        paddingLeft: 20,
-                        marginBottom: 8,
-                      }}>
-                      <Image source={item.KnockoutImage}></Image>
-                      <Text
-                        style={[
-                          styles.LeagueNameStyle,
-                          styles.KnockoutNameStyle,
-                        ]}>
-                        {item.KnockoutName}
-                      </Text>
-                      <Image
-                        source={item.RightArrowImage}
-                        style={{
-                          position: 'absolute',
-                          right: 16.25,
-                          top: 15,
-                        }}></Image>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      style={{
-                        flexDirection: 'row',
-                        borderWidth: 1,
-                        borderColor: 'rgba(240, 240, 240, 1)',
-                        borderRadius: 100,
-                        paddingVertical: 13,
-                        paddingLeft: 20,
-                        marginBottom: 8,
-                      }}>
-                      <Image source={item.GroupImage}></Image>
-                      <Text
-                        style={[styles.LeagueNameStyle, styles.GroupNameStyle]}>
-                        {item.GroupName}
-                      </Text>
-                      <Image
-                        source={item.RightArrowImage}
-                        style={{
-                          position: 'absolute',
-                          right: 16.25,
-                          top: 15,
-                        }}></Image>
-                    </TouchableOpacity>
-                  </View>
+                          flexDirection: 'row',
+                          borderWidth: 1,
+                          borderColor: 'rgba(240, 240, 240, 1)',
+                          borderRadius: 100,
+                          paddingVertical: 16,
+                          paddingLeft: 20,
+                          marginBottom: 8,
+                        }}
+                        onPress={() => this.selectFormat(item)}>
+                        <Image source={itemOpt.LeagueImage}></Image>
+                        <Text
+                          style={
+                            itemOpt.LeagueName == 'Knockout'
+                              ? styles.knocourtNameStyle
+                              : styles.LeagueNameStyle
+                          }>
+                          {itemOpt.LeagueName}
+                        </Text>
+                        <Image
+                          source={require('../assets/images/RightArrow.png')}
+                          style={{
+                            position: 'absolute',
+                            right: 16.25,
+                            top: 15,
+                          }}></Image>
+                      </TouchableOpacity>
+                    </View>
+                  ))}
                   <View style={styles.LineView}></View>
 
                   <View
@@ -321,11 +343,12 @@ export default class Turnaments extends Component {
                       marginBottom: 15,
                     }}>
                     <TouchableOpacity onPress={onShare}>
-                      <Image source={item.ShareImage}></Image>
+                      <Image source={require('../assets/images/Share.png')}></Image>
                     </TouchableOpacity>
-                    {item.delete ? (
+                   
+                    {item.isFollow ? (
                       <TouchableOpacity onPress={() => this.handleDelete(item)}>
-                        <Image source={item.DeleteFillImage}></Image>
+                        <Image source={require('../assets/images/DeleteFill.png')}></Image>
                       </TouchableOpacity>
                     ) : (
                       <View style={{flexDirection: 'row'}}>
@@ -337,7 +360,7 @@ export default class Turnaments extends Component {
 
                         <TouchableOpacity
                           onPress={() => this.handleDelete(item)}>
-                          <Image source={item.RemoveImage}></Image>
+                          <Image source={require('../assets/images/Remove.png')}></Image>
                         </TouchableOpacity>
                       </View>
                     )}
@@ -349,9 +372,7 @@ export default class Turnaments extends Component {
 
         <TouchableOpacity
           style={{alignSelf: 'center', marginTop: -30, marginBottom: 20}}
-          onPress={() => {
-            this.setState({isVisible: true});
-          }}>
+          onPress={() => this.isModelVisible(this.state.isVisible)}>
           <Image source={require('../assets/images/Plus.png')}></Image>
         </TouchableOpacity>
       </View>
@@ -419,6 +440,8 @@ const styles = StyleSheet.create({
   TournamentImageStyle: {
     marginLeft: 16,
     marginTop: 18,
+    height:50,
+    width:50
   },
   RightArrowImageStyle: {
     position: 'absolute',
@@ -494,6 +517,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 35,
     left: 60,
+  },
+  knocourtNameStyle: {
+    marginTop: 5,
+    color: 'rgba(31, 53, 71, 1)',
+    fontWeight: '600',
+    fontSize: 14,
+    lineHeight: 14,
+    marginLeft: 10,
   },
 });
 

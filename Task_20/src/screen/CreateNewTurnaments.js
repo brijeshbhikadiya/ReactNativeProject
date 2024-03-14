@@ -8,6 +8,7 @@ import {
   Modal,
   FlatList,
   ScrollView,
+  Alert,
 } from 'react-native';
 import React, {Component} from 'react';
 import ImagePicker from 'react-native-image-picker';
@@ -17,16 +18,19 @@ export default class CreateNewTurnaments extends Component {
   constructor() {
     super();
     this.state = {
+      ProfileImage:'',
+      textInputCheck:'',
       selectedItems: [],
       selectedSports: "Select Sport",
       modalVisible: false,
       isFormatVisible:false,
       teamSelect: true,
       individualSelect: false,
-      Upcoming: true,
-      Past: false,
+      Public: true,
+      Private: false,
+      isFollow:false,
       isVisible: false,
-      selectedImage: null,
+      selectedImage: false,
       isPopVisible: false,
       searchQuery:'',
 
@@ -128,6 +132,10 @@ export default class CreateNewTurnaments extends Component {
     };
   }
 
+  
+   
+  
+
 
   removeItem = (index) => {
     const { selectedItems } = this.state;
@@ -162,20 +170,21 @@ export default class CreateNewTurnaments extends Component {
       mediaType: 'photo',
       includeBase64: false,
       skipBack:true,
-      maxHeight: 2000,
-      maxWidth: 2000,
+      maxHeight: 80,
+      maxWidth: 80,
     };
 
     launchImageLibrary(options, (response) => {
       console.log('Response',response)
       if (response.didCancel) {
+        this.setState({selectedImage:false});
         console.log('User cancelled image picker');
       } else if (response.error) {
         console.log('Image picker error: ', response.error);
       } else {
         let imageUri = response.uri || response.assets?.[0]?.uri;
         this.setState({
-          selectedImage: imageUri
+          ProfileImage: imageUri
         });
       }
     });
@@ -186,9 +195,32 @@ export default class CreateNewTurnaments extends Component {
   };
 
   togglePopup = () => {
-    this.setState({
-      isPopVisible: !this.state.isPopVisible,
-    });
+    // if(!this.state.textInputCheck)
+    // {
+    //   Alert.alert("Alert","Enter The Turnament Name");
+    // }else if(this.state.selectedSports=="Select Sport")
+    // {
+    //   Alert.alert("Alert","Enter The Sports Name")
+    // }else if(this.state.selectedItems.length==0)
+    // {
+    //   Alert.alert("Alert","Select The Format")
+    // }
+    // else{
+      this.setState({
+        isPopVisible: !this.state.isPopVisible,
+      });
+      this.props.navigation.navigate('Turnaments',{
+        TournamentName:this.state.textInputCheck,
+        TournamentType:this.state.selectedSports,
+        SelectFormatData:this.state.selectedItems,
+        // SelectedMode: this.state.Public ? 'Public' : 'Private',
+        isFollow: !this.state.isFollow,
+        TournamentImage:this.state.TournamentImage?this.state.ProfileImage:require('../assets/images/ProfileImage.png')
+      }
+    
+      )
+    // }
+   
   };
   toggleSelection = type => {
     if (type === 'teams') {
@@ -337,7 +369,8 @@ export default class CreateNewTurnaments extends Component {
               <Text style={styles.TurnamentInfoText}>Tournament Info</Text>
             </View>
 
-            <TouchableOpacity onPress={this.openImagePicker}>
+            <TouchableOpacity onPress={() => {this.openImagePicker();
+            this.setState({selectedImage:true})}}>
               {this.state.selectedImage?(
                  <Image source={{uri:this.state.selectedImage}} style={{alignSelf:'center',marginTop:20,width:80,height:80,borderRadius:100}}/>
               ):(
@@ -355,14 +388,18 @@ export default class CreateNewTurnaments extends Component {
               <Text style={styles.MaxText}>Max 40</Text>
             </View>
             <View>
-              <TextInput></TextInput>
+              <TextInput style={styles.textInputText} onChangeText={text => {
+                    this.setState({textInputCheck: text});
+                  }}></TextInput>
             </View>
           </View>
 
           <View style={styles.SportsView}>
             <View>
               <Text style={styles.NameText}>Sport</Text>
-              <Text style={styles.SelectSportText}>{this.state.selectedSports}</Text>
+              <Text style={styles.SelectSportText} onChangeText={text => {
+                    this.setState({selectedSports: text});
+                  }}>{this.state.selectedSports}</Text>
             </View>
             <TouchableOpacity
               style={styles.DownArrowImage}
@@ -444,14 +481,14 @@ export default class CreateNewTurnaments extends Component {
             <View style={styles.HeaderToggleView}>
               <TouchableOpacity
                 style={
-                  this.state.Upcoming
+                  this.state.Public
                     ? styles.UpcomingViewBefore
                     : styles.UpcomingViewAfter
                 }
-                onPress={() => this.setState({Upcoming: true, Past: false})}>
+                onPress={() => this.setState({Public: true, Private: false,isFollow : true})}>
                 <Text
                   style={
-                    this.state.Upcoming
+                    this.state.Public
                       ? styles.UpcomingTextBefore
                       : styles.UpcomingTextAfter
                   }>
@@ -460,12 +497,12 @@ export default class CreateNewTurnaments extends Component {
               </TouchableOpacity>
               <TouchableOpacity
                 style={
-                  this.state.Past ? styles.PastViewAfter : styles.PastViewBefore
+                  this.state.Private ? styles.PastViewAfter : styles.PastViewBefore
                 }
-                onPress={() => this.setState({Upcoming: false, Past: true})}>
+                onPress={() => this.setState({Public: false, Private: true,isFollow : false})}>
                 <Text
                   style={
-                    this.state.Past
+                    this.state.Private
                       ? styles.PastTextAfter
                       : styles.PastTextBefore
                   }>
@@ -867,6 +904,12 @@ knocourtNameStyle:{
   fontSize:14,
   lineHeight:14,
   marginLeft:10,
+},
+textInputText:{
+  color:'rgba(0, 0, 0, 1)',
+  fontSize:14,
+  lineHeight:17.05,
+  fontWeight:'500'
 }
 
 });
